@@ -1,0 +1,4 @@
+pedido_id,estado,fecha
+1001,validado,2024-06-01
+1002,pendiente,2024-06-02
+1003,error,2024-06-03
