@@ -36,7 +36,7 @@ docker-compose up -d
 
 ## 📂 Estructura del proyecto
 
-\`\`\`
+```
 .
 ├── .devcontainer/           # Configuración para Codespaces
 ├── docker-compose.yml       # Stack con Grafana + Prometheus + Pushgateway
@@ -45,7 +45,7 @@ docker-compose up -d
 ├── data/                    # CSVs de entrada para los paneles
 ├── flows/                   # Scripts Python que simulan métricas
 └── README.md
-\`\`\`
+```
 
 ---
 
