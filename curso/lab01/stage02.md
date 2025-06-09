@@ -1,57 +1,53 @@
-### Fase 1: Instalar plugin Diagram Panel
+### Fase 1.2 – Probar formas y conexiones Mermaid
 
-🎯 **Objetivo:** Instalar manualmente el plugin `Diagram Panel` en Grafana, reiniciar el contenedor y validar que aparece en la lista de visualizaciones.
+🎯 **Objetivo**
+Aprender a utilizar las distintas formas de nodos disponibles en Mermaid y los diferentes tipos de conexiones entre ellos, observando cómo cambia la representación visual del flujo.
 
-🧱 **Scaffold:**
+🗂️ **Scaffolding**
+No se requiere estructura de archivos. Todo se trabaja en el editor de Diagram Panel en Grafana.
 
-* Contenedor `grafana` corriendo en Codespaces
-* Permisos para ejecutar `grafana-cli` dentro del contenedor
+🪜 **Pasos guiados**
 
-🧭 **Pasos detallados:**
+1. Abre el panel creado en la fase anterior o crea uno nuevo siguiendo los mismos pasos iniciales.
 
-1. **Acceder al contenedor de Grafana:**
+2. Sustituye el contenido del campo **Diagram definition** por:
 
-   ```bash
-   docker exec -it grafana /bin/bash
+```mermaid
+graph TD
+  A((Nodo circular)) --> B[Cuadro]
+  B --> C{Decisión}
+  C -- Sí --> D[Camino A]
+  C -- No --> E[Camino B]
+```
+
+3. Observa los distintos tipos de nodo:
+
+   * `((Texto))` crea un círculo.
+   * `[Texto]` crea un rectángulo.
+   * `{Texto}` crea un rombo (decisión).
+
+4. Cambia la dirección del grafo probando `TD`, `LR`, `RL`, `BT`.
+
+   * Ejemplo:
+
+   ```mermaid
+   graph LR
+     A --> B
+     B --> C
    ```
 
-2. **Instalar el plugin Diagram Panel:**
+✅ **Validaciones**
 
-   ```bash
-   grafana-cli plugins install marcusolsson-diagram-panel
-   ```
+* Se renderizan correctamente al menos tres tipos distintos de forma.
+* Se observan las diferencias entre las direcciones `TD`, `LR`, `RL`, `BT`.
+* Las conexiones con texto (como "Sí" y "No") se visualizan como etiquetas sobre las flechas.
 
-   * Espera a que la instalación se complete correctamente
+🎯 **Retos**
 
-3. **Salir del contenedor:**
+* Representa un mini proceso real de decisión, por ejemplo: "¿Pedido válido?" con rutas para aceptar o rechazar.
+* Usa flechas punteadas (`-.->`) para representar flujos alternativos o excepciones.
 
-   ```bash
-   exit
-   ```
+💬 **Reflexión**
 
-4. **Reiniciar el contenedor de Grafana:**
-
-   ```bash
-   docker compose restart grafana
-   ```
-
-5. **Verificar la instalación:**
-
-   * Accede de nuevo a Grafana en el navegador
-   * Crea un nuevo panel y en el tipo de visualización verifica que `Diagram` aparece disponible
-
-🔥 **Reto adicional:**
-
-* Intenta listar todos los plugins instalados en Grafana:
-
-  ```bash
-  docker exec grafana grafana-cli plugins ls
-  ```
-
-💡 *TIP:* Si el plugin no aparece, asegúrate de reiniciar el contenedor. Algunos plugins no se cargan hasta el reinicio.
-
-✅ **Validación:**
-
-* El plugin `Diagram Panel` aparece como opción al crear un nuevo panel
-* `grafana-cli plugins ls` lo muestra como instalado correctamente
-* No se producen errores al reiniciar o acceder a Grafana
+* ¿Qué forma se adapta mejor a decisiones, tareas o resultados?
+* ¿Cómo cambia la comprensión del flujo al cambiar la dirección del grafo?

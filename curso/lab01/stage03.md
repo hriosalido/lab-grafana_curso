@@ -1,51 +1,44 @@
-### Fase 3: Añadir colores por estado
+### Fase 1.3 – Subgraphs para agrupar procesos
 
-🎯 **Objetivo:** Aplicar estilos visuales personalizados a los nodos del diagrama utilizando clases Mermaid para mejorar la legibilidad del flujo.
+🎯 **Objetivo**
+Aprender a organizar visualmente partes de un proceso dentro de subgraphs para representar fases, departamentos o agrupaciones lógicas en un flujo de negocio.
 
-🧱 **Scaffold:**
+🗂️ **Scaffolding**
+No se requiere estructura de archivos. Se trabaja en el editor de Diagram Panel.
 
-* Panel `Diagram` ya creado con el flujo de estados definido en Mermaid
-* Conexiones funcionales entre nodos (`nuevo`, `procesando`, `enviado`, `entregado`, `cancelado`)
+🪜 **Pasos guiados**
 
-🧭 **Pasos detallados:**
+1. Abre un panel nuevo o reutiliza el anterior.
 
-1. **Editar el panel existente:**
+2. Sustituye el contenido del campo **Diagram definition** por:
 
-   * Abre el dashboard creado en la fase anterior
-   * Haz clic en el panel `Diagram` y selecciona `Edit`
+```mermaid
+graph TB
+  subgraph Validación de pedido
+    A[Recepción] --> B[Verificación]
+    B --> C[Confirmación]
+  end
+  C --> D[Envío]
+```
 
-2. **Agregar definición de estilos Mermaid al final del contenido:**
+3. Observa cómo se agrupan los nodos A, B y C dentro de un contorno visual con etiqueta "Validación de pedido".
 
-   * Añade las siguientes clases al final de la definición actual:
+4. Cambia el título del subgraph por otro representativo, como "Control de calidad" o "Etapa logística".
 
-     ```mermaid
-     classDef nuevo fill:#FFEE99,stroke:#D4AA00;
-     classDef procesando fill:#D0E6F7,stroke:#007ACC;
-     classDef enviado fill:#CDE8C9,stroke:#2D862D;
-     classDef entregado fill:#B2F0E0,stroke:#00A97F;
-     classDef cancelado fill:#F8D7DA,stroke:#C9302C;
+5. Añade otro subgraph con su propio flujo si quieres representar fases paralelas.
 
-     class nuevo nuevo;
-     class procesando procesando;
-     class enviado enviado;
-     class entregado entregado;
-     class cancelado cancelado;
-     ```
+✅ **Validaciones**
 
-3. **Aplicar cambios y revisar:**
+* El subgraph tiene borde visible y título.
+* Los nodos internos se conectan entre sí.
+* Al menos un nodo conecta con otro fuera del subgraph.
 
-   * Haz clic fuera del editor para recargar el panel
-   * Verifica que cada nodo tenga su color personalizado
+🎯 **Retos**
 
-🔥 **Reto adicional:**
+* Crea un segundo subgraph que represente una fase distinta del proceso (ej. "Postventa").
+* Añade conexiones entre subgraphs.
 
-* Crea una nueva clase `en_retorno` con color morado (`#E0BBE4`) y úsala en un nuevo nodo de prueba conectado desde `entregado`
+💬 **Reflexión**
 
-💡 *TIP:* Las clases Mermaid se definen primero con `classDef` (estilo) y luego se asignan con `class nodo clase;`. Los nombres deben coincidir exactamente.
-
-✅ **Validación:**
-
-* Todos los nodos existentes tienen colores personalizados acordes a su significado
-* El nodo `cancelado` tiene fondo rojo claro
-* La sintaxis Mermaid no produce errores
-* El diagrama es más legible e intuitivo visualmente
+* ¿Qué ventajas aporta agrupar nodos visualmente?
+* ¿Qué criterio usarías en tu empresa para dividir los subgraphs: etapas, equipos, roles...?

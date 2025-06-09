@@ -1,69 +1,39 @@
-### Fase 8: Interactividad visual y refinamiento del flujo
+### Fase 1.8 – Uso de íconos e información multilinea en nodos
 
-🎯 **Objetivo:** Ampliar el diagrama con elementos interactivos, subgráficos y mejoras visuales que refuercen la comprensión del proceso de negocio y estimulen la exploración visual.
+🎯 **Objetivo**
+Mejorar la expresividad de los nodos utilizando íconos de FontAwesome y texto con saltos de línea para representar información estructurada y estados visuales claros.
 
-🧱 **Scaffold:**
+🗂️ **Scaffolding**
+No se necesita estructura adicional. Se requiere que Diagram Panel tenga activada la opción de íconos (normalmente habilitada por defecto).
 
-* Panel `Diagram` ya existente con flujo definido
-* Editor Mermaid activo
-* No se requiere conexión dinámica a datos
+🪜 **Pasos guiados**
 
-🧭 **Pasos detallados:**
+1. Abre un panel existente o uno nuevo.
 
-1. **Agrupar nodos en subgráficos**
+2. En el campo **Diagram definition**, pega el siguiente contenido:
 
-   * Organiza visualmente las fases del flujo:
+```mermaid
+graph TD
+  A(fa:fa-box Pedido recibido) --> B(fa:fa-cogs "En<br>proceso")
+  B --> C(fa:fa-check Entregado)
+  B --> D(fa:fa-ban "Cancelado<br>por cliente")
+```
 
-     ```mermaid
-     graph LR
+3. Observa cómo se representan los íconos junto con texto enriquecido.
+4. Prueba otros íconos: `fa-truck`, `fa-exclamation`, `fa-clock`, etc.
 
-       subgraph Validación
-         pedido[📦 Pedido recibido]
-         pedido --> validado[✅ Validado]
-         pedido --> pendiente[⏳ Pendiente]
-         pedido --> error[❌ Error]
-       end
+✅ **Validaciones**
 
-       validado --> almacenado[📁 Almacenado]
-       error --> soporte[📞 Soporte técnico]
-     ```
+* Al menos tres nodos muestran un ícono.
+* Se han utilizado saltos de línea (`<br>`) en al menos un nodo.
+* El flujo representa al menos dos rutas posibles (entrega y cancelación).
 
-2. **Hacer nodos clicables**
+🎯 **Retos**
 
-   * Usa `click` para simular navegación:
+* Añadir un nodo de error con el ícono `fa-exclamation-triangle`.
+* Usar un ícono para representar un tiempo de espera (`fa-clock`) con texto multilinea.
 
-     ```mermaid
-     click soporte "https://miempresa.com/tickets"
-     click almacenado "https://miempresa.com/logistica"
-     ```
-   * Esto permite abrir enlaces al hacer clic en un nodo
+💬 **Reflexión**
 
-3. **Mejorar con estilos visuales (clases Mermaid)**
-
-   * Añade clases para diferenciar estados:
-
-     ```mermaid
-     classDef verde fill:#c1f0c1,stroke:#2d2;
-     classDef rojo fill:#f8d7da,stroke:#c9302c;
-     class validado,almacenado verde;
-     class error,soporte rojo;
-     ```
-
-4. **Opcional: leyenda o panel auxiliar explicativo**
-
-   * Añade un panel `Text → Markdown` explicando qué significa cada color, subgrupo o icono
-
-🔥 **Retos adicionales:**
-
-* Crea una sección "subgraph Entrega" con al menos dos pasos adicionales
-* Cambia los íconos de cada nodo por otros más expresivos usando emojis
-* Añade al menos dos nodos clicables que simulen enlaces a otras herramientas (soporte, logística, etc.)
-
-💡 *TIP:* Puedes usar `subgraph` para agrupar por departamentos, fases del proceso o incluso flujos de decisión.
-
-✅ **Validación:**
-
-* El diagrama incluye al menos un `subgraph` bien delimitado
-* Hay nodos clicables funcionales con URL
-* Los colores ayudan a identificar estados críticos o correctos
-* El diseño general es claro y visualmente atractivo
+* ¿Cómo afecta la incorporación de iconografía a la comprensión inmediata del estado?
+* ¿En qué contextos reales podrían usarse distintos íconos para representar eventos?

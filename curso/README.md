@@ -47,55 +47,97 @@ A partir de aquí, cada sesión se basará en el entorno que acabas de crear.
 
 ---
 
-### 📌 Sesión 1: Fundamentos de Visualización en Grafana
+## 📅 Plan de Sesiones – Curso: Visualización de Flujos de Negocio en Grafana
 
-**Qué aprenderás:** Principios básicos de visualización de procesos. Introducción a Diagram Panel.
-**Laboratorio:** Crearás un flujo de pedidos visual a partir de `pedidos.csv`, representando nodos y transiciones clave.
+---
+
+### 📌 Sesión 1: Fundamentos de Diagram Panel y Mermaid
+
+**Qué aprenderás:**
+Comprenderás los principios básicos de visualización de procesos y aprenderás a usar el plugin Diagram Panel en Grafana sin necesidad de datos externos.
+**Laboratorio:**
+Construirás diagramas Mermaid en modo "hardcoded" con distintos tipos de formas, conexiones, subgraphs y estilos visuales.
+
+---
 
 ### 🎨 Sesión 2: Diseño Visual y Buenas Prácticas
 
-**Qué aprenderás:** Uso de codificación visual (colores, estilos) y claridad en la presentación de datos.
-**Laboratorio:** Mejorarás un dashboard existente con ajustes visuales que faciliten la lectura.
+**Qué aprenderás:**
+Aplicarás codificación visual (colores, bordes, estilos), disposición de nodos y claridad gráfica para representar procesos de negocio.
+**Laboratorio:**
+Mejorarás diagramas Mermaid ya creados incorporando estilos de nodo, jerarquía visual, comentarios y pruebas con temas oscuros y claros.
 
-### 🗄️ Sesión 3: Conexión de Datos (CSV y SQL)
+---
 
-**Qué aprenderás:** Conectar Grafana a archivos CSV o bases de datos SQL. Introducción al panel Status Map.
-**Laboratorio:** Visualizarás múltiples estados simultáneos desde fuentes estructuradas.
+### 🧩 Sesión 3: Subgraphs, Composición y Jerarquías
 
-### 🧮 Sesión 4: Modelado de Estados con SQL y Filtros
+**Qué aprenderás:**
+Organizarás procesos en bloques lógicos con `subgraph`, representarás jerarquías, paralelismos y bifurcaciones.
+**Laboratorio:**
+Diseñarás un flujo complejo con agrupaciones y condicionales usando Mermaid.
 
-**Qué aprenderás:** Crear vistas SQL que reflejen el estado actual de procesos y permitir filtrado interactivo.
-**Laboratorio:** Implementarás un panel basado en condiciones dinámicas y rangos definidos.
+---
 
-### 🧩 Sesión 5: Plugins Avanzados de Visualización
+### 💬 Sesión 4: Variables, Tooltips y Texto Dinámico
 
-**Qué aprenderás:** Diagram Panel, FlowCharting y Node Graph aplicados a flujos y jerarquías.
-**Laboratorio:** Construirás visualizaciones complejas combinando distintos estilos y conexiones.
+**Qué aprenderás:**
+Usarás variables de Grafana (`$var`) dentro del diagrama, tooltips enriquecidos y etiquetas contextuales.
+**Laboratorio:**
+Crearás nodos que respondan a selecciones externas o muestren información enriquecida con texto interpolado.
 
-### 🧭 Sesión 6: Interactividad y Tooltips
+---
 
-**Qué aprenderás:** Usar SVG y tooltips contextuales para enriquecer la interacción en el panel.
-**Laboratorio:** Crearás un panel interactivo con navegación e información sensible al contexto.
+### 📁 Sesión 5: Introducción a Datos (sin conexión)
 
-### 🧷 Sesión 7: Jerarquías y Navegación Contextual
+**Qué aprenderás:**
+Simularás valores de métricas (manualmente) para colorear nodos según estados o indicadores visuales.
+**Laboratorio:**
+Probarás umbrales, colores de fondo y estilos condicionados en Diagram Panel sin necesidad de conectar fuentes.
 
-**Qué aprenderás:** Definir variables y enlaces entre dashboards. Implementación de drilldowns.
-**Laboratorio:** Establecerás una estructura maestro-detalle usando variables.
+---
 
-### 🧰 Sesión 8: Dashboards Overview/Detalle
+### 🗄️ Sesión 6: Conexión de Datos Reales – CSV
 
-**Qué aprenderás:** Combinar paneles globales y detallados, trabajando con filtros cruzados.
-**Laboratorio:** Crearás un dashboard general con enlaces a vistas específicas por proceso o estado.
+**Qué aprenderás:**
+Conectarás una fuente CSV con Grafana y vincularás los datos con los nodos Mermaid del panel.
+**Laboratorio:**
+Leerás estados desde `pedidos.csv` y reflejarás los resultados en cada nodo del flujo.
 
-### 📊 Sesión 9: Introducción a Prometheus y Alertado
+---
 
-**Qué aprenderás:** Simular métricas con Pushgateway y visualizarlas en Grafana con Prometheus.
-**Laboratorio:** Ejecutarás scripts Python para generar datos y configurarás la visualización.
+### 🧮 Sesión 7: SQL y Modelado de Estados
+
+**Qué aprenderás:**
+Conectarás una base de datos SQL, crearás vistas que reflejen procesos y filtrarás por condiciones.
+**Laboratorio:**
+Visualizarás flujos con métricas agregadas y filtros interactivos sobre los nodos.
+
+---
+
+### 🧷 Sesión 8: Enlaces entre Dashboards y Drilldowns
+
+**Qué aprenderás:**
+Definirás variables y navegación contextual (drilldowns) entre dashboards.
+**Laboratorio:**
+Configurarás un flujo maestro-detalle donde cada nodo enlaza a vistas específicas.
+
+---
+
+### 📊 Sesión 9: Simulación de Métricas con Prometheus
+
+**Qué aprenderás:**
+Simularás estados o cargas usando Pushgateway y las visualizarás como parte del flujo con métricas reales.
+**Laboratorio:**
+Generarás métricas con scripts y las representarás visualmente según umbrales.
+
+---
 
 ### 🚨 Sesión 10: Visualización de Alertas Funcionales
 
-**Qué aprenderás:** Crear y representar alertas visuales en los paneles.
-**Laboratorio:** Activarás condiciones de alerta y comprobarás su reflejo visual en tiempo real.
+**Qué aprenderás:**
+Crearás alertas visuales basadas en condiciones reales y representarás su activación en el flujo de negocio.
+**Laboratorio:**
+Diseñarás una vista que combine alertas, métricas y transiciones, reaccionando en tiempo real.
 
 ---
 

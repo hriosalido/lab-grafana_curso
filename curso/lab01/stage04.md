@@ -1,48 +1,49 @@
-### Fase 4: Añadir interacción básica al flujo
+### Fase 1.4 – Aplicar estilos visuales y etiquetas enriquecidas
 
-🎯 **Objetivo:** Mejorar la experiencia de usuario permitiendo seguir visualmente el flujo completo y explorarlo como sistema.
+🎯 **Objetivo**
+Aprender a mejorar la legibilidad de los diagramas aplicando estilos visuales, cambios de tema y etiquetas enriquecidas con saltos de línea o iconografía.
 
-🧱 **Scaffold:**
+🗂️ **Scaffolding**
+No se requiere estructura de archivos. Se trabaja íntegramente en Diagram Panel.
 
-* Diagrama Mermaid funcional y coloreado
-* Nodos y enlaces entre estados existentes
+🪜 **Pasos guiados**
 
-🧭 **Pasos detallados:**
+1. Abre el panel creado en fases anteriores o uno nuevo.
 
-1. **Editar el panel Mermaid:**
+2. Sustituye el contenido por:
 
-   * Abre el dashboard
-   * Haz clic en el panel y selecciona `Edit`
+```mermaid
+graph LR
+  A["Inicio<br>del<br>proceso"] --> B["Verificación<br>documental"]
+  B --> C(fa:fa-check Validación)
+  C --> D[(Entrega final)]
+```
 
-2. **Agregar nodo inicial y final del flujo:**
+3. En el panel de opciones del plugin:
 
-   * Inserta al inicio del grafo dos nuevos nodos:
+   * Activa `Use shape background for metric indicator` (aunque no haya datos)
+   * Cambia el estilo visual entre:
 
-     ```mermaid
-     start((Inicio))
-     end((Fin))
-     start --> nuevo
-     entregado --> end
-     cancelado --> end
-     ```
+     * `Style Common: Dark`
+     * `Style FlowChart: Light`
+     * `Style FlowChart: Classic`
 
-3. **Ajustar conectores para claridad:**
+4. Observa cómo cambia la representación gráfica y cómo se adaptan los saltos de línea (`<br>`).
 
-   * Si hay rutas complejas, rediséñalas para evitar cruces o ambigüedad visual
+5. Cambia la forma del nodo D a `((Entrega final))` para convertirlo en círculo.
 
-4. **Usar nodos con forma distinta (si soportado):**
+✅ **Validaciones**
 
-   * Puedes usar doble paréntesis `((texto))` para representar eventos de inicio o fin
+* Se ha probado al menos un estilo de tema distinto.
+* Al menos un nodo usa saltos de línea.
+* Al menos un nodo contiene un ícono con prefijo `fa:`.
 
-🔥 **Reto adicional:**
+🎯 **Retos**
 
-* Añade un nodo de supervisión llamado `revisión` que se conecte desde `procesando` y devuelva al mismo nodo, formando un ciclo visual
+* Añadir un nodo con el ícono `fa-ban` para representar una condición de error.
+* Usar `style` en texto si el plugin lo permite en la versión activa.
 
-💡 *TIP:* Aunque Mermaid no soporta enlaces interactivos HTML en Grafana, puedes usar la forma y la disposición para guiar la vista del usuario paso a paso.
+💬 **Reflexión**
 
-✅ **Validación:**
-
-* Existen nodos `Inicio` y `Fin` visibles y conectados
-* El flujo puede recorrerse de principio a fin sin ambigüedades
-* El ciclo `procesando → revisión → procesando` se entiende claramente como parte del proceso
-* El diagrama mantiene buena legibilidad
+* ¿Cómo influye el estilo visual en la comprensión del flujo?
+* ¿Cuál de los estilos te parece más legible para un usuario no técnico?

@@ -1,70 +1,44 @@
-### Fase 5: Añadir una fuente de datos real (CSV) al panel
+### Fase 1.5 – Añadir texto en flechas y rutas condicionales
 
-🎯 **Objetivo:** Conectar el panel a una fuente de datos CSV real y representar el número de pedidos en cada estado, aunque no se muestren dinámicamente en el diagrama.
+🎯 **Objetivo**
+Utilizar comentarios sobre flechas, conexiones condicionales y flujos alternativos para enriquecer la expresividad del diagrama y modelar decisiones reales dentro del proceso.
 
-🧱 **Scaffold:**
+🗂️ **Scaffolding**
+No se necesita estructura de archivos. Todo se define desde la interfaz de edición de Diagram Panel.
 
-* Archivo `pedidos.csv` accesible en `https://<tu-codespace>-8080.app.github.dev/pedidos.csv`
-* Plugin `marcusolsson-csv-datasource` ya instalado en Grafana
+🪜 **Pasos guiados**
 
-🧭 **Pasos detallados:**
+1. Crea o edita un panel Diagram ya existente.
 
-1. **Añadir el datasource CSV en Grafana:**
+2. Sustituye el contenido del diagrama por:
 
-   * Ve a `Configuration > Data Sources`
-   * Haz clic en `Add data source`
-   * Busca y selecciona `CSV`
-   * Configura:
+```mermaid
+graph LR
+  A[Inicio] -- Validar datos --> B[Revisión]
+  B -- OK --> C[Aprobado]
+  B -- NOK --> D[Rechazado]
+  D -.-> A
+```
 
-     * **Name:** `Pedidos CSV`
-     * **URL:** `https://<tu-codespace>-8080.app.github.dev/pedidos.csv`
-   * Haz clic en `Save & Test`
+3. Analiza las conexiones:
 
-2. **Crear nuevo panel temporal para validar datos:**
+   * `-- texto -->` añade comentarios sobre la flecha.
+   * `-.->` crea una línea punteada (flujo alternativo o de excepción).
 
-   * Ve a tu dashboard → `Add Panel`
-   * Elige `Table` como tipo
-   * En la consulta, selecciona `Pedidos CSV`
-   * Verifica que aparecen los datos:
+4. Prueba a cambiar `LR` por `TD` para visualizarlo en vertical.
 
-     ```
-     pedido_id | estado     | fecha
-     ----------|------------|----------
-     1001      | validado   | 2024-06-01
-     1002      | pendiente  | 2024-06-02
-     1003      | error      | 2024-06-03
-     ```
+✅ **Validaciones**
 
-3. **Aplicar transformación para agrupar por estado:**
+* Hay al menos dos flechas con texto explicativo.
+* Se ha usado una flecha punteada.
+* El flujo muestra una decisión con al menos dos salidas.
 
-   * Ve a pestaña `Transform`
-   * Añade transformación `Group by`
+🎯 **Retos**
 
-     * Group by: `estado`
-     * Aggregation: `Count` sobre `pedido_id`
-   * Resultado esperado:
+* Añadir un nodo adicional que represente una segunda revisión tras el rechazo.
+* Añadir un flujo cíclico con comentario del tipo "Reintento".
 
-     ```
-     estado    | Count
-     ----------|------
-     validado  | 1
-     pendiente | 1
-     error     | 1
-     ```
+💬 **Reflexión**
 
-4. **(Opcional) Guardar este panel como referencia de datos:**
-
-   * Renómbralo como `Conteo por estado`
-   * Este panel servirá de apoyo visual junto al diagrama
-
-🔥 **Reto adicional:**
-
-* Modifica el CSV añadiendo más entradas y valida que el conteo por estado se actualiza al refrescar el panel
-
-💡 *TIP:* Grafana no puede inyectar directamente valores en Mermaid. Sin embargo, puedes mantener este panel como fuente visible o usarlo en pantalla dividida durante la interpretación del flujo.
-
-✅ **Validación:**
-
-* La fuente de datos `Pedidos CSV` aparece en el listado de datasources
-* El panel muestra correctamente los datos y el conteo por estado
-* El archivo CSV puede ser editado y refleja los cambios al recargar
+* ¿En qué casos reales usarías flechas punteadas?
+* ¿Qué ventaja aporta mostrar texto directamente en las transiciones?

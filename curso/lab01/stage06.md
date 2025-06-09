@@ -1,52 +1,56 @@
-### Fase 6: Vincular visualización con datos reales (indirectamente)
+### Fase 1.6 – Subgraphs condicionales y múltiples rutas
 
-🎯 **Objetivo:** Alinear visualmente el flujo Mermaid con los datos reales del CSV, usando paneles complementarios y coherencia de estados sin integración directa.
+🎯 **Objetivo**
+Aprender a combinar subgraphs con rutas condicionales para representar decisiones complejas, bifurcaciones de proceso y agrupaciones jerárquicas de flujo.
 
-🧱 **Scaffold:**
+🗂️ **Scaffolding**
+No se necesita estructura de archivos. Todo se define dentro del campo Mermaid del Diagram Panel.
 
-* Panel `Diagram` creado con estados estáticos
-* Panel `Table` creado con conteo por estado
-* Datasource `Pedidos CSV` activo
+🪜 **Pasos guiados**
 
-🧭 **Pasos detallados:**
+1. Crea un nuevo panel o edita uno existente.
 
-1. **Organizar los paneles en el dashboard:**
+2. Sustituye el contenido con:
 
-   * Abre el dashboard donde se encuentran ambos paneles
-   * Coloca el panel `Diagram` a la izquierda y el panel `Table` a la derecha o debajo
-   * Usa el modo de grid para que se vea todo sin solapamientos
+```mermaid
+graph TD
+  subgraph Evaluación inicial
+    A[Recepción] --> B[Análisis]
+    B --> C{¿Cumple requisitos?}
+  end
 
-2. **Revisar correspondencia entre nodos y datos:**
+  C -- Sí --> D[Pre-aprobación]
+  C -- No --> E[Rechazo inmediato]
 
-   * Asegúrate de que los estados en Mermaid coincidan exactamente con los del CSV (`validado`, `pendiente`, `error`, etc.)
-   * Si es necesario, adapta el texto de los nodos del diagrama para reflejar el mismo vocabulario
+  subgraph Ciclo de revisión
+    E --> F[Revisión manual]
+    F -- Aprobado --> G[Pre-aprobación]
+    F -- Rechazado --> H[Archivo]
+  end
 
-3. **Simular datos en el flujo (manual):**
+  D --> I[Validación final]
+  G --> I
+```
 
-   * Edita el panel Mermaid y añade temporalmente los conteos de forma estática:
+3. Observa cómo:
 
-     ```mermaid
-     graph LR
-       nuevo[🟡 Nuevo: 5]
-       nuevo --> procesando[🔄 Procesando: 3]
-       procesando --> enviado[📦 Enviado: 2]
-       enviado --> entregado[✅ Entregado: 1]
-     ```
-   * Usa los valores actuales del panel de tabla
+   * Se combinan subgraphs.
+   * Se representan rutas condicionales dentro y fuera de subgraphs.
+   * Se conecta un nodo externo (`D`) y uno interno (`G`) hacia un mismo destino (`I`).
 
-4. **Sincronización futura (sólo visual):**
+✅ **Validaciones**
 
-   * A medida que cambie el CSV, actualiza manualmente los números del Mermaid
-   * Esto ayuda a reforzar el paralelismo entre fuente de datos y diagrama
+* Hay al menos dos subgraphs diferenciados.
+* Cada subgraph contiene nodos con lógica propia.
+* Hay al menos una condición que genera múltiples rutas.
+* Todos los nodos están correctamente conectados.
 
-🔥 **Reto adicional:**
+🎯 **Retos**
 
-* Añade un comentario de texto en el dashboard explicando que el flujo refleja el estado actual de los datos de pedidos (aunque de forma manual)
+* Añadir un subgraph adicional llamado "Auditoría" con una ruta que intercepte el flujo antes de "Validación final".
+* Añadir una línea punteada de "Archivo" hacia "Recepción" para representar un reingreso excepcional.
 
-💡 *TIP:* Usa paneles de tipo `Text` para añadir contexto o instrucciones en el dashboard y guiar al usuario final sobre cómo interpretar los valores visuales.
+💬 **Reflexión**
 
-✅ **Validación:**
-
-* El flujo muestra números que coinciden con los datos del CSV
-* El usuario puede consultar ambos paneles y entender el paralelismo
-* La actualización de datos en el CSV puede reflejarse visualmente editando el Mermaid
+* ¿Qué procesos reales podrían modelarse con múltiples subgraphs condicionales?
+* ¿Cuándo conviene dividir el flujo en bloques frente a mantenerlo lineal?

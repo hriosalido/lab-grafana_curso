@@ -1,106 +1,48 @@
-## Laboratorio 01: Diagramas de procesos con Grafana (Diagram Panel)
-
-🎯 **Objetivo general**
-Aprender a utilizar el plugin `jdbranham-diagram-panel` de Grafana para representar flujos de negocio mediante SVG dinámicos, vinculados a datos de una fuente como CSV. Se trabajará con estilos, enlaces, tooltips y condiciones visuales.
-
-🧰 **Requisitos previos**
-
-* Entorno Docker o GitHub Codespaces con Grafana y plugin `jdbranham-diagram-panel` instalado
-* Plugin de datasource CSV (`marcusolsson-csv-datasource`) instalado
-* Familiaridad básica con dashboards en Grafana
-
-🔬 **Fases del laboratorio**
-
-### Fase 1: Verificación del plugin y entorno
+### Fase 1.1 – Crear un panel básico con Diagram Panel
 
 🎯 **Objetivo**
-Asegurar que el plugin Diagram Panel está instalado correctamente y disponible para su uso.
+Crear un primer panel en Grafana usando el plugin Diagram Panel, sin usar ninguna fuente de datos. Familiarizarse con el entorno de edición y con la sintaxis Mermaid básica.
 
-🔧 **Pasos detallados**
+🗂️ **Scaffolding**
+No se requiere estructura de archivos. El trabajo se realiza íntegramente desde la interfaz de Grafana.
 
-1. Acceder a Grafana desde tu navegador:
+🪜 **Pasos guiados**
 
-   ```bash
-   http://localhost:3000
-   ```
+1. Accede a Grafana desde tu entorno ([http://localhost:3000](http://localhost:3000)) e inicia sesión con:
 
-   Usuario: `admin`
-   Contraseña: `admin` (o según se haya definido)
+   * Usuario: `admin`
+   * Contraseña: `admin`
 
-2. Navegar a `Configuration > Plugins` y buscar `Diagram Panel`:
+2. Ve a:
 
-   * Comprobar que el plugin aparece como instalado.
-   * Si no aparece, revisar la variable de entorno:
+   * Dashboards → New → Add new panel
 
-     ```yaml
-     GF_INSTALL_PLUGINS=jdbranham-diagram-panel
-     ```
+3. Cambia la visualización a **Diagram Panel**.
 
-     en tu `docker-compose.yml` o configuración Docker.
+4. Deja vacía la sección de consultas (no se usará ninguna métrica).
 
-3. Reiniciar Grafana si hiciste cambios en los plugins:
+5. En el campo **Diagram definition**, pega este contenido:
 
-   ```bash
-   docker restart grafana
-   ```
+```mermaid
+graph LR
+  A[Inicio] --> B[Fin]
+```
 
-4. Crear un nuevo dashboard:
+6. Observa cómo se representa el flujo de izquierda a derecha con dos nodos y una flecha.
 
-   * Ir a `Dashboards > New > New Dashboard`
-   * Click en `Add new panel`
+✅ **Validaciones**
 
-5. Seleccionar el tipo de panel `Diagram` en la esquina superior derecha.
+* El panel se renderiza correctamente sin errores.
+* Aparecen dos nodos: "Inicio" y "Fin".
+* La flecha entre ambos refleja una relación de flujo.
+* No hay datos vinculados ni métricas activas.
 
-   * Si no aparece como opción, el plugin **no está bien instalado**.
+🎯 **Retos**
 
-✅ **Validación del aprendizaje**
+* Cambiar `LR` por `TD` o `RL` y observar el cambio en la dirección del diagrama.
+* Sustituir los nombres de los nodos por otros más representativos de un proceso real.
 
-* El panel de tipo `Diagram` aparece como opción en la creación de paneles
-* El plugin está listado en `Configuration > Plugins`
-* No se han producido errores al acceder al panel
+💬 **Reflexión**
 
-🔥 **Reto opcional**
-
-* Intenta instalar el plugin manualmente si estás fuera de un entorno Docker:
-
-  ```bash
-  grafana-cli plugins install jdbranham-diagram-panel
-  systemctl restart grafana-server
-  ```
-
----
-
-### Fase 2: Primer panel de tipo Diagrama
-
-🎯 Objetivo: Crear un panel básico Diagram y configurar el SVG inicial.
-
-### Fase 3: Configuración de datasource CSV
-
-🎯 Objetivo: Configurar una fuente de datos CSV simple que simule estados de nodos.
-
-### Fase 4: Enlace de nodos SVG con datos
-
-🎯 Objetivo: Usar `metric`, `alias` y otras propiedades para vincular los datos al diagrama.
-
-### Fase 5: Condiciones visuales y estados
-
-🎯 Objetivo: Aplicar cambios visuales en nodos en función de los valores: colores, clases, texto.
-
-### Fase 6: Interacciones avanzadas
-
-🎯 Objetivo: Añadir tooltips dinámicos, enlaces y navegación entre dashboards.
-
-### Fase 7: Subdiagramas y agrupaciones
-
-🎯 Objetivo: Crear componentes reutilizables o zonas diferenciadas dentro del mismo SVG.
-
-### Fase 8: Integración con dashboard completo
-
-🎯 Objetivo: Añadir el panel de diagrama junto a otros (estadísticas, tablas, etc.).
-
-✅ **Validaciones finales**
-
-* Se ha creado un panel funcional con SVG dinámico
-* El panel responde a datos del CSV
-* Estilos y enlaces se actualizan en tiempo real
-* Se han explorado las funcionalidades principales del plugin
+* ¿Qué ventajas aporta un flujo visual simple frente a una tabla de estados?
+* ¿Cómo ayuda esta representación a pensar mejor en los pasos de un proceso?

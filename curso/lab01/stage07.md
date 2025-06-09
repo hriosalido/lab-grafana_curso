@@ -1,54 +1,48 @@
-### Fase 7: Representación end-to-end del flujo de pedidos
+### Fase 1.7 – Uso de variables de Grafana en Diagram Panel
 
-🎯 **Objetivo:** Consolidar la visualización del proceso completo de pedidos conectando los datos, el flujo visual y su interpretación en un único dashboard integrado y comprensible de principio a fin.
+🎯 **Objetivo**
+Aprender a utilizar variables de Grafana dentro de definiciones Mermaid para que el contenido de los nodos se adapte dinámicamente según selecciones realizadas por el usuario.
 
-🧱 **Scaffold:**
+🗂️ **Scaffolding**
+Variables definidas en el dashboard de Grafana:
 
-* Panel `Diagram` con flujo Mermaid visual y manualmente actualizado
-* Panel `Table` con conteo por estado conectado a `pedidos.csv`
-* Panel `Text` con leyenda o descripción
+* Tipo: **Constant** o **Custom**
+* Nombre: `estado`
+* Valor: `En revisión`
 
-🧭 **Pasos detallados:**
+🪜 **Pasos guiados**
 
-1. **Crear un layout completo del dashboard:**
+1. Abre tu dashboard y ve a: **Dashboard settings → Variables → New**
 
-   * Organiza los tres paneles:
+2. Crea una variable:
 
-     * Diagrama Mermaid centrado o en la parte superior
-     * Tabla de datos justo debajo
-     * Panel de texto lateral o al pie del dashboard
-   * Ajusta los tamaños para que todo sea visible sin hacer scroll horizontal
+   * **Name**: `estado`
+   * **Type**: `Constant`
+   * **Value**: `En revisión`
 
-2. **Actualizar el flujo visual con los datos actuales:**
+3. Guarda los cambios.
 
-   * Revisa el panel `Table`
-   * Edita el panel Mermaid y sustituye los valores de los nodos con los datos actuales (ej. `Procesando: 7`, `Cancelado: 2`, etc.)
-   * Verifica que los nombres coinciden exactamente con los del CSV
+4. En tu panel Diagram, define el Mermaid con uso de variable:
 
-3. **Añadir panel de texto explicativo:**
+```mermaid
+graph LR
+  A[Inicio] --> B["Estado actual: ${estado}"]
+  B --> C[Fin]
+```
 
-   * Tipo: `Text → Markdown`
-   * Contenido sugerido:
+5. Observa cómo el contenido del nodo B incluye dinámicamente el valor de la variable.
 
-     ```
-     ### Interpretación del flujo
-     Este panel representa visualmente el estado actual de los pedidos procesados. 
-     Los valores están sincronizados con los datos del archivo CSV cargado dinámicamente.
-     ```
+✅ **Validaciones**
 
-4. **Ajustar colores o formas si es necesario:**
+* El nodo B muestra "Estado actual: En revisión"
+* Cambiar el valor de la variable modifica el texto en tiempo real
 
-   * Verifica si hay nuevos estados
-   * Añade nuevas clases Mermaid si corresponde (solo si el flujo ha cambiado)
+🎯 **Retos**
 
-🔥 **Reto adicional:**
+* Cambiar el tipo de variable a **Custom** con múltiples valores (`En revisión`, `Validado`, `Rechazado`) y probar el selector.
+* Usar dos variables distintas en distintos nodos del diagrama.
 
-* Exporta el dashboard completo como JSON y guárdalo en el repositorio (`dashboards/flujo-pedidos-e2e.json`)
+💬 **Reflexión**
 
-💡 *TIP:* Los dashboards bien diseñados permiten a cualquier observador entender el proceso sin necesidad de entrar en los datos técnicos. Usa títulos, colores y orden para reforzar ese objetivo.
-
-✅ **Validación:**
-
-* El dashboard presenta una vista unificada del flujo de pedidos, datos reales y explicación
-* Los valores numéricos de los nodos coinciden con la tabla conectada
-* El resultado final se entiende sin intervención del instructor
+* ¿Cómo podrías usar esta técnica para personalizar dashboards por usuario, rol o idioma?
+* ¿Qué tipo de información crítica se beneficiaría de este tipo de interpolación visual?

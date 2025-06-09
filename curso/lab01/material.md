@@ -1,71 +1,148 @@
-## 🧾 Apuntes de apoyo — Sesión 1: Fundamentos de Visualización
-
-Esta sección acompaña al trabajo de laboratorio con una explicación más amplia que puedes consultar antes, durante o después de realizar la práctica. Está pensada como guía conceptual y de contexto general para reforzar lo aprendido en la sesión.
+# 📘 Apuntes del Alumno – Sesión 1: Diagram Panel y Mermaid en Grafana
 
 ---
 
-### 📌 Qué entendemos por "flujo de negocio"
+## 🎯 Objetivos de la sesión
 
-Un flujo de negocio representa una secuencia estructurada de actividades que se deben completar para conseguir un objetivo empresarial. Ejemplos típicos incluyen:
-
-* Gestión de pedidos
-* Atención al cliente
-* Procesos de validación o aprobación
-* Fabricación y logística
-
-Estos flujos suelen tener estados definidos, transiciones entre ellos, responsables asignados y reglas de negocio asociadas.
-
-Representarlos visualmente nos ayuda a:
-
-* Diagnosticar cuellos de botella
-* Comunicar procesos complejos de forma clara
-* Supervisar el estado en tiempo real
-* Detectar incidencias o ineficiencias
+* Comprender qué es Diagram Panel y para qué se utiliza.
+* Aprender la sintaxis básica de Mermaid.
+* Representar procesos de negocio simples sin usar fuentes de datos.
+* Familiarizarse con el entorno visual de Grafana y las opciones del plugin.
 
 ---
 
-### 📈 Por qué usar Grafana para visualizar procesos
+## 🧩 ¿Qué es Diagram Panel?
 
-Aunque Grafana se asocia con métricas técnicas, su flexibilidad visual y extensibilidad lo hacen apto también para representar procesos de negocio. Sus ventajas clave:
-
-* Admite múltiples fuentes de datos: CSV, SQL, APIs, JSON.
-* Permite construir dashboards visuales muy personalizados.
-* Su sistema de plugins permite extender la interfaz para representar flujos, nodos y estados.
-* Puede incorporar condiciones visuales, navegación entre paneles, variables, alertas y enlaces.
+* Un **plugin de visualización** para Grafana.
+* Permite crear **diagramas de flujo, decisiones y jerarquías**.
+* Usa sintaxis **Mermaid**, que se escribe como texto.
+* No necesita datos reales: se puede usar de forma totalmente estática.
 
 ---
 
-### 🧩 ¿Qué es Diagram Panel y por qué lo usamos aquí?
+## ✍️ Sintaxis básica de Mermaid
 
-Diagram Panel es un plugin que permite representar procesos como diagramas de flujo:
-
-* Se dibujan nodos (estados) y conexiones (transiciones).
-* Cada nodo puede tener un valor asociado, una condición de color o un tooltip.
-* El diseño puede definirse en JSON o mediante interfaz visual.
-
-En esta sesión usaremos Diagram Panel para representar gráficamente el estado de pedidos a partir de un archivo CSV.
-
----
-
-### 📁 Nuestro ejemplo: `pedidos.csv`
-
-Trabajaremos con un archivo llamado `pedidos.csv`, que contiene una lista de pedidos y su estado actual:
-
-```
-PedidoID,Estado
-1,Nuevo
-2,Nuevo
-3,Procesando
-4,Enviado
-5,Entregado
-...
+```mermaid
+graph LR
+  A[Inicio] --> B[Fin]
 ```
 
-Este archivo será nuestra fuente de datos para el primer panel del curso. Representaremos cada estado como un nodo, y contaremos cuántos pedidos hay en cada uno.
+* `graph LR`: define dirección Left → Right (otras: `TD`, `RL`, `BT`).
+* `A --> B`: flecha de conexión entre nodos.
+* `A[Texto]`: nodo rectangular.
+* `((Texto))`: nodo circular.
+* `{Texto}`: nodo de decisión (rombo).
 
-Queremos construir una visualización clara, directa y navegable que responda a preguntas como:
+---
 
-* ¿Cuántos pedidos están atascados en un estado?
-* ¿Qué proporción ha llegado al final del flujo?
-* ¿Dónde hay más carga operativa?
+## 🧱 Tipos de nodo y formas
 
+| Sintaxis    | Forma             |
+| ----------- | ----------------- |
+| `[Texto]`   | Rectángulo        |
+| `((Texto))` | Círculo           |
+| `{Texto}`   | Rombos (decisión) |
+| `[(Texto)]` | Cilindro          |
+
+---
+
+## 🔄 Direcciones posibles
+
+* `TD`: Top Down (arriba → abajo)
+* `LR`: Left to Right (izquierda → derecha)
+* `BT`: Bottom to Top (abajo → arriba)
+* `RL`: Right to Left (derecha → izquierda)
+
+Prueba cómo cambia el flujo cambiando estas letras en `graph ...`
+
+---
+
+## 📦 Agrupaciones con `subgraph`
+
+```mermaid
+graph TD
+  subgraph Validación
+    A --> B
+    B --> C
+  end
+  C --> D[Fin]
+```
+
+* Sirve para representar **etapas, departamentos o bloques lógicos**.
+* El título del `subgraph` se muestra como etiqueta del grupo.
+
+---
+
+## 💬 Flechas con texto y condiciones
+
+```mermaid
+A --> B
+B -- OK --> C
+B -- NOK --> D
+D -.-> A
+```
+
+* `-- Texto -->`: añade etiquetas a las flechas.
+* `-.->`: flecha punteada (flujo alternativo o reintento).
+
+---
+
+## 🎨 Estilos visuales
+
+* Puedes cambiar el estilo desde el panel (Dark, Light, Classic).
+* Activa "Use shape background for metric indicator" para ver colores.
+* Usa saltos de línea: `<br>` para separar líneas dentro de un nodo.
+
+---
+
+## 🔠 Iconos con FontAwesome
+
+```mermaid
+A(fa:fa-check Aprobado)
+```
+
+* Puedes usar íconos: `fa:fa-ban`, `fa:fa-cogs`, `fa:fa-truck`, etc.
+* Útil para representar estados visualmente con semántica.
+
+---
+
+## 📌 Variables
+
+```mermaid
+A["Estado: ${estado}"] --> B
+```
+
+* `${estado}` es una **variable del dashboard**.
+* Te permite adaptar el contenido de un nodo según lo que seleccione el usuario.
+
+---
+
+## 🧠 Consejos rápidos
+
+* Empieza simple: 2-3 nodos, sin datos.
+* Cambia las direcciones para ver qué disposición se adapta mejor.
+* Usa subgraphs para agrupar tareas o fases.
+* Las etiquetas en las flechas son muy útiles en flujos condicionales.
+
+---
+
+## 🏁 Hoy trabajamos por fases
+
+1. Crear tu primer panel con Mermaid (`Inicio → Fin`)
+2. Probar formas (`[ ]`, `(( ))`, `{ }`)
+3. Agrupar nodos con `subgraph`
+4. Aplicar estilos, colores, saltos de línea
+5. Etiquetar flechas, condicionar flujos
+6. Usar iconos (`fa:`) y variables `${}` (opcional)
+
+---
+
+## 💬 Preguntas para pensar
+
+* ¿Qué procesos reales de tu empresa podrías representar?
+* ¿Qué tipo de nodos y flechas usarías para mostrar errores, decisiones o rutas alternativas?
+* ¿Prefieres flujos horizontales o verticales para entender un proceso?
+
+---
+
+Usa esta hoja como guía rápida durante la sesión o como resumen personal.

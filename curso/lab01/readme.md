@@ -1,85 +1,57 @@
-## 📘 Guía del Alumno
+# 🧪 README – Laboratorio: Fundamentos de Diagram Panel (Sesión 1)
 
-# 🧭 Curso: Visualización de Flujos de Negocio en Grafana
+### 🎯 Objetivo general
 
-**Duración total:** 25 horas
-**Formato:** 10 sesiones de 2,5 horas
-[fundamentos](https://fundamentos-de-visualiza-xfbvyua.gamma.site/)
+Aprender a utilizar el plugin Diagram Panel de Grafana para construir visualizaciones de procesos usando definiciones Mermaid estáticas, sin conexión a fuentes de datos. El foco estará en la comprensión de la sintaxis, el diseño visual y la capacidad expresiva de los diagramas.
 
 ---
 
-## Sesión 1: Fundamentos de Visualización
+## 🔬 Fases del laboratorio
 
-### 🎯 Objetivo de la sesión
+### [Fase 1.1 – Crear un panel básico con Diagram Panel](#)
 
-* Comprender qué es un flujo de negocio y cómo representarlo.
-* Conocer los fundamentos de visualización orientada a procesos.
-* Aprender a usar Diagram Panel para construir visualizaciones básicas.
-* Iniciar el entorno de trabajo personal desde Codespaces.
+Crear un panel desde cero y renderizar un flujo simple de izquierda a derecha sin conexión a datos.
 
----
+### [Fase 1.2 – Probar formas y conexiones Mermaid](#)
 
-### 🧱 Scaffold necesario
+Explorar los distintos tipos de nodos (`[ ]`, `(( ))`, `{ }`) y direcciones del flujo (`TD`, `LR`, `BT`, `RL`).
 
-Asegúrate de tener acceso a los siguientes archivos dentro del repositorio clonado:
+### [Fase 1.3 – Subgraphs para agrupar procesos](#)
 
-```
-📁 ./data/
-├── pedidos.csv         # Dataset de ejemplo con estados del proceso
+Utilizar `subgraph` para agrupar fases o etapas visuales dentro de un mismo flujo de negocio.
 
-📁 ./dashboards/
-├── flujo_pedidos.json  # (opcional) Ejemplo de dashboard ya creado
-```
+### [Fase 1.4 – Aplicar estilos visuales y etiquetas enriquecidas](#)
 
-El entorno se inicia con:
+Aplicar temas visuales, modificar estilos y experimentar con saltos de línea y personalización de etiquetas.
 
-```bash
-docker-compose up
-```
+### [Fase 1.5 – Añadir texto en flechas y rutas condicionales](#)
 
-Accede a Grafana en: [http://localhost:3000](http://localhost:3000)
-Usuario: `admin` · Contraseña: `admin`
+Incluir comentarios en las flechas (`-- texto -->`) y representar decisiones con rutas múltiples.
 
----
+### [Fase 1.6 – Subgraphs condicionales y múltiples rutas](#)
 
-### 🧪 Laboratorio: Visualizar flujo de pedidos con Diagram Panel
+Combinar agrupaciones y bifurcaciones complejas para representar ciclos, reintentos y flujos alternativos.
 
-#### 🔹 Fase 1: Crear nuevo dashboard
+### [Fase 1.7 – Uso de variables de Grafana en Diagram Panel](#)
 
-* Abre Grafana → Dashboards → New → Add New Panel.
-* Elige **Diagram Panel** como tipo.
+Interpolar texto dinámico dentro del diagrama mediante variables definidas a nivel de dashboard.
 
-#### 🔹 Fase 2: Cargar el flujo
+### [Fase 1.8 – Uso de íconos e información multilinea en nodos](#)
 
-* Edita el contenido del panel y define los nodos: `Nuevo`, `Procesando`, `Enviado`, `Entregado`.
-* Usa `pedidos.csv` como fuente para determinar cuántos pedidos hay en cada estado.
-
-#### 🔹 Fase 3: Añadir colores por estado
-
-* Define reglas visuales para colorear los nodos según estado (`green`, `yellow`, `orange`, `red`).
-
-#### 🔹 Fase 4: Interacción básica
-
-* Añade enlaces entre nodos si aplica.
-* Prueba que el usuario pueda seguir el flujo visualmente.
+Enriquecer los nodos usando iconografía FontAwesome y etiquetas con saltos de línea para expresar información densa y visualmente clara.
 
 ---
 
-### 🔍 Validación final
+## ✅ Requisitos previos
 
-✅ El dashboard debe mostrar los nodos del flujo.
-✅ Cada nodo refleja correctamente el número de pedidos.
-✅ Los colores cambian en función del estado.
-✅ La navegación entre elementos es fluida (si aplica).
-
----
-
-### 💡 Reflexión final
-
-* ¿Qué decisiones visuales ayudaron más a entender el flujo?
-* ¿Dónde colocarías información adicional como KPIs o métricas de alerta?
-* ¿Qué otros procesos de tu empresa podrían representarse con esta técnica?
+* Acceso al entorno Docker/Codespaces con Grafana operativo.
+* Usuario/Contraseña: `admin` / `admin`
+* Acceso al panel `Diagram Panel` habilitado en la instancia de Grafana.
 
 ---
 
-Este README será tu punto de referencia para la **Sesión 1**. Puedes volver a él si necesitas rehacer el panel o adaptarlo a un nuevo proceso.
+## 💬 Reflexión general
+
+* ¿Cómo mejora la representación Mermaid la comprensión de procesos complejos?
+* ¿Qué elementos visuales son más eficaces para transmitir decisiones, errores y etapas?
+* ¿Cómo podrías adaptar este tipo de visualización a tu realidad profesional?
