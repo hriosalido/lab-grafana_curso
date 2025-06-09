@@ -1,181 +1,115 @@
-## 📘 Guía del Alumno
-
-# 🧭 Curso: Visualización de Flujos de Negocio en Grafana
+# 📘 README – Curso: Visualización de Flujos de Negocio en Grafana
 
 **Duración total:** 25 horas
 **Formato:** 10 sesiones de 2,5 horas
-**Modalidad:** Remoto (videoconferencia)
+**Entorno:** Codespaces con Docker Compose (Grafana, Prometheus, Pushgateway)
 
 ---
 
-## 🎯 Objetivo del Curso
+## 🎯 Objetivos del curso
 
-Este curso está diseñado para ayudarte a dominar la representación visual de procesos de negocio mediante Grafana, sin necesidad de infraestructura de observabilidad avanzada. Al finalizar, serás capaz de:
-
-* Diseñar dashboards profesionales basados en procesos y estados.
-* Usar datos planos (CSV, SQL, JSON) para crear visualizaciones funcionales.
-* Incorporar herramientas de interactividad, navegación y alertado.
-* Aplicar buenas prácticas de diseño visual para mejorar la comprensión y usabilidad.
-
-Trabajaremos en un entorno completamente preparado en Codespaces, utilizando herramientas reales, datasets simulados y laboratorios guiados.
+* Comprender los principios del diseño visual orientado a flujos de negocio.
+* Representar procesos, etapas y estados mediante paneles personalizados en Grafana.
+* Usar plugins avanzados como Diagram Panel, FlowCharting, Status Map y Node Graph.
+* Aprovechar fuentes de datos simples (CSV, SQL, JSON, API) sin necesidad de Prometheus.
+* Introducir conceptos básicos de observabilidad con Prometheus y Pushgateway.
+* Diseñar una alerta funcional y reflejarla visualmente en el dashboard.
 
 ---
 
-## 📚 Plan de Sesiones
+## 🌎 Perfil del alumnado
 
-### ✅ Práctica Inicial: Clona tu entorno de trabajo
-
-Antes de comenzar la primera sesión, realiza esta práctica obligatoria:
-
-**Objetivo:** Crear una copia personal del entorno del curso en tu cuenta de GitHub para poder trabajar con autonomía.
-
-**Pasos:**
-
-1. Accede al repositorio base del curso.
-2. Haz clic en el botón **"Fork"** (esquina superior derecha).
-3. Asegúrate de forkarlo a tu usuario personal.
-4. Una vez creado el fork, abre Codespaces desde tu fork usando la opción "Code → Codespaces → Create new".
-5. Espera a que se configure el entorno automáticamente.
-6. Abre un terminal y ejecuta `docker-compose up` para levantar el entorno de prácticas.
-
-**Validación:**
-
-* Puedes acceder a Grafana en `http://localhost:3000`.
-* El dashboard inicial debe cargar sin errores.
-
-A partir de aquí, cada sesión se basará en el entorno que acabas de crear.
+Técnicos con experiencia básica en Grafana que desean representar procesos de negocio de forma visual y dinámica. No se presupone experiencia con observabilidad, Prometheus ni infraestructura de métricas.
 
 ---
 
-## 📅 Plan de Sesiones – Curso: Visualización de Flujos de Negocio en Grafana
+## 📅 Plan de sesiones
+
+### ✅ Práctica Inicial (antes de la Sesión 1)
+
+Clonar y configurar el entorno personal en GitHub Codespaces. Validar acceso a Grafana y entorno Docker.
 
 ---
 
-### 📌 Sesión 1: Fundamentos de Diagram Panel y Mermaid
+### 📌 Sesión 1 – Fundamentos de Diagram Panel y Mermaid
 
-**Qué aprenderás:**
-Comprenderás los principios básicos de visualización de procesos y aprenderás a usar el plugin Diagram Panel en Grafana sin necesidad de datos externos.
-**Laboratorio:**
-Construirás diagramas Mermaid en modo "hardcoded" con distintos tipos de formas, conexiones, subgraphs y estilos visuales.
+**Qué aprenderás:** Sintaxis Mermaid, tipos de nodos, flujos básicos, agrupaciones y estilo visual sin datos.
+**Laboratorio:** Diagramas Mermaid hardcoded por fases: formas, subgraphs, condiciones, variables, iconos.
 
 ---
 
-### 🎨 Sesión 2: Diseño Visual y Buenas Prácticas
+### 🎨 Sesión 2 – Diseño Visual y Buenas Prácticas
 
-**Qué aprenderás:**
-Aplicarás codificación visual (colores, bordes, estilos), disposición de nodos y claridad gráfica para representar procesos de negocio.
-**Laboratorio:**
-Mejorarás diagramas Mermaid ya creados incorporando estilos de nodo, jerarquía visual, comentarios y pruebas con temas oscuros y claros.
+**Qué aprenderás:** Claridad visual, jerarquía, codificación por colores, uso de tooltips y disposición óptima.
+**Laboratorio:** Refactorizar diagramas anteriores para mejorar su legibilidad y expresividad visual.
 
 ---
 
-### 🧩 Sesión 3: Subgraphs, Composición y Jerarquías
+### 🧩 Sesión 3 – Representación jerárquica y flujos complejos
 
-**Qué aprenderás:**
-Organizarás procesos en bloques lógicos con `subgraph`, representarás jerarquías, paralelismos y bifurcaciones.
-**Laboratorio:**
-Diseñarás un flujo complejo con agrupaciones y condicionales usando Mermaid.
+**Qué aprenderás:** Rutas condicionales, ciclos, excepciones, decisiones anidadas, subgraphs enlazados.
+**Laboratorio:** Modelar un flujo con caminos alternativos y lógicos realistas de negocio.
 
 ---
 
-### 💬 Sesión 4: Variables, Tooltips y Texto Dinámico
+### 📁 Sesión 4 – Datos planos: uso de CSV y JSON
 
-**Qué aprenderás:**
-Usarás variables de Grafana (`$var`) dentro del diagrama, tooltips enriquecidos y etiquetas contextuales.
-**Laboratorio:**
-Crearás nodos que respondan a selecciones externas o muestren información enriquecida con texto interpolado.
+**Qué aprenderás:** Conectar Diagram Panel a fuentes como archivos `.csv` y `.json`, y colorear nodos por estado.
+**Laboratorio:** Cargar `pedidos.csv` y visualizar el estado de cada pedido directamente en el diagrama.
 
 ---
 
-### 📁 Sesión 5: Introducción a Datos (sin conexión)
+### 🗄️ Sesión 5 – Datos estructurados: conexión SQL
 
-**Qué aprenderás:**
-Simularás valores de métricas (manualmente) para colorear nodos según estados o indicadores visuales.
-**Laboratorio:**
-Probarás umbrales, colores de fondo y estilos condicionados en Diagram Panel sin necesidad de conectar fuentes.
+**Qué aprenderás:** Conectar a una base de datos, crear consultas y representar procesos con tablas reales.
+**Laboratorio:** Modelar el estado actual de tickets o procesos desde SQL y vincularlo visualmente.
 
 ---
 
-### 🗄️ Sesión 6: Conexión de Datos Reales – CSV
+### 🔌 Sesión 6 – Plugins visuales avanzados (FlowCharting, Status Map)
 
-**Qué aprenderás:**
-Conectarás una fuente CSV con Grafana y vincularás los datos con los nodos Mermaid del panel.
-**Laboratorio:**
-Leerás estados desde `pedidos.csv` y reflejarás los resultados en cada nodo del flujo.
+**Qué aprenderás:** Usar SVG con FlowCharting, matrices con Status Map, y asociar métricas a nodos personalizados.
+**Laboratorio:** Importar un SVG, enlazarlo a datos reales y añadir tooltips con KPIs.
 
 ---
 
-### 🧮 Sesión 7: SQL y Modelado de Estados
+### 🧭 Sesión 7 – Dashboards overview/detalle y navegación contextual
 
-**Qué aprenderás:**
-Conectarás una base de datos SQL, crearás vistas que reflejen procesos y filtrarás por condiciones.
-**Laboratorio:**
-Visualizarás flujos con métricas agregadas y filtros interactivos sobre los nodos.
+**Qué aprenderás:** Crear estructuras maestro-detalle, usar variables, filtros y enlaces entre dashboards.
+**Laboratorio:** Crear un dashboard overview con navegación hacia detalles por ID de proceso o cliente.
 
 ---
 
-### 🧷 Sesión 8: Enlaces entre Dashboards y Drilldowns
+### 💬 Sesión 8 – Interactividad y personalización dinámica
 
-**Qué aprenderás:**
-Definirás variables y navegación contextual (drilldowns) entre dashboards.
-**Laboratorio:**
-Configurarás un flujo maestro-detalle donde cada nodo enlaza a vistas específicas.
+**Qué aprenderás:** Usar variables de usuario, condiciones visuales y reglas de visualización adaptativa.
+**Laboratorio:** Mostrar texto y estilos condicionados por selección (`${var}`), mostrar u ocultar paneles.
 
 ---
 
-### 📊 Sesión 9: Simulación de Métricas con Prometheus
+### 📊 Sesión 9 – Integración básica con Prometheus
 
-**Qué aprenderás:**
-Simularás estados o cargas usando Pushgateway y las visualizarás como parte del flujo con métricas reales.
-**Laboratorio:**
-Generarás métricas con scripts y las representarás visualmente según umbrales.
+**Qué aprenderás:** Enviar métricas simuladas con Pushgateway, consumirlas desde Prometheus y visualizarlas.
+**Laboratorio:** Ejecutar scripts de simulación y ver el resultado reflejado dinámicamente en el dashboard.
 
 ---
 
-### 🚨 Sesión 10: Visualización de Alertas Funcionales
+### 🚨 Sesión 10 – Alertas funcionales y visualización en Grafana
 
-**Qué aprenderás:**
-Crearás alertas visuales basadas en condiciones reales y representarás su activación en el flujo de negocio.
-**Laboratorio:**
-Diseñarás una vista que combine alertas, métricas y transiciones, reaccionando en tiempo real.
+**Qué aprenderás:** Crear alertas Prometheus basadas en condiciones de negocio y visualizar su activación.
+**Laboratorio:** Disparar alertas reales, usar colores, iconos y mensajes para reflejar el estado en tiempo real.
 
 ---
 
-## 🧪 Metodología de Trabajo
+## 📚 Recursos del curso
 
-Durante el curso:
-
-* Tendrás una breve introducción teórica en cada sesión.
-* Verás una demo guiada del profesor.
-* Realizarás un laboratorio dividido en fases, con instrucciones detalladas y validaciones.
-* Podrás consultar y reutilizar ejemplos reales y configuraciones preparadas.
-
----
-
-## 🔧 Entorno de Prácticas
-
-Se utilizará un entorno Docker ya montado en GitHub Codespaces, compuesto por:
-
-* **Grafana** con plugins CSV, FlowCharting y BoomTable
-* **Prometheus** y **Pushgateway** para simulación de métricas
-* **Servidor estático** para servir datasets (`/data/`)
-
-Archivos disponibles:
-
-* `./data/pedidos.csv`, `flujo.svg`, `kpis.json`
-* `./labs/flujo_pedidos.py`
-* `./prometheus/prometheus.yml`
+* Repositorio Codespaces con entorno preconfigurado.
+* Archivos de datos: `pedidos.csv`, `kpis.json`, `flujo.svg`.
+* Scripts Python de simulación de procesos (`labs/flows/*.py`).
+* Dashboards `.json` exportables por sesión.
+* Plantillas SVG para usar con FlowCharting.
+* Cheatsheets: Mermaid, variables de Grafana, PromQL básico.
 
 ---
 
-## 📌 Cómo Seguir el Curso
-
-1. Entra al Codespace y arranca el entorno con `docker-compose up`.
-2. Abre el puerto 3000 para acceder a Grafana.
-3. Sigue las fases del laboratorio de cada sesión.
-4. Valida tu resultado: cada ejercicio debe producir un panel funcional.
-5. Consulta el README de cada sesión si necesitas repasar conceptos o ejemplos.
-
----
-
-Este documento es tu guía de referencia. Úsalo como índice general del curso para orientarte durante las sesiones, repasar conceptos y validar tu progreso.
+Este documento es tu guía de referencia. Úsalo para orientarte en cada sesión, revisar objetivos y preparar tu entorno antes de cada laboratorio.
