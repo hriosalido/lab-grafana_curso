@@ -1,6 +1,8 @@
-# 📘 Apuntes del Alumno – Sesión 1: Diagram Panel y Mermaid en Grafana
+# 📘 Sesión 1: Diagram Panel y Mermaid en Grafana
 
 ---
+
+[Diagram Panel con Mermaid](https://visualizacion-de-flujos--o9ndkwq.gamma.site/)
 
 ## 🎯 Objetivos de la sesión
 
