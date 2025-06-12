@@ -13,10 +13,11 @@ Se continúa sobre el panel creado en la fase anterior.
 
 ```mermaid
 graph LR
-  A-series:::entrada --> B-series:::salida
+  A[A-series]:::entrada --> B[B-series]:::salida
 
   classDef entrada fill=#001f3f,stroke=#fff,color=#fff;
   classDef salida fill=#fff,stroke=#001f3f,color=#001f3f;
+
 ```
 
 3. Comprueba que los nodos `A-series` y `B-series` tienen estilos visuales distintos:
