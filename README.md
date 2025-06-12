@@ -94,3 +94,11 @@ Puedes usar el plugin **CSV datasource** para representar estados de pedidos en 
 - [Documentación oficial de Grafana](https://grafana.com/docs/)
 - [Pushgateway](https://prometheus.io/docs/practices/pushing/)
 - [FlowCharting Plugin](https://github.com/algenty/grafana-flowcharting)
+
+
+
+## TIPS
+
+si quieres que grafana persista ...
+
+' sudo chown -R 472:472 ./grafana-data '
