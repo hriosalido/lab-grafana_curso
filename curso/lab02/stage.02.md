@@ -14,10 +14,11 @@ Se continúa sobre el panel creado en la fase anterior.
 
 ```mermaid
 graph LR
-  A[A-series]:::entrada --> B[B-series]:::salida
+  Pedido:::entrada --> Procesado:::salida
 
-classDef entrada fill=#001f3f,stroke=#fff,color=#fff;
-classDef salida fill=#fff,stroke=#001f3f,color=#001f3f;
+  classDef entrada fill:#003366,stroke:#ffffff,color:#ffffff;
+  classDef salida fill:#ffffff,stroke:#003366,color:#003366;
+
 ```
 
 
