@@ -65,7 +65,9 @@ Esto permite representar sistemas tipo SCADA, donde cada bloque representa una "
 Una vez definido el flujo general, Grafana permite conectar nodos con otros dashboards mediante `click`:
 
 ```mermaid
-click P1 "d/pedido-detail?var-pedido=1001" "Ver detalle"
+graph LR
+  P1[📦 Pedido 1001]
+  click P1 "d/pedido-detail?var-pedido=1001" "Ver detalle"
 ```
 
 Esto nos permite:
