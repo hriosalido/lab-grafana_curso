@@ -56,14 +56,14 @@ Aprender a **modificar dinámicamente la apariencia de nodos** (colores, bordes,
    * Usa `click` en nodos para saltar al panel específico de la cámara:
 
      ```mermaid
-graph LR
-  Camara_1[📦 Cámara 1]
-  Camara_2[📦 Cámara 2]
-  Camara_3[📦 Cámara 3]
+     graph LR
+      Camara_1[📦 Cámara 1]
+      Camara_2[📦 Cámara 2]
+      Camara_3[📦 Cámara 3]
 
-  click Camara_1 "d/camara-detail?var-camara=Camara_1" "Ver detalles"
-  click Camara_2 "d/camara-detail?var-camara=Camara_2" "Ver detalles"
-  click Camara_3 "d/camara-detail?var-camara=Camara_3" "Ver detalles"
+      click Camara_1 "d/camara-detail?var-camara=Camara_1" "Ver detalles"
+      click Camara_2 "d/camara-detail?var-camara=Camara_2" "Ver detalles"
+      click Camara_3 "d/camara-detail?var-camara=Camara_3" "Ver detalles"
      ```
 
 ---
