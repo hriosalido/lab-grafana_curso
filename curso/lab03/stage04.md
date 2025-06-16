@@ -45,7 +45,9 @@ Destacar estados críticos en el panel Overview SCADA mediante **estilos condici
    * Si alarma = ACTIVA, colorear la caja en rojo:
 
      ```mermaid
-     style A1 fill:#f1948a,stroke:#c0392b,stroke-width:2px
+     graph LR
+       A1[🚨 Alarma: ACTIVA]
+       style A1 fill:#f1948a,stroke:#c0392b,stroke-width:2px
      ```
 
 3. **Añadir un `Stat panel` que cuente alarmas activas**
