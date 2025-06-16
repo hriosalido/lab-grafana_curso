@@ -67,7 +67,9 @@ Destacar estados críticos en el panel Overview SCADA mediante **estilos condici
    * Ejemplo:
 
      ```mermaid
-     click ALERTA "d/alert-panel"
+      graph LR
+         ALERTA[🚨 ALERTA]
+         click ALERTA "d/alert-panel" "Ver alertas"
      ```
 
 ---
