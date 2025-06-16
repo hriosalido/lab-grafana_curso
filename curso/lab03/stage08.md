@@ -25,7 +25,14 @@ Aprender a **organizar el dashboard SCADA como una jerarquía navegable**, permi
    * Cada subgraph de cámara en el overview debe tener un nodo `click`:
 
      ```mermaid
-     click Camara_1 "d/camara-detail?var-camara=Camara_1" "Ver detalle"
+graph LR
+  Camara_1[🧊 Cámara 1]
+  Camara_2[🧊 Cámara 2]
+  Camara_3[🧊 Cámara 3]
+
+  click Camara_1 "d/camara-detail?var-camara=Camara_1" "Ver detalle"
+  click Camara_2 "d/camara-detail?var-camara=Camara_2" "Ver detalle"
+  click Camara_3 "d/camara-detail?var-camara=Camara_3" "Ver detalle"
      ```
 
 2. **Asegúrate de que los paneles de destino existen**
