@@ -48,10 +48,12 @@ Esto permite modelar condicionales, excepciones y subflujos con una sintaxis sim
 Mediante `subgraph`, podemos agrupar nodos y crear una jerarquía visual:
 
 ```mermaid
-subgraph Calidad
-  QC1[Control visual]
-  QC2[Validación automatizada]
-end
+graph LR
+  subgraph Calidad
+    QC1[Control visual]
+    QC2[Validación automatizada]
+  end
+
 ```
 
 Esto permite representar sistemas tipo SCADA, donde cada bloque representa una "zona", "cámara" o "etapa de planta".
