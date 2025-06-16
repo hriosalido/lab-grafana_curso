@@ -32,9 +32,9 @@ graph TD
   class B-series transito;
   class C-series salida;
 
-  classDef entrada fill=#e6f7ff,color=#007acc,stroke=#007acc;
-  classDef transito fill=#fff3cd,color=#856404,stroke=#856404;
-  classDef salida fill=#ffe6e6,color=#cc0000,stroke=#cc0000;
+  classDef entrada fill:#e6f7ff,color:#007acc,stroke:#007acc;
+  classDef transito fill:#fff3cd,color:#856404,stroke:#856404;
+  classDef salida fill:#ffe6e6,color:#cc0000,stroke:#cc0000;
 ```
 
 ✅ **Validaciones**
