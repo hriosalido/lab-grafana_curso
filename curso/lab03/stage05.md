@@ -41,7 +41,10 @@ Permitir que los usuarios naveguen desde el **overview SCADA** hacia paneles de 
    * Añadir enlaces `click` en los nodos:
 
      ```mermaid
-     click C1 "d/detalle-camara?var-camara=Cámara_1" "Ver detalles"
+      graph LR
+         C1[📦 Cámara 1]
+         click C1 "d/detalle-camara?var-camara=Camara_1" "Ver detalles"
+
      ```
    * Este enlace abrirá el dashboard con la cámara preseleccionada.
 
