@@ -1,6 +1,0 @@
-pedido_id,cliente,fecha,puerta,compresor,temperatura,alarma,rechazado,estado
-1001,SuperCarnes,2025-06-13,Cerrada,ACTIVO,-2.4,INACTIVA,No,listo_envio
-1002,FrescosSA,2025-06-13,Abierta,ACTIVO,-1.7,ACTIVA,No,en_proceso
-1003,MacroPollos,2025-06-13,Cerrada,INACTIVO,-0.9,INACTIVA,Sí,reproceso
-1004,DistribCárnica,2025-06-13,Cerrada,ACTIVO,-3.0,INACTIVA,No,empaquetado
-
