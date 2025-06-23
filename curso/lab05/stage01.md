@@ -1,85 +1,109 @@
+
+
 ## 🔹 Fase 1 – Visualizar el flujo temporal de eventos desde base de datos SQL
 
 ---
 
 ### 🎯 Objetivo
 
-Usar la tabla `eventos` (que ya contiene miles de registros con `timestamp`) para construir una visualización dinámica en Diagram Panel. El objetivo es reflejar **cómo evolucionan los eventos de negocio en el tiempo**, coloreando nodos según la frecuencia o severidad de eventos recientes.
+Usar la tabla `eventos` (que ya contiene miles de registros con `timestamp`) para construir una visualización dinámica en `Diagram Panel`. El objetivo es reflejar **cómo evolucionan los eventos de negocio en el tiempo**, coloreando nodos del diagrama en función de la actividad registrada recientemente.
+
+---
+
+### ⚠️ Importante: Limitación del plugin `Diagram Panel`
+
+El plugin `marcusolsson-diagram-panel` **solo interpreta datos dinámicos si provienen de una serie temporal** (es decir, datos con una columna `time`), y si el campo `value` es numérico.
+Consultas que hacen `COUNT()` agrupando por texto —aunque tengan `timestamp` en el `WHERE`— **no se consideran series temporales**, y por tanto **no se aplican colores automáticamente a los nodos**.
 
 ---
 
 ### 🗂️ Estructura
 
 * Tabla: `eventos`
-* Columnas clave: `tipo_evento`, `timestamp`, `valor`
+* Columnas clave: `timestamp`, `tipo_evento`, `proceso_id`
 * Nodos representados: `creado`, `asignado`, `resuelto`, `error`
-* Visualización con `Diagram Panel` basada en conteo temporal de eventos
+* Visualización con Diagram Panel basada en eventos temporales reales
 
 ---
 
 ### 🪜 Pasos guiados
 
-1. **Consulta básica desde PostgreSQL (modo tabla)**
+#### 1. ❌ Consulta no válida para Diagram Panel dinámico (solo modo tabla)
 
-   Crea un panel nuevo en Grafana con tu datasource PostgreSQL y escribe:
+```sql
+SELECT
+  tipo_evento AS metric,
+  COUNT(*) AS value
+FROM eventos
+WHERE $__timeFilter(timestamp)
+GROUP BY tipo_evento;
+```
 
-   ```sql
-   SELECT
-     tipo_evento AS metric,
-     COUNT(*) AS value
-   FROM eventos
-   WHERE $__timeFilter(timestamp)
-   GROUP BY tipo_evento;
-   ```
+Esta consulta muestra el número de eventos por tipo en el rango, **pero no genera una serie temporal** compatible con Diagram Panel. **Los nodos no se colorearán dinámicamente.**
 
-   ✅ Esto devolverá el número de eventos de cada tipo dentro del rango temporal seleccionado en el dashboard.
+---
 
-2. **Crea un bloque Mermaid básico en Diagram Panel**
+#### 2. ✅ Reconducción: usar series temporales reales
 
-   ```mermaid
-   graph LR
-     CR[Creado]
-     AS[Asignado]
-     RE[Resuelto]
-     ER[Error]
+Cambia la consulta a:
 
-     CR --> AS --> RE
-     AS --> ER
-   ```
+```sql
+SELECT
+  timestamp AS time,
+  tipo_evento AS metric,
+  1 AS value
+FROM eventos
+WHERE $__timeFilter(timestamp);
+```
 
-3. **Define clases para pintar nodos según valor**
+Esto genera una serie temporal:
 
-   En el área del Diagram Panel añade:
+* Una por cada tipo de evento.
+* Con `value = 1` en cada instante en que ocurrió.
+* **Compatible con Diagram Panel dinámico**.
 
-   ```mermaid
-   classDef activo fill:#4caf50,stroke:#2e7d32,color:#fff;
-   classDef alerta fill:#ff9800,stroke:#ef6c00,color:#fff;
-   classDef critico fill:#f44336,stroke:#b71c1c,color:#fff;
-   ```
+---
 
-4. **Mapeo dinámico desde la query**
+#### 3. Crea el diagrama Mermaid básico
 
-   Si el nombre de los nodos coincide con los valores de `metric`, se colorearán automáticamente.
+```mermaid
+graph LR
+  creado[Creado]
+  asignado[Asignado]
+  resuelto[Resuelto]
+  error[Error]
 
-   Mapea:
+  creado --> asignado --> resuelto
+  asignado --> error
+```
 
-   ```json
-   [
-     { "pattern": "ER", "thresholds": [1], "classes": ["critico"] },
-     { "pattern": "RE", "thresholds": [5, 20], "classes": ["activo", "alerta", "critico"] }
-   ]
-   ```
+> Los IDs de los nodos (`creado`, `asignado`, etc.) **deben coincidir exactamente con los valores de `metric`** que devuelve la consulta.
 
-5. **Explora el resultado**
+---
 
-   * Cambia el rango de tiempo en el dashboard (`Last 5 minutes`, `Last 1 hour`, etc.).
-   * Observa cómo los nodos se pintan en función del número de eventos ocurridos.
+#### 4. Define los thresholds para colorear nodos
+
+En el panel, ve a:
+
+* **Thresholds**
+* Añade:
+
+  * `[1]` → Verde
+  * `[5]` → Amarillo
+  * `[10]` → Rojo
+
+---
+
+#### 5. Explora el resultado
+
+* Cambia el rango temporal del dashboard: `Last 5 minutes`, `Last 1 hour`, etc.
+* Verás cómo los nodos se colorean automáticamente si hay eventos de ese tipo en el rango.
 
 ---
 
 ### 🎯 Retos
 
-1. 📈 **Probar la misma visualización con Time Series**
+1. 📈 **Acumular eventos por minuto (Time Series)**
 
    ```sql
    SELECT
@@ -92,35 +116,32 @@ Usar la tabla `eventos` (que ya contiene miles de registros con `timestamp`) par
    ORDER BY time;
    ```
 
-2. 🧪 **Agregar tooltip personalizado a cada nodo**
+   Puedes usar esto en un panel `Time Series` como complemento al diagrama.
 
-   En Diagram Panel:
+2. 🧪 **Click para ir a detalle por tipo de evento**
 
    ```mermaid
-   click ER "d/alertas?var-evento=error" "Ver errores recientes"
+   click error "d/alertas?var-evento=error" "Ver errores"
    ```
 
-3. 🚦 **Crear una lógica de severidad**
+3. 🚦 **Personalizar severidad visual con nombre del evento**
 
-   Asume:
-
-   * `error` = crítico
-   * `resuelto` = normal
-   * `asignado` = medio
-
-   Y pinta con reglas dinámicas según el volumen en los últimos 15 minutos.
+   Si `error` es crítico y `resuelto` es buen estado, ajusta colores en los thresholds o nodo a nodo.
 
 ---
 
 ### ✅ Validaciones
 
-* ✅ La consulta devuelve series temporales reales.
-* ✅ Los nodos del flujo Mermaid coinciden con los valores de `tipo_evento`.
-* ✅ Los colores cambian según el conteo dinámico.
-* ✅ La selección de rango en el dashboard afecta al resultado.
+* ✅ El panel usa `timestamp` como `time`.
+* ✅ El campo `value` es numérico (1).
+* ✅ Los nombres de `metric` coinciden con los nodos Mermaid.
+* ✅ El coloreado es automático y se actualiza con el rango temporal.
 
 ---
 
 ### 💬 Reflexión
 
-Esta fase demuestra cómo **usar datos SQL reales como series temporales** para pintar procesos vivos en Diagram Panel. La separación clara entre `timestamp`, `tipo_evento` y `valor` permite aplicar lógica visual dinámica sin depender de datos de Prometheus. Es una técnica muy útil para representar procesos en flujos de negocio, mantenimiento, soporte técnico o producción.
+Este paso enseña un principio esencial en Grafana: **si trabajas con Diagram Panel y necesitas datos dinámicos, deben ser series temporales reales**. No basta con hacer `GROUP BY` sobre valores si no produces una columna `time`.
+
+Este patrón se puede reutilizar para representar alarmas, procesos, flujos o cualquier sistema con eventos cronológicos. Puedes combinarlo con paneles `Stat`, `Time Series` o `Table` para enriquecer el contexto.
+
