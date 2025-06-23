@@ -1,0 +1,28 @@
+{
+    "clientes": [
+        {
+            "name": "cliente a",
+            "tipo": 1,
+            "datos": [
+                { "time": "2025-06-23T00:00:00Z", "value": 10 },
+                { "time": "2025-06-23T01:00:00Z", "value": 15 }
+            ]
+        },
+        {
+            "name": "cliente b",
+            "tipo": 0,
+            "datos": [
+                { "time": "2025-06-23T00:00:00Z", "value": 10 },
+                { "time": "2025-06-23T01:00:00Z", "value": 15 }
+            ]
+        },
+        {
+            "name": "cliente c",
+            "tipo": 0,
+            "datos": [
+                { "time": "2025-06-23T00:00:00Z", "value": 10 },
+                { "time": "2025-06-23T01:00:00Z", "value": 15 }
+            ]
+        }
+    ]
+}
