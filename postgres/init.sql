@@ -30,7 +30,7 @@ BEGIN
     ) VALUES (
       FLOOR(RANDOM() * 200)::INT + 100,
       (ARRAY['creado','asignado','resuelto','error'])[FLOOR(RANDOM()*4 + 1)],
-      ROUND(RANDOM() * 10 + 1, 2),
+      ROUND((RANDOM() * 10 + 1)::numeric, 2),
       NOW() - (RANDOM() * INTERVAL '30 days')
     );
   END LOOP;
