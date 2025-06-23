@@ -1,141 +1,99 @@
 
-## 🔹 Fase 5 – Visualizar alarmas activas por severidad y dispositivo
+
+## 🔹 Fase 5 – Enlazar nodos con navegación contextual (drilldown)
 
 ---
 
 ### 🎯 Objetivo
 
-Crear un panel Diagram que represente cada dispositivo o subsistema como un nodo, coloreado según la severidad de la última alarma activa asociada. Esta vista simula un entorno de supervisión donde se pueden identificar rápidamente qué partes del sistema están en fallo, advertencia o en estado correcto.
+Permitir al usuario navegar desde el diagrama principal hacia dashboards de detalle filtrados por estado o por identificador. Aunque Diagram Panel **no soporta enlaces dinámicos desde la query**, sí permite definir enlaces *estáticos* desde el texto Mermaid mediante `click`.
 
 ---
 
-### 🗂️ Estructura
+### 🧠 ¿Qué permite esta fase?
 
-* Tabla: `alarmas`
-
-```sql
-CREATE TABLE alarmas (
-  id SERIAL PRIMARY KEY,
-  dispositivo_id TEXT,
-  severidad TEXT,       -- valores: 'critica', 'media', 'leve'
-  activa BOOLEAN,
-  timestamp TIMESTAMP
-);
-```
-
-* Cada nodo = un `dispositivo_id`
-* Valor = severidad de la alarma activa más reciente por dispositivo
-* Visualización: Diagram Panel (SCADA view)
+* Crear una experiencia tipo **overview → detalle**
+* Usar variables de Grafana para filtrar datos en dashboards enlazados
+* Simular comportamiento de navegación SCADA o CRM visual
 
 ---
 
 ### 🪜 Pasos guiados
 
-1. **Insertar datos simulados en Adminer**
+#### 1. Crea un segundo dashboard de detalle
 
-   ```sql
-   INSERT INTO alarmas (dispositivo_id, severidad, activa, timestamp)
-   VALUES
-     ('SENSOR_1', 'critica', true, NOW() - interval '2 minutes'),
-     ('SENSOR_2', 'media', true, NOW() - interval '10 minutes'),
-     ('SENSOR_3', 'leve', true, NOW() - interval '1 hour'),
-     ('SENSOR_4', 'critica', false, NOW() - interval '2 hours');
-   ```
+* Añade un panel tipo **Table** para mostrar los tickets.
+* Usa una variable `var-estado` en el dashboard (tipo: `custom`, valores: `Pendiente`, `Validado`, `Entregado`).
+* Filtra el panel usando:
 
-2. **Crear una consulta para el último estado por dispositivo**
+```sql
+SELECT * FROM tickets
+WHERE estado = '${var-estado}'
+AND $__timeFilter(fecha_actualizacion);
+```
 
-   ```sql
-   SELECT DISTINCT ON (dispositivo_id)
-     dispositivo_id AS metric,
-     severidad AS value
-   FROM alarmas
-   WHERE activa = true
-   ORDER BY dispositivo_id, timestamp DESC;
-   ```
+> Tip: Activa "Include All" si quieres permitir ver todos los estados.
 
-   Esto devuelve el último valor de severidad activa por cada dispositivo.
+#### 2. Vuelve al dashboard principal (el del flujo)
 
-3. **Diseñar el bloque Mermaid con los nodos SCADA**
+En el panel Diagram, añade los enlaces de navegación:
 
-   ```mermaid
-   graph TD
-     SENSOR_1[Sensor 1]
-     SENSOR_2[Sensor 2]
-     SENSOR_3[Sensor 3]
-     SENSOR_4[Sensor 4]
+```mermaid
+graph LR
+  PEN[Pendiente]
+  VAL[Validado]
+  ENT[Entregado]
 
-     click SENSOR_1 "d/detalle?var-dispositivo=SENSOR_1" "Ver Sensor 1"
-   ```
+  PEN --> VAL --> ENT
 
-4. **Configurar estilos según severidad**
+  click PEN "d/detalle?var-estado=Pendiente" "Ver pendientes"
+  click VAL "d/detalle?var-estado=Validado" "Ver validados"
+  click ENT "d/detalle?var-estado=Entregado" "Ver entregados"
+```
 
-   ```mermaid
-   classDef critica fill:#e53935,stroke:#b71c1c,color:#fff;
-   classDef media fill:#fdd835,stroke:#f57f17,color:#000;
-   classDef leve fill:#81c784,stroke:#2e7d32,color:#000;
-   ```
+> Tip: Asegúrate de que el dashboard destino se llama literalmente `detalle` o ajusta la URL según tu ruta real.
 
-5. **Asignar colores con lógica dinámica**
+#### 3. Prueba la navegación
 
-   En el panel Diagram:
-
-   ```json
-   [
-     { "pattern": "SENSOR_1", "value": "critica", "class": "critica" },
-     { "pattern": "SENSOR_2", "value": "media", "class": "media" },
-     { "pattern": "SENSOR_3", "value": "leve", "class": "leve" }
-   ]
-   ```
-
-   O generalizado si los valores de `metric` coinciden con los nodos:
-
-   ```sql
-   SELECT dispositivo_id AS metric, severidad AS value
-   FROM (
-     SELECT DISTINCT ON (dispositivo_id) *
-     FROM alarmas
-     WHERE activa = true
-     ORDER BY dispositivo_id, timestamp DESC
-   ) sub;
-   ```
+* Haz clic sobre un nodo del flujo
+* Comprueba que llegas al dashboard con la variable aplicada automáticamente
+* Valida que la tabla muestra resultados filtrados
 
 ---
 
-### 🎯 Retos
+### 🔁 Retos
 
-1. 🔁 **Crear panel Stat complementario con total de alarmas críticas**
+1. 🔄 **Simula un flujo más complejo con múltiples nodos navegables**
 
-   ```sql
-   SELECT COUNT(*) FROM alarmas WHERE severidad = 'critica' AND activa = true;
-   ```
+   > Tip: Puedes usar nodos como `Asignado`, `Escalado`, `En espera`, cada uno con su propio dashboard de detalle.
 
-2. 📉 **Representar cantidad acumulada de alarmas por severidad**
+2. 🧪 **Agrega enlaces condicionales (simulados)**
 
-   ```sql
-   SELECT severidad AS metric, COUNT(*) AS value
-   FROM alarmas
-   WHERE activa = true
-   GROUP BY severidad;
-   ```
+   > Tip: Aunque no es dinámico, puedes colocar un nodo adicional de tipo `"Detalle"` con `click` apuntando a un dashboard por ID (ejemplo: `var-id=1234`).
 
-3. 🧪 **Simular nuevos disparos de alarma desde Adminer**
+3. 🗺️ **Crea una red de dashboards interconectados**
 
-   ```sql
-   INSERT INTO alarmas (dispositivo_id, severidad, activa, timestamp)
-   VALUES ('SENSOR_1', 'critica', true, NOW());
+   > Tip: Usa dashboards `detalle_cliente`, `detalle_estado`, `detalle_prioridad`, todos enlazados desde Diagram.
+
+4. 🧩 **Fusiona parámetros del dashboard con los de la URL**
+
+   > Tip: Puedes pasar múltiples variables:
+
+   ```mermaid
+   click VAL "d/detalle?var-estado=Validado&var-prioridad=Alta" "Ver validados alta"
    ```
 
 ---
 
 ### ✅ Validaciones
 
-* ✅ Cada nodo representa un dispositivo.
-* ✅ El color refleja la severidad activa más reciente.
-* ✅ Solo se muestran alarmas activas.
-* ✅ Cambios en los datos se reflejan inmediatamente.
+* ✅ Los nodos contienen enlaces funcionales.
+* ✅ Al hacer clic, se abre el dashboard de detalle filtrado.
+* ✅ Las variables de URL se transmiten correctamente (`var-estado`, `var-id`…).
+* ✅ La experiencia de navegación es coherente.
 
 ---
 
 ### 💬 Reflexión
 
-Esta fase permite visualizar el **estado operativo por elemento físico o subsistema**. Es especialmente útil para arquitecturas SCADA, entornos industriales, redes de sensores o servicios distribuidos donde el fallo de un componente debe identificarse de forma inmediata y clara.
+Aunque Diagram Panel no permite enlaces dinámicos basados en valores reales, el uso de `click` en Mermaid permite construir una interfaz navegable sencilla pero muy potente. En entornos productivos, esto se usa para facilitar accesos rápidos a contextos de detalle: cliente, incidente, máquina, pedido…

@@ -1,135 +1,102 @@
 
-## 🔹 Fase 4 – Visualizar el estado actual por proceso en Diagram Panel
+## 🔹 Fase 4 – Diagram Panel con nodos dinámicos basados en SQL
 
 ---
 
 ### 🎯 Objetivo
 
-Obtener el **último evento registrado** para cada `proceso_id` (ej. `resuelto`, `error`, `asignado`, etc.) y usarlo para construir un panel Diagram en Grafana donde cada nodo representa un proceso distinto, coloreado según su estado actual.
+Crear un diagrama Mermaid en Diagram Panel que represente visualmente los **estados de los tickets**. Los nodos se activan y se colorean dinámicamente según los eventos registrados en la base de datos, utilizando datos SQL estructurados en forma de **serie temporal**.
 
 ---
 
-### 🗂️ Estructura
+### 🗂️ Requisitos
 
-* Tabla: `eventos`
-* Columnas: `proceso_id`, `tipo_evento`, `timestamp`
-* Nodos: Uno por cada proceso (`P101`, `P102`, etc.)
-* Valor: Último `tipo_evento` por proceso (estado actual)
+* Haber completado la fase anterior: tener una consulta SQL que devuelva `time`, `metric`, `value`.
+* El nombre del nodo Mermaid debe coincidir exactamente con el valor de `metric`.
+* Solo funciona si `value` es **numérico** y **varía en el tiempo**.
 
 ---
 
 ### 🪜 Pasos guiados
 
-1. **Crea una consulta para obtener el último evento por proceso**
+#### 1. Crea un nuevo panel de tipo Diagram Panel
 
-   ```sql
-   SELECT DISTINCT ON (proceso_id)
-     proceso_id,
-     tipo_evento AS value
-   FROM eventos
-   WHERE $__timeFilter(timestamp)
-   ORDER BY proceso_id, timestamp DESC;
-   ```
+* Panel → Add Panel → Diagram.
+* Selecciona el datasource SQL configurado.
 
-   Esta query devuelve un único registro por proceso, con su último evento más reciente.
+#### 2. Usa la consulta de la Fase 3 como fuente
 
-2. **Crea un diagrama Mermaid con nodos por proceso**
+```sql
+SELECT
+  fecha_actualizacion AS time,
+  estado AS metric,
+  1 AS value
+FROM tickets
+WHERE $__timeFilter(fecha_actualizacion);
+```
 
-   En Diagram Panel:
+> Asegúrate de que `estado` solo contenga valores esperados: `Pendiente`, `Validado`, `Entregado`, etc.
 
-   ```mermaid
-   graph TD
-     P101[Proceso 101]
-     P102[Proceso 102]
-     P103[Proceso 103]
-     P104[Proceso 104]
-     P105[Proceso 105]
-   ```
+#### 3. Escribe el flujo Mermaid en el panel
 
-   Si tienes más procesos, genera los nodos manualmente o dinámicamente desde backend.
+```mermaid
+graph LR
+  Pendiente --> Validado --> Entregado
+```
 
-3. **Define clases de color por tipo\_evento**
+> Puedes añadir nodos intermedios si los estados reales lo requieren.
 
-   ```mermaid
-   classDef creado fill:#bbdefb,stroke:#1976d2,color:#000;
-   classDef asignado fill:#fff59d,stroke:#f9a825,color:#000;
-   classDef resuelto fill:#a5d6a7,stroke:#388e3c,color:#000;
-   classDef error fill:#ef9a9a,stroke:#c62828,color:#000;
-   ```
+#### 4. Define clases Mermaid manualmente (por ahora)
 
-4. **Mapea los valores a clases dinámicas**
+```mermaid
+classDef activo fill:#4caf50,stroke:#2e7d32,color:#fff;
+classDef alerta fill:#ff9800,stroke:#ef6c00,color:#fff;
+classDef critico fill:#f44336,stroke:#b71c1c,color:#fff;
+```
 
-   Usa esta estructura en las opciones avanzadas del panel:
+> Aunque Diagram Panel aún **no soporta mappings automáticos estables**, puedes **forzar clases con lógica condicional más adelante** si enriqueces el Mermaid.
 
-   ```json
-   [
-     { "pattern": "P101", "value": "resuelto", "class": "resuelto" },
-     { "pattern": "P102", "value": "error", "class": "error" },
-     { "pattern": "P103", "value": "asignado", "class": "asignado" }
-   ]
-   ```
+#### 5. Comprobación visual
 
-   O usa una regla general si el nombre del nodo coincide con el `proceso_id`:
-
-   ```sql
-   SELECT
-     CONCAT('P', proceso_id) AS metric,
-     tipo_evento AS value
-   FROM (
-     SELECT DISTINCT ON (proceso_id) *
-     FROM eventos
-     WHERE $__timeFilter(timestamp)
-     ORDER BY proceso_id, timestamp DESC
-   ) sub;
-   ```
-
-5. **Explora el resultado**
-
-   * Cambia el rango de tiempo y observa cómo cambia el estado de cada nodo.
-   * Si se generaron eventos nuevos (`INSERT INTO eventos ...`), los nodos reflejarán el cambio.
+* Cambia el rango de tiempo del dashboard.
+* Si los nombres coinciden con `metric`, los nodos se activan (colorean o resaltan).
+* El panel puede no colorear correctamente si los datos no se interpretan como serie → volver a revisar consulta.
 
 ---
 
-### 🎯 Retos
+### 🔁 Retos
 
-1. 🧪 **Simula errores o resoluciones recientes**
+1. 🧪 **Normaliza los nombres de estado para asegurar coincidencia exacta**
 
-   Inserta nuevos eventos desde Adminer:
+   > Tip: Usa `REPLACE` y `LOWER` para transformar valores como `"En Curso"` → `"en_curso"` y reflejarlo en el nodo Mermaid.
 
-   ```sql
-   INSERT INTO eventos (proceso_id, tipo_evento, timestamp)
-   VALUES (101, 'error', NOW());
-   ```
+2. 🎯 **Crea versiones alternativas del flujo para otros procesos**
 
-2. 🔁 **Agregar clic en cada proceso para ver su historial**
+   > Tip: Por ejemplo: `Registrado → Revisado → Aprobado → Ejecutado`.
+
+3. 🔀 **Agrega enlaces de navegación en los nodos**
 
    ```mermaid
-   click P101 "d/detalle-proceso?var-proceso=101" "Ver detalles"
+   click Validado "d/detalle?var-estado=Validado" "Ver tickets validados"
    ```
 
-3. 📉 **Generar panel complementario con total por estado actual**
+   > Tip: Esto funciona incluso sin mapeo de color, y añade navegabilidad entre dashboards.
 
-   ```sql
-   SELECT value, COUNT(*) FROM (
-     SELECT DISTINCT ON (proceso_id)
-       tipo_evento AS value
-     FROM eventos
-     ORDER BY proceso_id, timestamp DESC
-   ) sub
-   GROUP BY value;
-   ```
+4. 📊 **Cambia el criterio de activación: por prioridad en vez de estado**
+
+   > Tip: Modifica la consulta y el diagrama para visualizar `"Alta" → "Media" → "Baja"` en función de urgencia de los tickets.
 
 ---
 
 ### ✅ Validaciones
 
-* ✅ Cada nodo representa un proceso único.
-* ✅ El color refleja el último `tipo_evento`.
-* ✅ La consulta es eficiente (usa `DISTINCT ON` + `ORDER BY timestamp DESC`).
-* ✅ Cambiar los datos o el tiempo afecta directamente al diagrama.
+* ✅ El diagrama se renderiza sin errores.
+* ✅ Los nombres de los nodos coinciden con `metric`.
+* ✅ El contenido del panel cambia al variar el tiempo.
+* ✅ Puedes ver los eventos reflejados en los nodos.
 
 ---
 
 ### 💬 Reflexión
 
-Esta fase muestra cómo llevar la lógica de “estado actual por entidad” a Grafana usando SQL puro. A diferencia de métricas acumuladas, esta representación permite visualizar la **foto operativa actual del sistema**, algo fundamental en entornos de planta, centros de soporte o seguimiento de flujos de negocio.
+Diagram Panel, aunque limitado, permite representar flujos de negocio con datos vivos si se respetan sus requisitos técnicos. En esta fase hemos unido **modelo de datos SQL** con **visualización de procesos**, algo que no suele hacerse en Grafana. Este enfoque permite ver directamente el pulso del negocio desde su base de datos.

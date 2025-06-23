@@ -1,149 +1,136 @@
-
-## 🔹 Fase 7 – Crear dashboards overview/detalle con navegación contextual
+## 🔹 Fase 7 – Dashboard completo con flujo + KPIs SQL
 
 ---
 
 ### 🎯 Objetivo
 
-Construir una arquitectura de dashboards en Grafana donde un panel principal tipo `Diagram Panel` actúe como vista general (overview), y cada nodo permita acceder con clic a un dashboard detallado filtrado por entidad (ej: proceso, línea, sensor).
+Montar un dashboard integrado que combine:
+
+* Diagrama de flujo con Diagram Panel
+* Paneles de KPIs (Stat, Gauge)
+* Tabla de detalle
+* Filtros dinámicos por cliente, estado y rango temporal
+
+Este dashboard permite una visión **end-to-end** de tickets o procesos con navegación, filtros y visualización clara del estado actual.
 
 ---
 
-### 🗂️ Estructura
+### 🧩 Estructura del dashboard
 
-* Dashboards:
-
-  * `Overview General` → muestra todos los nodos relevantes (Diagram Panel)
-  * `Detalle Proceso`, `Detalle Línea`, `Detalle Sensor` → dashboards individuales filtrables por ID
-* Variables:
-
-  * `proceso`, `linea`, `sensor` → de tipo `query` en Grafana
-* Navegación: `click` en Mermaid con `?var=...`
+1. 🔷 Diagram Panel (flujo Mermaid)
+2. 🔢 Stat Panel: tickets creados hoy
+3. 🧭 Bar Gauge: tickets por prioridad
+4. 🧾 Table Panel: lista de tickets recientes
+5. 🎛️ Variables: cliente, estado y rango temporal
 
 ---
 
 ### 🪜 Pasos guiados
 
-1. **Crear variables de tipo query**
+#### 1. Define variables del dashboard
 
-   En cada dashboard de detalle, define variables dinámicas:
+* **cliente**: tipo `query`, consulta:
 
-   * Variable `proceso`:
+  ```sql
+  SELECT DISTINCT cliente FROM tickets ORDER BY cliente;
+  ```
 
-     ```sql
-     SELECT DISTINCT proceso_id FROM eventos ORDER BY proceso_id DESC;
-     ```
+* **estado**: tipo `query`, consulta:
 
-   * Variable `linea`:
+  ```sql
+  SELECT DISTINCT estado FROM tickets ORDER BY estado;
+  ```
 
-     ```sql
-     SELECT DISTINCT linea FROM produccion ORDER BY linea;
-     ```
+* **prioridad** *(opcional)*: tipo `query`, consulta:
 
-   * Variable `sensor`:
+  ```sql
+  SELECT DISTINCT prioridad FROM tickets;
+  ```
 
-     ```sql
-     SELECT DISTINCT dispositivo_id FROM alarmas ORDER BY dispositivo_id;
-     ```
-
-2. **Crear dashboards de detalle**
-
-   Cada uno tendrá un filtro aplicado usando la variable correspondiente. Ejemplo:
-
-   * `Detalle Proceso`: panel `Time Series` con
-
-     ```sql
-     SELECT
-       timestamp AS time,
-       tipo_evento AS metric,
-       valor AS value
-     FROM eventos
-     WHERE proceso_id = ${proceso}
-     ORDER BY timestamp;
-     ```
-
-   * `Detalle Línea`: panel con producción temporal
-
-   * `Detalle Sensor`: últimas alarmas activas
-
-3. **Diseñar overview general en Diagram Panel**
-
-   Ejemplo de diagrama general con flujos y nodos clicables:
-
-   ```mermaid
-   graph TD
-     PR1[Proceso 101]
-     PR2[Proceso 102]
-     LN1[Línea 1]
-     LN2[Línea 2]
-     SN1[Sensor A]
-     SN2[Sensor B]
-
-     click PR1 "d/detalle-proceso?var-proceso=101" "Ver Proceso 101"
-     click LN1 "d/detalle-linea?var-linea=Línea 1" "Ver Línea 1"
-     click SN1 "d/detalle-sensor?var-sensor=Sensor A" "Ver Sensor A"
-   ```
-
-4. **Habilita links dinámicos con variables**
-
-   Si lo prefieres más dinámico, puedes mapear nodos a URLs usando `value` de una query SQL:
-
-   ```sql
-   SELECT
-     CONCAT('PR', proceso_id) AS metric,
-     proceso_id AS value
-   FROM (
-     SELECT DISTINCT proceso_id FROM eventos
-   ) sub;
-   ```
-
-   Y luego usar `click ${metric} "d/detalle-proceso?var-proceso=${value}"`.
+> Tip: Marca `Include All` para cada una si deseas una opción sin filtrar.
 
 ---
 
-### 🎯 Retos
+#### 2. Configura Diagram Panel (flujo visual)
 
-1. 🔀 **Crear enlaces con múltiples variables**
+```mermaid
+graph LR
+  PEN[Pendiente]
+  VAL[Validado]
+  ENT[Entregado]
 
-   Ejemplo:
+  PEN --> VAL --> ENT
 
-   ```mermaid
-   click PR1 "d/detalle-proceso?var-proceso=101&var-linea=L1"
-   ```
+  click PEN "d/detalle?var-estado=Pendiente" "Ver pendientes"
+  click VAL "d/detalle?var-estado=Validado" "Ver validados"
+  click ENT "d/detalle?var-estado=Entregado" "Ver entregados"
+```
 
-2. 🧪 **Incluir tooltips informativos**
+> Aunque no hay mapeo dinámico de colores, puedes forzar colores fijos con `classDef`.
 
-   Añade:
+---
 
-   ```mermaid
-   click SN1 "d/detalle-sensor?var-sensor=Sensor A" "Última alarma: crítica"
-   ```
+#### 3. Panel Stat – Tickets abiertos hoy
 
-3. 🗂️ **Agrupar nodos por tipo en subgraphs Mermaid**
+```sql
+SELECT COUNT(*) AS value
+FROM tickets
+WHERE fecha_creacion >= CURRENT_DATE
+AND (${var-cliente} = 'All' OR cliente = '${var-cliente}');
+```
 
-   ```mermaid
-   subgraph Procesos
-     PR1
-     PR2
-   end
+#### 4. Panel Bar Gauge – Por prioridad
 
-   subgraph Líneas
-     LN1
-     LN2
-   end
-   ```
+```sql
+SELECT prioridad AS metric, COUNT(*) AS value
+FROM tickets
+WHERE $__timeFilter(fecha_actualizacion)
+AND (${var-cliente} = 'All' OR cliente = '${var-cliente}')
+GROUP BY prioridad;
+```
+
+#### 5. Panel Table – Detalle
+
+```sql
+SELECT id, cliente, estado, prioridad, fecha_actualizacion
+FROM tickets
+WHERE estado = '${var-estado}'
+AND (${var-cliente} = 'All' OR cliente = '${var-cliente}')
+AND $__timeFilter(fecha_actualizacion)
+ORDER BY fecha_actualizacion DESC;
+```
+
+---
+
+### 🔁 Retos
+
+1. 🧪 **Duplica el dashboard y cambia el enfoque**
+
+   > Tip: Haz una versión alternativa centrada en prioridad (`Alta → Media → Baja`) y no en estado.
+
+2. 🧭 **Usa diferentes periodos para comparación**
+
+   > Tip: Añade paneles que comparen tickets creados hoy vs ayer.
+
+3. 🔍 **Añade filtros invisibles usando `$__interval`**
+
+   > Tip: Úsalo para agrupar automáticamente por hora o día según el rango seleccionado.
+
+4. 🧠 **Activa panel links entre KPIs y tablas**
+
+   > Tip: Usa la opción “Drilldown” en los paneles para enlazar con dashboards filtrados automáticamente.
 
 ---
 
 ### ✅ Validaciones
 
-* ✅ Los dashboards de detalle reciben la variable y filtran correctamente.
-* ✅ Los nodos de Diagram Panel tienen `click` funcional.
-* ✅ Se puede navegar entre dashboards sin usar el menú.
-* ✅ Las variables se cargan dinámicamente desde SQL.
+* ✅ Todos los paneles responden al cambio de variables.
+* ✅ La tabla y métricas están sincronizadas.
+* ✅ El flujo Mermaid sirve como mapa de navegación.
+* ✅ El dashboard se puede duplicar y adaptar fácilmente.
 
 ---
 
 ### 💬 Reflexión
 
-Esta fase muestra cómo construir interfaces de exploración interactivas en Grafana: desde una **vista de alto nivel**, puedes navegar hacia dashboards específicos sin necesidad de menús ni búsquedas. Este patrón mejora la usabilidad en entornos de producción, soporte, calidad o mantenimiento, donde el operador necesita actuar rápido sobre lo que ve.
+Con esta fase se alcanza un dashboard profesional, útil y modular. Aunque Diagram Panel tiene limitaciones, al combinarlo con variables, tablas y KPIs, se consigue un entorno visual **centrado en el negocio**, no en métricas de infraestructura. Este patrón puede escalarse para múltiples dominios: soporte, producción, operaciones, etc.

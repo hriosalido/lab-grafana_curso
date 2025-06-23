@@ -1,126 +1,131 @@
 
-## 🔹 Fase 3 – Representar evolución temporal de eventos por tipo
+
+## 🔹 Fase 3 – Consultas base para el modelado visual
 
 ---
 
 ### 🎯 Objetivo
 
-Visualizar la evolución de los distintos `tipo_evento` a lo largo del tiempo mediante **series temporales** reales, agrupadas por minutos u horas. Esto permite detectar patrones como acumulaciones de errores, aumentos de carga en tramos horarios, o inactividad de procesos.
+Preparar y validar las consultas SQL necesarias para alimentar los nodos de un diagrama Mermaid, garantizando que la estructura de datos sea compatible con **Diagram Panel**. El objetivo es que los estados (ej. `Pendiente`, `Validado`, `Entregado`) puedan pintarse dinámicamente en función de la actividad reciente.
 
 ---
 
-### 🗂️ Estructura
+### 🧠 Requisitos técnicos del panel
 
-* Tabla: `eventos` (ya creada)
-* Campos clave: `timestamp`, `tipo_evento`, `valor`
-* Paneles utilizados:
+> **Diagram Panel** requiere:
+>
+> * Una columna **`timestamp`** como `AS time`
+> * Una columna **categórica** como `AS metric` (nombre de nodo)
+> * Una columna **numérica** como `AS value`
 
-  * `Time Series` (tendencia por evento)
-  * `Diagram Panel` (coloreado de nodos por frecuencia reciente)
-  * `Stat` o `Bar Gauge` (volumen por tipo)
+---
+
+### 🗂️ Estructura del modelo
+
+La tabla `tickets` contiene:
+
+```sql
+id SERIAL PRIMARY KEY,
+cliente TEXT,
+estado TEXT,
+fecha_creacion TIMESTAMP,
+fecha_actualizacion TIMESTAMP,
+prioridad TEXT
+```
+
+Queremos pintar los nodos de estado (`Pendiente`, `Validado`, `Entregado`) en función de cuántos tickets fueron modificados recientemente a ese estado.
 
 ---
 
 ### 🪜 Pasos guiados
 
-1. **Crea una consulta temporal agregada**
+#### 1. Escribe una consulta válida para Diagram Panel
 
-   En un panel nuevo tipo **Time Series**:
+```sql
+SELECT
+  fecha_actualizacion AS time,
+  estado AS metric,
+  1 AS value
+FROM tickets
+WHERE $__timeFilter(fecha_actualizacion);
+```
 
-   ```sql
-   SELECT
-     date_trunc('minute', timestamp) AS time,
-     tipo_evento AS metric,
-     COUNT(*) AS value
-   FROM eventos
-   WHERE $__timeFilter(timestamp)
-   GROUP BY time, tipo_evento
-   ORDER BY time;
-   ```
+> Esta consulta devuelve una **serie temporal por estado**, compatible con Diagram Panel.
 
-   Esto creará una línea por cada tipo de evento: `creado`, `asignado`, `resuelto`, `error`.
+#### 2. Ejecuta la consulta en un panel Explore
 
-2. **Visualiza la tendencia horaria o diaria**
+* Elige el datasource PostgreSQL.
+* Pega la consulta y selecciona un rango de tiempo (`Last 1 hour`, `Today`, etc.).
+* Asegúrate de obtener múltiples filas con `time`, `metric`, `value`.
 
-   Cambia el intervalo (`Last 6h`, `Last 24h`, `Last 7d`) y observa cómo se comporta cada tipo de evento a lo largo del tiempo.
+#### 3. Comprueba los valores de `estado`
 
-   * Picos de `error` podrían indicar fallos en el sistema.
-   * Una caída de `resuelto` puede reflejar atascos o inactividad.
+> **Importante:** Los valores devueltos en `estado` deben coincidir con los **IDs de los nodos Mermaid** para que se refleje visualmente.
 
-3. **Complementa con un panel `Stat` o `Bar Gauge`**
+Puedes revisar los valores con:
 
-   Usa esta consulta:
-
-   ```sql
-   SELECT
-     tipo_evento AS metric,
-     COUNT(*) AS value
-   FROM eventos
-   WHERE $__timeFilter(timestamp)
-   GROUP BY tipo_evento;
-   ```
-
-   Esto muestra un resumen del volumen por tipo en el rango actual.
-
-4. **Relaciona esta métrica con Diagram Panel**
-
-   Puedes usar el mismo resultado para colorear nodos en Diagram Panel como en fases anteriores, ahora basado en **conteo reciente**:
-
-   ```sql
-   SELECT
-     tipo_evento AS metric,
-     COUNT(*) AS value
-   FROM eventos
-   WHERE timestamp >= now() - interval '15 minutes'
-   GROUP BY tipo_evento;
-   ```
-
-   Y en Mermaid:
-
-   ```mermaid
-   graph TD
-     CR[Creado]
-     AS[Asignado]
-     RE[Resuelto]
-     ER[Error]
-     click ER "d/errores" "Ver errores"
-   ```
-
-   Con mapeo de colores:
-
-   ```json
-   [
-     { "pattern": "ER", "thresholds": [1, 5, 10], "classes": ["ok", "alerta", "critico"] }
-   ]
-   ```
+```sql
+SELECT DISTINCT estado FROM tickets;
+```
 
 ---
 
-### 🎯 Retos
+### 🔁 Retos
 
-1. 📊 **Cambiar la granularidad temporal**
+1. 🧪 **Normaliza los nombres de estado para que coincidan con los nodos**
 
-   Modifica `date_trunc('minute', ...)` por `hour`, `day`, etc., según el volumen de eventos.
+   > Tip: usa `REPLACE` y `LOWER` para evitar fallos por espacios o mayúsculas:
 
-2. 🔁 **Filtrar por un solo proceso**
+   ```sql
+   SELECT
+     fecha_actualizacion AS time,
+     REPLACE(LOWER(estado), ' ', '_') AS metric,
+     1 AS value
+   FROM tickets
+   WHERE $__timeFilter(fecha_actualizacion);
+   ```
 
-   Añade `AND proceso_id = ${proceso}` para analizar el comportamiento individual.
+2. 🔀 **Filtra por cliente usando una variable de Grafana**
 
-3. 🧪 **Normalizar por valor promedio por hora**
+   > Tip: crea una variable `cliente` en el dashboard y úsala así:
 
-   Sustituye `COUNT(*)` por `AVG(valor)` para detectar eventos más “costosos”.
+   ```sql
+   WHERE cliente = '${cliente}' AND $__timeFilter(fecha_actualizacion)
+   ```
+
+3. 📊 **Cambia el eje del análisis: agrupa por prioridad en lugar de estado**
+
+   > Tip: reemplaza `estado` por `prioridad` como `metric` para crear otro tipo de diagrama.
+
+4. ❌ **Explora qué ocurre si no hay datos en el rango seleccionado**
+
+   > Tip: prueba con `Last 5 minutes` si no hay eventos recientes. Comprueba si el panel queda vacío o falla.
+
+5. 🧵 **Agrupa por bloques de tiempo para suavizar la visualización**
+
+   > Tip: usa `date_trunc('minute', fecha_actualizacion)` para obtener un resumen por minuto:
+
+   ```sql
+   SELECT
+     date_trunc('minute', fecha_actualizacion) AS time,
+     estado AS metric,
+     COUNT(*) AS value
+   FROM tickets
+   WHERE $__timeFilter(fecha_actualizacion)
+   GROUP BY time, estado
+   ORDER BY time;
+   ```
 
 ---
 
 ### ✅ Validaciones
 
-* ✅ El panel `Time Series` muestra una línea por tipo de evento.
-* ✅ Cambiar el rango de tiempo afecta a la visualización.
-* ✅ El panel `Stat` o `Bar Gauge` resume correctamente por tipo.
-* ✅ Los datos se pueden mapear a Diagram Panel con coloreado por recuento reciente.
+* ✅ Las consultas devuelven columnas `time`, `metric`, `value`.
+* ✅ Los valores de `metric` coinciden con los nodos Mermaid.
+* ✅ El contenido del panel cambia al variar el rango temporal.
 
 ---
 
 ### 💬 Reflexión
 
-Esta fase te enseña a usar Grafana para representar **tendencias temporales categorizadas**, algo esencial en el análisis de procesos, actividad de servicios, soporte técnico y flujos de trabajo. En lugar de analizar valores únicos, aquí se exploran **volúmenes distribuidos en el tiempo**, que permiten anticipar problemas, comparar ritmos y evaluar cargas reales.
+Esta fase sienta las bases para el uso de SQL como **motor de visualización dinámica**. No se trata solo de mostrar datos, sino de transformarlos en una estructura que Diagram Panel pueda interpretar para pintar procesos. Dominar esta conversión es clave para representar flujos reales con datos en vivo.

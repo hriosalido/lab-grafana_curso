@@ -1,133 +1,99 @@
-## 🔹 Fase 2 – Navegar al detalle de un proceso con Diagram Panel y drilldown
+
+
+## 🔹 Fase 2 – Conectar Grafana al SQL datasource
 
 ---
 
 ### 🎯 Objetivo
 
-Ampliar la visualización anterior permitiendo al usuario **hacer clic en nodos del diagrama** para navegar al detalle de un `proceso_id` concreto. Esto simula un flujo maestro-detalle: desde una visión general de tipos de evento, saltamos a un dashboard detallado filtrado por proceso.
+Establecer conexión entre Grafana y la base de datos PostgreSQL donde residen los datos estructurados de negocio (ej. tickets). Esta conexión permitirá lanzar consultas SQL directamente desde los paneles, sin necesidad de ETL o backend intermedio.
 
 ---
 
-### 🗂️ Estructura
+### 📦 Contexto
 
-* Tabla: `eventos` (ya creada)
-* Columna clave: `proceso_id`
-* Variables en Grafana: `proceso` (de tipo *query variable*)
-* Dashboards:
-
-  * `Resumen de eventos` (panel de overview)
-  * `Detalle proceso` (dashboard con filtros por proceso)
+* El servicio PostgreSQL ya está operativo a través de Docker Compose.
+* El dataset `tickets.sql` se ha cargado correctamente en la base `negocio`.
+* Grafana está accesible vía `localhost:3000`.
+* Ya está instalado el plugin nativo de **PostgreSQL** como datasource en Grafana.
 
 ---
 
 ### 🪜 Pasos guiados
 
-1. **Crear variable de tipo query en Grafana**
+#### 1. Abrir configuración de datasources
 
-   * Nombre: `proceso`
-   * Tipo: `Query`
-   * Datasource: `PostgreSQL`
-   * Query:
+Desde el menú lateral de Grafana:
 
-     ```sql
-     SELECT DISTINCT proceso_id FROM eventos ORDER BY proceso_id DESC;
-     ```
+> ⚙️ **Configuration** → **Data sources** → **Add data source**
 
-2. **Crear un dashboard de detalle**
+#### 2. Seleccionar PostgreSQL
 
-   Llama a este dashboard por ejemplo: `Detalle proceso`.
+Escoge el tipo de datasource `PostgreSQL`.
 
-   Añade un panel Table o Time Series con esta consulta:
+#### 3. Completar la configuración
 
-   ```sql
-   SELECT
-     timestamp AS time,
-     tipo_evento AS metric,
-     valor AS value
-   FROM eventos
-   WHERE $__timeFilter(timestamp)
-     AND proceso_id = ${proceso}
-   ORDER BY timestamp;
-   ```
+Rellena los campos con los datos de conexión definidos en Docker:
 
-3. **Modificar el diagrama Mermaid con enlaces dinámicos**
+| Campo        | Valor                    |
+| ------------ | ------------------------ |
+| **Name**     | PostgreSQL Negocio       |
+| **Host**     | `postgres:5432`          |
+| **Database** | `negocio`                |
+| **User**     | `grafana`                |
+| **Password** | `grafana`                |
+| **SSL Mode** | `disable`                |
+| **Version**  | `15` (u otra compatible) |
 
-   En el dashboard de overview, crea un Diagram Panel con nodos por tipo de evento o agrupados por proceso:
+Haz clic en **Save & Test**. Debes ver el mensaje ✅ *"Database Connection OK"*.
 
-   ```mermaid
-   graph TD
-     P101["Proceso 101"]
-     P102["Proceso 102"]
-     P103["Proceso 103"]
+#### 4. Validar con consulta rápida
 
-     click P101 "d/detalle-proceso?var-proceso=101" "Ver detalles P101"
-     click P102 "d/detalle-proceso?var-proceso=102" "Ver detalles P102"
-     click P103 "d/detalle-proceso?var-proceso=103" "Ver detalles P103"
-   ```
+Entra en **Explore** y lanza:
 
-   > 🧠 Puedes generar dinámicamente estos nodos si cargas el Mermaid desde un backend o JSON externo, pero aquí se simula manualmente.
+```sql
+SELECT NOW();
+```
 
-4. **Usar valores dinámicos para colorear los nodos**
+Luego prueba una de las tablas:
 
-   Consulta para colorear según recuento de eventos por proceso:
-
-   ```sql
-   SELECT
-     proceso_id AS metric,
-     COUNT(*) AS value
-   FROM eventos
-   WHERE $__timeFilter(timestamp)
-   GROUP BY proceso_id;
-   ```
-
-   En el panel, mapea:
-
-   ```json
-   [
-     { "pattern": "P101", "thresholds": [10], "classes": ["activo"] },
-     { "pattern": "P102", "thresholds": [50], "classes": ["alerta", "critico"] }
-   ]
-   ```
+```sql
+SELECT * FROM tickets LIMIT 5;
+```
 
 ---
 
-### 🎯 Retos
+### 🧪 Comprobación clave
 
-1. 🔁 **Mostrar únicamente procesos activos en el rango**
+Grafana necesita que los datos estén en formato de **serie temporal** para integrarse con Diagram Panel. Eso significa que tus consultas deben incluir:
 
-   Modifica la query de la variable `proceso` para:
+* Una columna `timestamp` como `AS time`
+* Un identificador `AS metric` (por ejemplo, `estado`)
+* Un valor numérico `AS value` (ej. cantidad o constante)
 
-   ```sql
-   SELECT DISTINCT proceso_id
-   FROM eventos
-   WHERE timestamp >= now() - interval '1 hour';
-   ```
+Ejemplo válido:
 
-2. 🧪 **Crear nodos por estado más reciente de cada proceso**
-
-   Ejemplo (para colorear por el último tipo\_evento):
-
-   ```sql
-   SELECT DISTINCT ON (proceso_id)
-     proceso_id AS metric,
-     tipo_evento AS value
-   FROM eventos
-   ORDER BY proceso_id, timestamp DESC;
-   ```
-
-   Y luego: `resuelto → verde`, `error → rojo`, `asignado → amarillo`.
+```sql
+SELECT
+  fecha_actualizacion AS time,
+  estado AS metric,
+  1 AS value
+FROM tickets
+WHERE $__timeFilter(fecha_actualizacion);
+```
 
 ---
 
 ### ✅ Validaciones
 
-* ✅ Variable `proceso` funciona y se actualiza dinámicamente.
-* ✅ Los nodos tienen enlaces `click` que redirigen a dashboards de detalle.
-* ✅ El dashboard de detalle filtra correctamente por `proceso_id`.
-* ✅ Coloreado del nodo se adapta a la actividad del proceso.
+* ✅ El datasource PostgreSQL aparece en la lista de datasources configurados.
+* ✅ La conexión es exitosa con credenciales válidas.
+* ✅ Puedes lanzar consultas SQL desde el panel Explore.
+* ✅ Las consultas devuelven datos con formato compatible con Diagram Panel (`time`, `metric`, `value`).
 
 ---
 
 ### 💬 Reflexión
 
-Esta fase introduce el concepto de **navegación contextual** dentro de Grafana, acercando Diagram Panel a una interfaz de tipo HMI o SCADA. La capacidad de ir de un overview al detalle filtrado por identificador permite representar flujos operativos reales y acotar análisis sin sobrecargar paneles únicos.
+Esta fase permite abrir la puerta al modelado visual de procesos reales. La conexión directa con PostgreSQL habilita la consulta de flujos, estados y KPIs sin necesidad de exportar los datos ni transformarlos previamente. Sin embargo, la **visualización requiere adaptar el formato SQL a las limitaciones de Diagram Panel**, asegurando series temporales con métricas numéricas.
+
