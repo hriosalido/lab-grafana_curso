@@ -1,2 +1,12 @@
 grafana-data
+<<<<<<< HEAD
 data
+=======
+data/firbin.csv
+data/lab04/camaras.csv
+data/lab04/camaras/Camara_1.Abierta.csv
+data/lab04/camaras/Camara_1.Cerrada.csv
+data/lab04/camaras/Camara_1.csv
+data/lab04/camaras/Camara_2.csv
+data/lab04/camaras/Camara_3.csv
+>>>>>>> 4127337d5e621761f3ba76bab1c71494f907d115
