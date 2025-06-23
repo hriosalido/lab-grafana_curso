@@ -16,18 +16,27 @@
   },
   "postCreateCommand": "pip install prometheus_client",
   "portsAttributes": {
-  "3000": {
-    "label": "Grafana",
-    "onAutoForward": "openPreview"
-  },
-  "9090": {
-    "label": "Prometheus"
-  },
-  "9091": {
-    "label": "Pushgateway"
-  },
-  "8080": {
-    "label": "CSV Server"
+    "3000": {
+      "label": "Grafana",
+      "onAutoForward": "openPreview"
+    },
+    "4000": {
+      "label": "API Node"
+    },
+    "5432": {
+      "label": "PostgreSQL"
+    },
+    "8080": {
+      "label": "CSV Server"
+    },
+    "8081": {
+      "label": "Adminer"
+    },
+    "9090": {
+      "label": "Prometheus"
+    },
+    "9091": {
+      "label": "Pushgateway"
+    }
   }
-}
 }
