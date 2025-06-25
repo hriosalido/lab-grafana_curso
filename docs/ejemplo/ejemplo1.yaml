@@ -7,3 +7,6 @@ cells:
     dataRef: humedad
   pres:
     dataRef: presion
+mappings:
+  - key: temp
+    valueTemplate: la temperatura es ${value}ºC
