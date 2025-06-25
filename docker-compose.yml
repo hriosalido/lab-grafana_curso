@@ -37,17 +37,32 @@ services:
       - "gh.codespaces.port-name=Pushgateway"
     restart: unless-stopped
 
+  # static-server:
+  #   image: nginx:alpine
+  #   container_name: static-server
+  #   environment:
+  #     - PORT=8080
+  #   volumes:
+  #     - ./data:/usr/share/nginx/html:ro
+  #     - ./nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
+  #   ports:
+  #     - "8080:8080"
+  #   labels:
+  #     - "gh.codespaces.port-name=STATIC Server"
+
   static-server:
-    image: halverneus/static-file-server
+    image: node:alpine
     container_name: static-server
-    environment:
-      - PORT=8080
+    working_dir: /app
+    command: sh -c "npm install -g http-server && http-server /app/data -p 8080 --cors"
     volumes:
-      - ./data:/web
+      - ./data:/app/data:ro
     ports:
       - "8080:8080"
     labels:
-      - "gh.codespaces.port-name=CSV Server"
+      - "gh.codespaces.port-name=STATIC Server"
+
+
 
   api-node:
     build:
@@ -90,3 +105,11 @@ services:
       - "gh.codespaces.port-name=Adminer"
     depends_on:
       - postgres
+  drawio:
+    image: jgraph/drawio
+    container_name: drawio
+    ports:
+      - "8082:8080"
+    labels:
+      - "gh.codespaces.port-name=Draw.io"
+    restart: unless-stopped
