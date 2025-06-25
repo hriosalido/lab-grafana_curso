@@ -22,16 +22,16 @@ VALUES
 DO $$
 BEGIN
   FOR i IN 1..5000 LOOP
-    INSERT INTO eventos (
-      proceso_id,
-      tipo_evento,
-      valor,
-      timestamp
-    ) VALUES (
-      FLOOR(RANDOM() * 200)::INT + 100,
-      (ARRAY['creado','asignado','resuelto','error'])[FLOOR(RANDOM()*4 + 1)],
-      ROUND((RANDOM() * 10 + 1)::numeric, 2),
-      NOW() - (RANDOM() * INTERVAL '30 days')
-    );
-  END LOOP;
-END $$;
+      INSERT INTO eventos (
+            proceso_id,
+                  tipo_evento,
+                        valor,
+                              timestamp
+                                  ) VALUES (
+                                        FLOOR(RANDOM() * 200)::INT + 100,
+                                              (ARRAY['creado','asignado','resuelto','error'])[FLOOR(RANDOM()*4 + 1)],
+                                                    ROUND((RANDOM() * 10 + 1)::numeric, 2),
+                                                          NOW() - (RANDOM() * INTERVAL '30 days')
+                                                              );
+                                                                END LOOP;
+                                                                END $$;
