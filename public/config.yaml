@@ -1,0 +1,9 @@
+inboxDepth:
+  query: A
+  type: text
+  units: ""
+
+transactions:
+  query: B
+  type: text
+  units: "ops/s"

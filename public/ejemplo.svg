@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="500" height="200">
+  <rect x="50" y="30" width="200" height="50" fill="#222" stroke="#fff" stroke-width="2"/>
+  <text id="inboxDepth" x="150" y="60" text-anchor="middle" fill="orange" font-size="20">---</text>
+
+  <rect x="50" y="110" width="200" height="50" fill="#222" stroke="#fff" stroke-width="2"/>
+  <text id="transactions" x="150" y="140" text-anchor="middle" fill="red" font-size="20">---</text>
+</svg>
