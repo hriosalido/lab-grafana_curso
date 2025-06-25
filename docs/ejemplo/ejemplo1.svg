@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="500" height="300">
 <rect x="50" y="20" width="300" height="60" fill="#222" stroke="#fff" stroke-width="2"/>
-<text id="temp" x="100" y="60" text-anchor="middle" fill="orange" font-size="24">30ºC</text>
-<text id="hum" x="200" y="60" text-anchor="middle" fill="blue" font-size="24">50%</text>
-<text id="pres" x="300" y="60" text-anchor="middle" fill="white" font-size="24">2 bar</text>
+<text id="temp" x="100" y="60" text-anchor="middle" fill="orange" font-size="24">---</text>
+<text id="hum" x="200" y="60" text-anchor="middle" fill="blue" font-size="24">---</text>
+<text id="pres" x="300" y="60" text-anchor="middle" fill="white" font-size="24">---</text>
 
 </svg>
