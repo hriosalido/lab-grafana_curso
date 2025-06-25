@@ -8,5 +8,5 @@ cells:
   pres:
     dataRef: presion
 mappings:
-  - key: temp
+  - key: temperatura
     valueTemplate: la temperatura es ${value}ºC
