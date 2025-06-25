@@ -9,4 +9,10 @@ data/lab04/camaras/Camara_1.Cerrada.csv
 data/lab04/camaras/Camara_1.csv
 data/lab04/camaras/Camara_2.csv
 data/lab04/camaras/Camara_3.csv
+<<<<<<< HEAD
 >>>>>>> 4127337d5e621761f3ba76bab1c71494f907d115
+=======
+data/config.yaml
+data/flow/config.yaml
+data/flow/ejemplo.svg
+>>>>>>> a21d7a79521c4fab1aab01313495ec8380685319
