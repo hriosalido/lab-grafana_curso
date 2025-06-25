@@ -27,10 +27,13 @@
       "label": "PostgreSQL"
     },
     "8080": {
-      "label": "CSV Server"
+      "label": "STATIC Server"
     },
     "8081": {
       "label": "Adminer"
+    },
+    "8082": {
+      "label": "Draw"
     },
     "9090": {
       "label": "Prometheus"
