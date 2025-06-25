@@ -10,3 +10,16 @@ cells:
         - { color: "green", level: 0 }
         - { color: "yellow", level: 50 }
         - { color: "red", level: 90 }
+
+
+  dato2:
+    dataRef: "dato2-serie"
+    label:
+      units: "%"
+      decimalPoints: 1
+    labelColor:
+      gradientMode: "hue"
+      thresholds:
+        - { color: "green", level: 0 }
+        - { color: "yellow", level: 50 }
+        - { color: "red", level: 90 }
