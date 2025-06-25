@@ -79,6 +79,22 @@ services:
       - "gh.codespaces.port-name=Api Node"
     restart: unless-stopped
 
+  backend-svg:
+    build:
+      context: ./backend-svg/
+      dockerfile: Dockerfile
+    container_name: backend-svg
+    ports:
+      - "4001:3000"
+    volumes:
+      - ./backend-svg:/app
+      - /app/node_modules  # esto evita que el volumen del host tape los node_modules
+
+    labels:
+      - "gh.codespaces.port-name=Backend SVG"
+    restart: unless-stopped
+
+
   postgres:
     image: postgres:14
     container_name: postgres
