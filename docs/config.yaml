@@ -1,9 +1,27 @@
-inboxDepth:
-  query: A
-  type: text
-  units: ""
+#------------------------------------------------------------------------------
+# Panel Config
 
-transactions:
-  query: B
-  type: text
-  units: "ops/s"
+cells:
+  inbox_depth:
+    dataRef: test-data-large-sin
+    label:
+      units: "msgs"
+      decimalPoints: 0
+    labelColor:
+      gradientMode: "hue"
+      thresholds:
+        - {color: "green", level: 0}
+        - {color: "orange", level: 500}
+        - {color: "red", level: 1000}
+
+  db_transactions:
+    dataRef: test-data-large-cos
+    label:
+      units: "ops/s"
+      decimalPoints: 0
+    labelColor:
+      gradientMode: "hue"
+      thresholds:
+        - {color: "blue", level: 0}
+        - {color: "orange", level: 400}
+        - {color: "red", level: 800}
