@@ -2,7 +2,7 @@ cells:
   temp:
     dataref: temperatura
     label:
-      units: 
+      units: celsius
   hum:
     dataref: humedad
   pres:
