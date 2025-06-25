@@ -6,3 +6,6 @@ data/lab04/camaras/Camara_1.Cerrada.csv
 data/lab04/camaras/Camara_1.csv
 data/lab04/camaras/Camara_2.csv
 data/lab04/camaras/Camara_3.csv
+data/config.yaml
+data/flow/config.yaml
+data/flow/ejemplo.svg
