@@ -1,27 +1,12 @@
-#------------------------------------------------------------------------------
-# Panel Config
-
 cells:
-  inbox_depth:
-    dataRef: test-data-large-sin
+  temperatura:
+    dataRef: serie-temperatura
     label:
-      units: "msgs"
-      decimalPoints: 0
-    labelColor:
-      gradientMode: "hue"
-      thresholds:
-        - {color: "green", level: 0}
-        - {color: "orange", level: 500}
-        - {color: "red", level: 1000}
-
-  db_transactions:
-    dataRef: test-data-large-cos
-    label:
-      units: "ops/s"
-      decimalPoints: 0
+      units: "°C"
+      decimalPoints: 1
     labelColor:
       gradientMode: "hue"
       thresholds:
         - {color: "blue", level: 0}
-        - {color: "orange", level: 400}
-        - {color: "red", level: 800}
+        - {color: "orange", level: 25}
+        - {color: "red", level: 35}
