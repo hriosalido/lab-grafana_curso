@@ -1,0 +1,9 @@
+cells:
+  temp:
+    dataref: temperatura
+    label:
+      units: 
+  hum:
+    dataref: humedad
+  pres:
+    dataref: presion
