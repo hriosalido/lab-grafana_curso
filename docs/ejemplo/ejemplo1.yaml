@@ -1,9 +1,9 @@
 cells:
   temp:
-    dataref: temperatura
+    dataRef: temperatura
     label:
       units: celsius
   hum:
-    dataref: humedad
+    dataRef: humedad
   pres:
-    dataref: presion
+    dataRef: presion
