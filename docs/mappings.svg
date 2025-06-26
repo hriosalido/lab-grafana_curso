@@ -1,0 +1,10 @@
+<svg width="400" height="200" xmlns="http://www.w3.org/2000/svg">
+  <!-- Nodo con id que será referenciado por el config.yaml -->
+  <rect id="nodo_1" x="50" y="50" width="300" height="100" rx="15" ry="15"
+        fill="#ddd" stroke="#888" stroke-width="2"/>
+
+  <!-- Texto que será interpolado con ${__value.text} -->
+  <text id="nodo_1_text" x="200" y="110" text-anchor="middle" font-size="20" fill="#000">
+    ---
+  </text>
+</svg>
