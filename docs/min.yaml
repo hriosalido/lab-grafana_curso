@@ -1,6 +1,7 @@
 cells:
   test:
     dataRef: "test-data-small-sin"
+    text: "$test % completado"
     label:
       units: "%"
       decimalPoints: 1
