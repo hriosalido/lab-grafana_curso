@@ -1,3 +1,9 @@
+labelTextMapping:
+  - what: "temperatura"
+    when: "when metric displayed"
+    how: "substring"
+    with: "/VALUE/"
+
 cells:
   temperatura:
     dataRef: "temp-serie"
