@@ -32,7 +32,7 @@ cells:
       valueMappings: *valuemap1
     labelColor:
       thresholds: *thresholds
-  caja2:
+  CArXJ2D-kM-oZ7ziZCJT-1:
     dataRef: "test-data-large-cos"
     label:
       separator: "cr"
