@@ -4,6 +4,7 @@ cells:
  temperatura:    
    dataRef: "temperatura"
    label:
+     separator: "replace"
      units: ""
      decimalPoints: 1
  
