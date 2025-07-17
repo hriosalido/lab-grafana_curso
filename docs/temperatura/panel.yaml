@@ -28,7 +28,7 @@ cells:
      separator: "replace"
     #  units: ""
     #  decimalPoints: 1
-     valueMappings: *valuemap1
+    #  valueMappings: *valuemap1
    labelColor:
     thresholds: *temperaturas-rango-humano
 
