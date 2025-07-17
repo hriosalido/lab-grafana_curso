@@ -1,0 +1,16 @@
+cell:
+  NumEnv: #son los ids creados en drawio
+    dataRef: NumEnv #no tienen porque llamarse igual, es el nombre de la serie
+    label:
+      separator: replace #si no pones esto, concatena, esto reemplaza el valor
+      #unidades y numdecimales iráin aquí
+  NumEtiq:
+    dataRef: NumEtiq
+  NumPal:
+    dataRef: NumPal
+  EstadoEnv:
+    dataRef: EstadoEnv
+  EstadoEti:
+    dataRef: EstadoEti
+  EstadoPal:
+    dataRef: EstadoPal
