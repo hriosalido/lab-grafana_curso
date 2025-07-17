@@ -1,0 +1,58 @@
+---
+cellIdPreamble: "cell-"
+gradientMode: "hue"
+
+thresholds: &umbral_arranques
+  - { color: "gray", level: 0 }
+  - { color: "green", level: 1 }
+  - { color: "orange", level: 5 }
+  - { color: "red", level: 10 }
+
+cells:
+  arranque-env:
+    dataRef: arranques-env
+    label:
+      units: arranques
+    fillColor:
+      thresholds: *umbral_arranques
+    link: "/d/detalle-maquina?var-maquina=env"
+
+  parada-env:
+    dataRef: paradas-env
+    label:
+      units: paradas
+    fillColor:
+      thresholds: *umbral_arranques
+    link: "/d/detalle-maquina?var-maquina=env"
+
+  arranque-mezcla:
+    dataRef: arranques-mezcla
+    label:
+      units: arranques
+    fillColor:
+      thresholds: *umbral_arranques
+    link: "/d/detalle-maquina?var-maquina=mezcla"
+
+  parada-mezcla:
+    dataRef: paradas-mezcla
+    label:
+      units: paradas
+    fillColor:
+      thresholds: *umbral_arranques
+    link: "/d/detalle-maquina?var-maquina=mezcla"
+
+  arranque-pasteur:
+    dataRef: arranques-pasteur
+    label:
+      units: arranques
+    fillColor:
+      thresholds: *umbral_arranques
+    link: "/d/detalle-maquina?var-maquina=pasteur"
+
+  parada-pasteur:
+    dataRef: paradas-pasteur
+    label:
+      units: paradas
+    fillColor:
+      thresholds: *umbral_arranques
+    link: "/d/detalle-maquina?var-maquina=pasteur"
