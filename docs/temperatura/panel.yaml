@@ -1,0 +1,9 @@
+cellIdPreamble: "cell-"
+
+cells:
+ temperatura:    
+   dataRef: "temperatura"
+
+ 
+ 
+
