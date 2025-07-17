@@ -12,6 +12,13 @@ anchorLinks:
     - {valueMin: 300, valueMax: 600, text: "panel medium"}
     - {valueMin: 600, text: "panel high"}
 
+  - thresholds: &temperaturas-rango-humano
+    - {color: "green", level: 30}
+    - {color: "orange", level: 40}
+    - {color: "red", level: 50}
+
+
+
 cellIdPreamble: "cell-"
 
 cells:
@@ -22,5 +29,8 @@ cells:
     #  units: ""
     #  decimalPoints: 1
      valueMappings: *valuemap1
+   labelColor:
+    thresholds: *temperaturas-rango-humano
+
  
 
