@@ -1,5 +1,5 @@
 cells:
-  NumEnv: #son los ids creados en drawio
+  NumEnv: #son los ids creados en drawio dd
     dataRef: NumEnv #no tienen porque llamarse igual, es el nombre de la serie
     label:
       separator: replace #si no pones esto, concatena, esto reemplaza el valor
