@@ -1,0 +1,10 @@
+cellIdPreamble: "cell-"
+
+cells:
+ temperatura:    
+   dataRef: "temperatura"
+   label:
+     units: ""
+     decimalPoints: 1
+ 
+
