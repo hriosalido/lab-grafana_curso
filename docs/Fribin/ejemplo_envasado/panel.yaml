@@ -1,4 +1,4 @@
-cell:
+cells:
   NumEnv: #son los ids creados en drawio
     dataRef: NumEnv #no tienen porque llamarse igual, es el nombre de la serie
     label:
