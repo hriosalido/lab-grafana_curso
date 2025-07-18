@@ -1,0 +1,28 @@
+
+cellIdPreamble: cell-
+
+cell:
+  starts-env:
+    dataRef: starts-env
+    label:
+     separator: replace
+  starts-eti:
+    dataRef: starts-eti
+    label:
+     separator: replace
+  starts-pal:
+    dataRef: starts-pal
+    label:
+     separator: replace
+  state-env:
+    dataRef: state-env
+    label:
+     separator: replace
+  state-eti:
+    dataRef: state-eti
+    label:
+     separator: replace
+  state-pal:
+    dataRef: state-pal
+    label:
+     separator: replace
