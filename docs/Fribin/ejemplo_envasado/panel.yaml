@@ -16,8 +16,7 @@ anchorLinks:
     - {valueMax: 5, text: OFF}
     - {valueMin: 5, text: ON}
 
-links:
-  enlaceEnv:
+  - links: &enlaceEnv:
     url: https://www.google.com/?hl=es
     params: time
 
