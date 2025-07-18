@@ -13,7 +13,7 @@ anchorLinks:
     - {color: red, level: 0}
     - {color: green, level: 5}  
   - valueMappings: &textoBinario
-    - {value: 0, text: OFF}
+    - {valueMax: 5, text: OFF}
     - {valueMin: 5, text: ON}
 cells:
   NumEnv: #son los ids creados en drawio dd
