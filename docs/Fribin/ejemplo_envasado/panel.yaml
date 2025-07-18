@@ -47,7 +47,7 @@ cells:
       valueMappings: *textoBinario
     fillColor:
       thresholds: *colorBinario
-    linkRef: "grafana-home"
+    linkRef: "enlaceEnv"
     
   EstadoEtiq:
     dataRef: EstadoEtiq
@@ -57,6 +57,7 @@ cells:
       valueMappings: *textoBinario
     fillColor:
       thresholds: *colorBinario
+    linkRef: "enlaceEti"
   EstadoPal:
     dataRef: EstadoPal
     label:
