@@ -1,4 +1,10 @@
 links:
-  grafana-home:
+  enlaceEnv:
     url: "https://obscure-parakeet-q7xpv7gj549ghxq6v-3000.app.github.dev/d/2d12d99d-c621-46fc-8492-1957dc4e8749/ejemplo-envasado?orgId=1&from=now-30m&to=now&timezone=browser&var-etapa=Env&editPanel=2"
+    params: "time"
+  enlaceEti:
+    url: "https://obscure-parakeet-q7xpv7gj549ghxq6v-3000.app.github.dev/d/2d12d99d-c621-46fc-8492-1957dc4e8749/ejemplo-envasado?orgId=1&from=now-30m&to=now&timezone=browser&var-etapa=Eti&editPanel=2"
+    params: "time"
+  enlacePal:
+    url: "https://obscure-parakeet-q7xpv7gj549ghxq6v-3000.app.github.dev/d/2d12d99d-c621-46fc-8492-1957dc4e8749/ejemplo-envasado?orgId=1&from=now-30m&to=now&timezone=browser&var-etapa=Pal&editPanel=2"
     params: "time"
