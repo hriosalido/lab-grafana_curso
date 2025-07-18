@@ -14,19 +14,22 @@ cells:
     label:
       separator: "replace" #si no pones esto, concatena, esto reemplaza el valor
       #unidades y numdecimales iráin aquí
-    labelColor: *colorMarcha
+    labelColor: 
+      thresholds: *colorMarcha
   NumEti:
     dataRef: NumEti
     label:
       separator: "replace" #si no pones esto, concatena, esto reemplaza el valor
       #unidades y numdecimales iráin aquí
-    labelColor: *colorMarcha 
+    labelColor: 
+      thresholds: *colorMarcha 
   NumPal:
     dataRef: NumPal
     label:
       separator: "replace" #si no pones esto, concatena, esto reemplaza el valor
       #unidades y numdecimales iráin aquí
-    labelColor: *colorMarcha
+    labelColor: 
+      thresholds: *colorMarcha
   EstadoEnv:
     dataRef: EstadoEnv
     label:
