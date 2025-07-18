@@ -15,6 +15,13 @@ anchorLinks:
   - valueMappings: &textoBinario
     - {valueMax: 5, text: OFF}
     - {valueMin: 5, text: ON}
+
+links:
+  enlaceEnv:
+    url: /d/2d12d99d-c621-46fc-8492-1957dc4e8749/ejemplo-envasado?var-etapa=Env
+    params: time
+
+
 cells:
   NumEnv: #son los ids creados en drawio dd
     dataRef: NumEnv #no tienen porque llamarse igual, es el nombre de la serie
@@ -45,6 +52,7 @@ cells:
       valueMappings: *textoBinario
     fillColor:
       thresholds: *colorBinario
+    linkRef: enlaceEnv
     
   EstadoEtiq:
     dataRef: EstadoEtiq
@@ -72,10 +80,6 @@ cells:
   #   linkTarget: _self
   #   link: /d/2d12d99d-c621-46fc-8492-1957dc4e8749/ejemplo-envasado?orgId=1&from=now-30m&to=now&timezone=browser&var-query0=&var-Etapa=&var-etapa=Pal&editPanel=2
  
-linkMappings: 
-  - what: EstadoEnv #sobre que celda se actúa
-    when: Allways
-    url: /d/2d12d99d-c621-46fc-8492-1957dc4e8749/ejemplo-envasado?var-etapa=Env
-    includeCurrentUrlParams: true  #mantener parámetros para evitar mapeos
+
 
   
