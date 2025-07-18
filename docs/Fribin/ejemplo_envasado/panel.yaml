@@ -32,6 +32,11 @@ cells:
     label:
       separator: "replace" #si no pones esto, concatena, esto reemplaza el valor
       #unidades y numdecimales iráin aquí
+  prueba:
+    dataRef: prueba
+    label:
+      separator: replace
+    
     
   EstadoEti:
     dataRef: EstadoEti
