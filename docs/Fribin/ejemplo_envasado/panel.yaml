@@ -23,8 +23,8 @@ cells:
       #unidades y numdecimales iráin aquí
     labelColor: 
       thresholds: *colorMarcha
-  NumEti:
-    dataRef: NumEti
+  NumEtiq:
+    dataRef: NumEtiq
     label:
       separator: "replace" #si no pones esto, concatena, esto reemplaza el valor
       #unidades y numdecimales iráin aquí
