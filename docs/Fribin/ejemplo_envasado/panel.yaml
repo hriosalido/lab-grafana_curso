@@ -16,9 +16,10 @@ anchorLinks:
     - {valueMax: 5, text: OFF}
     - {valueMin: 5, text: ON}
 
-  - link: &enlaceEnv:
-    url: https://www.google.com/?hl=es
-    params: time
+links:
+  grafana-home:
+    url: "https://grafana.com/"
+    params: "time"
 
 
 cells:
@@ -51,7 +52,7 @@ cells:
       valueMappings: *textoBinario
     fillColor:
       thresholds: *colorBinario
-    linkRef: enlaceEnv
+    linkRef: "grafana-home"
     
   EstadoEtiq:
     dataRef: EstadoEtiq
