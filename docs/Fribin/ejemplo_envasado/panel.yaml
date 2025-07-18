@@ -5,21 +5,25 @@ cells:
     label:
       separator: "replace" #si no pones esto, concatena, esto reemplaza el valor
       #unidades y numdecimales iráin aquí
+    labelColor: *colorMarcha
   NumEti:
     dataRef: NumEti
     label:
       separator: "replace" #si no pones esto, concatena, esto reemplaza el valor
       #unidades y numdecimales iráin aquí
+    labelColor: *colorMarcha 
   NumPal:
     dataRef: NumPal
     label:
       separator: "replace" #si no pones esto, concatena, esto reemplaza el valor
       #unidades y numdecimales iráin aquí
+    labelColor: *colorMarcha
   EstadoEnv:
     dataRef: EstadoEnv
     label:
       separator: "replace" #si no pones esto, concatena, esto reemplaza el valor
       #unidades y numdecimales iráin aquí
+    
   EstadoEti:
     dataRef: EstadoEti
     label:
@@ -30,3 +34,15 @@ cells:
     label:
       separator: "replace" #si no pones esto, concatena, esto reemplaza el valor
       #unidades y numdecimales iráin aquí
+anchorLinks:
+  - thresholds: &colorMarcha #definir los tipos de referencias en cada linea
+
+    # - rango1
+    # - rango n
+    - color: red
+      level: 0
+    - {color: green, level: 10}
+    - {color: blue, level: 50}   
+
+  - thresholds: &colorProd
+  
