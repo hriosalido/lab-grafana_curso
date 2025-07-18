@@ -5,8 +5,8 @@ cells:
     label:
       separator: "replace" #si no pones esto, concatena, esto reemplaza el valor
       #unidades y numdecimales iráin aquí
-  NumEtiq:
-    dataRef: NumEtiq
+  NumEti:
+    dataRef: NumEti
     label:
       separator: "replace" #si no pones esto, concatena, esto reemplaza el valor
       #unidades y numdecimales iráin aquí
