@@ -44,5 +44,5 @@ anchorLinks:
     - {color: green, level: 10}
     - {color: blue, level: 50}   
 
-  - thresholds: &colorProd
+  #- thresholds: &colorProd
   
