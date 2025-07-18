@@ -6,7 +6,7 @@ colors:
   green: "#00AA00"
 
 valueMappings:
-  dbTrans:
+  temperatura:
     - {value: null, text: "site null"}
     - {value: 0, text: "site off"}
     - {valueMax: 300, text: "site ${exampleVar}"}

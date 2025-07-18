@@ -1,10 +1,36 @@
+anchorLinks:
+  - valueMappings: &valuemap1
+    - {value: null, text: "error"}
+    - {value: 0, text: "apagado"}
+    - {valueMax: 300, text: "minimo"}
+    - {valueMin: 300, valueMax: 600, text: "medio"}
+    - {valueMin: 600, text: "maximo"}
+  - valueMappings: &valuemap2
+    - {value: null, text: "error para ${exampleVar}"}
+    - {value: 0, text: "panel ${exampleVar} off"}
+    - {valueMax: 30, text: "interpolar ${exampleVar} variable de settings"}
+    - {valueMin: 50, valueMax: 70, text: "${exampleVar} medium"}
+    - {valueMin: 70, text: "${exampleVar} high"}
+
+  - thresholds: &temperaturas-rango-humano
+    - {color: "green", level: 30}
+    - {color: "orange", level: 40}
+    - {color: "red", level: 50}
+
+
+
 cellIdPreamble: "cell-"
 
 cells:
  temperatura:    
    dataRef: "temperatura"
    label:
-     units: ""
-     decimalPoints: 1
+     separator: "replace"
+      # units: ""
+    #  decimalPoints: 1
+    #  valueMappings: *valuemap2
+   labelColor:
+    thresholds: *temperaturas-rango-humano
+
  
 
