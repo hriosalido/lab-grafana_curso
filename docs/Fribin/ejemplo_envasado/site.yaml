@@ -1,0 +1,4 @@
+links:
+  grafana-home:
+    url: "https://grafana.com/"
+    params: "time"
