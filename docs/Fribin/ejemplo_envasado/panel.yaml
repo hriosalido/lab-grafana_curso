@@ -8,6 +8,13 @@ anchorLinks:
       level: 0
     - {color: green, level: 10}
     - {color: blue, level: 50}  
+
+  - thresholds: &colorBinario
+    - {color: green, level: 5}  
+    - {color: red, level: 0} 
+  - valueMappings: &textoBinario
+    - {value: 0, text: OFF}
+    - {valueMin: 5, text: ON}
 cells:
   NumEnv: #son los ids creados en drawio dd
     dataRef: NumEnv #no tienen porque llamarse igual, es el nombre de la serie
@@ -35,22 +42,26 @@ cells:
     label:
       separator: "replace" #si no pones esto, concatena, esto reemplaza el valor
       #unidades y numdecimales iráin aquí
-  prueba:
-    dataRef: prueba
-    label:
-      separator: replace
-    
+      valueMappings: *textoBinario
+    fillColor:
+      thresholds: *colorBinario
     
   EstadoEti:
     dataRef: EstadoEti
     label:
       separator: "replace" #si no pones esto, concatena, esto reemplaza el valor
       #unidades y numdecimales iráin aquí
+      valueMappings: *textoBinario
+    fillColor:
+      thresholds: *colorBinario
   EstadoPal:
     dataRef: EstadoPal
     label:
       separator: "replace" #si no pones esto, concatena, esto reemplaza el valor
       #unidades y numdecimales iráin aquí
+      valueMappings: *textoBinario
+    fillColor:
+      thresholds: *colorBinario
  
 
 
