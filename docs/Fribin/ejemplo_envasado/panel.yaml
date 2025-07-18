@@ -62,6 +62,12 @@ cells:
       valueMappings: *textoBinario
     fillColor:
       thresholds: *colorBinario
+  enlaceEnv:
+    link: /d/2d12d99d-c621-46fc-8492-1957dc4e8749/ejemplo-envasado?orgId=1&from=now-30m&to=now&timezone=browser&var-query0=&var-Etapa=&var-etapa=Env&editPanel=2
+  enlaceEti:
+    link: /d/2d12d99d-c621-46fc-8492-1957dc4e8749/ejemplo-envasado?orgId=1&from=now-30m&to=now&timezone=browser&var-query0=&var-Etapa=&var-etapa=Eti&editPanel=2 
+  enlacePal:
+    link: /d/2d12d99d-c621-46fc-8492-1957dc4e8749/ejemplo-envasado?orgId=1&from=now-30m&to=now&timezone=browser&var-query0=&var-Etapa=&var-etapa=Pal&editPanel=2
  
 
 
