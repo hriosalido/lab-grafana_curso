@@ -73,7 +73,7 @@ cells:
   #   link: /d/2d12d99d-c621-46fc-8492-1957dc4e8749/ejemplo-envasado?orgId=1&from=now-30m&to=now&timezone=browser&var-query0=&var-Etapa=&var-etapa=Pal&editPanel=2
  
 linkMappings: 
-  - what: enlaceEnv #sobre que celda se actúa
+  - what: EstadoEnv #sobre que celda se actúa
     when: Allways
     url: /d/2d12d99d-c621-46fc-8492-1957dc4e8749/ejemplo-envasado?var-etapa=Env
     includeCurrentUrlParams: true  #mantener parámetros para evitar mapeos
