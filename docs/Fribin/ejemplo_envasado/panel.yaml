@@ -7,11 +7,26 @@ cells:
       #unidades y numdecimales iráin aquí
   NumEtiq:
     dataRef: NumEtiq
+    label:
+      separator: "replace" #si no pones esto, concatena, esto reemplaza el valor
+      #unidades y numdecimales iráin aquí
   NumPal:
     dataRef: NumPal
+    label:
+      separator: "replace" #si no pones esto, concatena, esto reemplaza el valor
+      #unidades y numdecimales iráin aquí
   EstadoEnv:
     dataRef: EstadoEnv
+    label:
+      separator: "replace" #si no pones esto, concatena, esto reemplaza el valor
+      #unidades y numdecimales iráin aquí
   EstadoEti:
     dataRef: EstadoEti
+    label:
+      separator: "replace" #si no pones esto, concatena, esto reemplaza el valor
+      #unidades y numdecimales iráin aquí
   EstadoPal:
     dataRef: EstadoPal
+    label:
+      separator: "replace" #si no pones esto, concatena, esto reemplaza el valor
+      #unidades y numdecimales iráin aquí
