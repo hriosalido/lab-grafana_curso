@@ -1,4 +1,13 @@
 cellIdPreamble: cell-
+anchorLinks:
+  - thresholds: &colorMarcha #definir los tipos de referencias en cada linea
+
+    # - rango1
+    # - rango n
+    - color: red
+      level: 0
+    - {color: green, level: 10}
+    - {color: blue, level: 50}  
 cells:
   NumEnv: #son los ids creados en drawio dd
     dataRef: NumEnv #no tienen porque llamarse igual, es el nombre de la serie
@@ -34,15 +43,7 @@ cells:
     label:
       separator: "replace" #si no pones esto, concatena, esto reemplaza el valor
       #unidades y numdecimales iráin aquí
-anchorLinks:
-  - thresholds: &colorMarcha #definir los tipos de referencias en cada linea
+ 
 
-    # - rango1
-    # - rango n
-    - color: red
-      level: 0
-    - {color: green, level: 10}
-    - {color: blue, level: 50}   
 
-  #- thresholds: &colorProd
   
