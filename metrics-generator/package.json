@@ -1,0 +1,9 @@
+{
+  "name": "simulador-metricas",
+  "version": "1.0.0",
+  "type": "module",
+  "dependencies": {
+    "mqtt": "^5.4.1",
+    "axios": "^1.6.8"
+  }
+}
