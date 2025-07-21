@@ -37,6 +37,30 @@ services:
       - "gh.codespaces.port-name=Pushgateway"
     restart: unless-stopped
 
+  push-generator:
+    build:
+      context: ./metrics-generator
+    container_name: push-generator
+    restart: unless-stopped
+    command: 
+      - node
+      - push-generator.js
+    depends_on:
+      - pushgateway
+
+
+
+  mqtt-generator:
+    build:
+      context: ./metrics-generator
+    container_name: mqtt-generator
+    restart: unless-stopped
+    command: 
+      - node
+      - mqtt-generator.js
+    depends_on:
+      - pushgateway
+
   # static-server:
   #   image: nginx:alpine
   #   container_name: static-server
