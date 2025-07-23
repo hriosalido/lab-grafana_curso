@@ -1,7 +1,7 @@
 // servidor simple para servir SVG y YAML dinámicos
 const express = require('express');
 const app = express();
-const port = 8080;
+const port = 3000;
 
 // Middleware CORS (por si se accede desde FlowPanel)
 app.use((req, res, next) => {
