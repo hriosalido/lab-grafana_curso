@@ -70,7 +70,7 @@ services:
 
 
 
-  mqtt-generator:
+  mqtt-sensor2-producer:
     build:
       context: ./metrics-generator
     container_name: mqtt-sensor2-producer
