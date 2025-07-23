@@ -5,4 +5,4 @@ WORKDIR /app
 COPY . .
 RUN npm install 
 
-CMD ["node", "metrics-generator.js"]
+# CMD ["node", "metrics-generator.js"]
