@@ -48,6 +48,17 @@ services:
     depends_on:
       - pushgateway
 
+  push-generator_2:
+    build:
+      context: ./metrics-generator
+    container_name: push-generator_2
+    restart: unless-stopped
+    command: 
+      - node
+      - push-generator_2.js
+    depends_on:
+      - pushgateway
+
 
 
   mqtt-generator:
