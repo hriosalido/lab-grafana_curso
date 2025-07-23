@@ -8,32 +8,33 @@ Este documento describe el comportamiento de cada componente del sistema y su ro
 
 ```mermaid
 graph TD
-  subgraph Sensores (Productores)
+  subgraph Sensores_Prod["Sensores / Productores"]
     S1[Sensor Node.js 1]
     S2[Sensor Node.js 2]
   end
 
-  subgraph Broker MQTT
-    MQT["Mosquitto"]
+  subgraph Broker_MQTT["Broker MQTT (Mosquitto)"]
+    MQT[Broker MQTT]
   end
 
-  subgraph Exportador
+  subgraph Exportador["mqtt-exporter"]
     EXP[mqtt-exporter]
   end
 
   subgraph Prometheus
-    PROM["Prometheus\nscrape /metrics"]
+    PROM["Prometheus\n(scrape /metrics)"]
   end
 
   subgraph Grafana
-    GRAF["Grafana\nDashboards + Alertas"]
+    GRAF["Grafana\n(Dashboards + Alertas)"]
   end
 
   S1 -->|publish| MQT
   S2 -->|publish| MQT
   MQT -->|notify (suscripción)| EXP
-  PROM -->|pull scrape| EXP
-  GRAF -->|consulta| PROM
+  PROM -->|scrape| EXP
+  GRAF -->|consulta PromQL| PROM
+
 ```
 
 ---
