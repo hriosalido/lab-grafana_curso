@@ -29,11 +29,12 @@ graph TD
     GRAF["Grafana\n(Dashboards + Alertas)"]
   end
 
-  S1 -->|publish| MQT
-  S2 -->|publish| MQT
-  MQT -->|notify (suscripción)| EXP
-  PROM -->|scrape| EXP
-  GRAF -->|consulta PromQL| PROM
+  S1 -->|"publish"| MQT
+  S2 -->|"publish"| MQT
+  MQT -->|"notify (suscripcion)"| EXP
+  PROM -->|"scrape"| EXP
+  GRAF -->|"consulta PromQL"| PROM
+
 
 ```
 
