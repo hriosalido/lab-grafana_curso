@@ -1,0 +1,15 @@
+mqtt:
+  host: mqtt://mosquitto
+  topics:
+    - planta/+/temperatura
+    - planta/+/estado
+mapping:
+  - topic: planta/.+/temperatura
+    name: temperatura_horno
+    type: gauge # es una aguja (sube baja), counter solo sube (incremental), histogram, sumary
+  - topic: planta/.+/estado
+    name: estado_motor
+    type: gauge
+    value_mapping:
+      ON: 1
+      OFF: 0

@@ -1,0 +1,41 @@
+services:
+  grafana:
+    image: grafana/grafana:latest
+    container_name: grafana
+    ports:
+      - "3000:3000"
+    labels:
+      - "gh.codespaces.port-name=Grafana"
+    environment:
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+      - GF_INSTALL_PLUGINS=marcusolsson-csv-datasource,agenty-flowcharting-panel,yesoreyeram-boomtable-panel,grafana-simple-json-datasource
+      - GF_PLUGINS_ALLOW_LOADING_UNSIGNED_PLUGINS=agenty-flowcharting-panel
+    restart: unless-stopped
+    volumes:
+       - ./grafana-data:/var/lib/grafana
+    depends_on:
+      - prometheus
+
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: prometheus
+    ports:
+      - "9090:9090"
+    labels:
+      - "gh.codespaces.port-name=Prometheus"
+    volumes:
+      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+    restart: unless-stopped
+
+  
+
+  mosquitto:
+    image: eclipse-mosquitto
+    ports: ["1883:1883"]
+  
+  mqtt-exporter:
+    image: kpetrem/mqtt-exporter:latest
+    ports: ["9344:9344"]
+    volumes:
+      - ./mqtt_exporter.yml:/config/
