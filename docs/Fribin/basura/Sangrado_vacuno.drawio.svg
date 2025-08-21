@@ -32,14 +32,14 @@
                 <g data-cell-id="Bomba_bandeja">
                     <g id="cell-Bomba_bandeja" content="&lt;object label=&quot;&quot;/&gt;" data-label="">
                         <g>
-                            <rect x="50" y="190" width="60" height="60" fill="#b32020" stroke="none"
+                            <rect x="50" y="190" width="60" height="60" fill="#b32020" stroke="#000000"
                                 pointer-events="all" />
                             <ellipse cx="80" cy="220" rx="30" ry="30" fill="#b32020" stroke="#000000"
                                 pointer-events="all"
                                 style="fill: light-dark(#ffffff, var(--ge-dark-color, #121212)); stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));" />
                             <path
                                 d="M 80 190 L 110 220 C 102.59 228.92 91.6 234.08 80 234.08 C 68.4 234.08 57.41 228.92 50 220 Z"
-                                fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="all"
+                                fill="#b32020" stroke="#000000" stroke-miterlimit="10" pointer-events="all"
                                 style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));" />
                         </g>
                     </g>
