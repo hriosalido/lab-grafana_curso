@@ -1,20 +1,24 @@
 cellIdPreamble: cell-
 anchorLinks:
- #definir los tipos de referencias en cada linea
+  - thresholds: &colorMarcha #definir los tipos de referencias en cada linea
 
-  -thresholds: &colormarchaparo
+    # - rango1
+    # - rango n
+    - color: red
+      level: 0
+    - {color: orange, level: 30}
+    - {color: green, level: 50}
+    - {color: blue, level: 80}  
+
+  - thresholds: &colorBinario
     - {color: red, level: 0}
-    - {color: green, level: 30} 
-    - {color: blue, level: 100} 
+    - {color: green, level: 5}  
+  - valueMappings: &textoBinario
+    - {valueMax: 5, text: OFF}
+    - {valueMin: 5, text: ON}
 
-
-  - valueMappings: &textomarchaparo
-    - {valueMax: 1, text: OFF}
-    - {valueMin: 1, text: ON} 
 
 cells:
-
-##################################SENSORES###############################################
   Bomba_bandeja:
     dataRef: Bomba_bandeja
     label:
@@ -24,10 +28,22 @@ cells:
     fillColor:
       thresholds: *colorMarcha
     linkRef: "enlacePal"
-    
+  
   prueba:
     dataRef: prueba
     label:
-      separator: "replace"
+      separator: "replace" #si no pones esto, concatena, esto reemplaza el valor
+      #unidades y numdecimales iráin aquí
+      valueMappings: *textoBinario
     fillColor:
-      thresholds: &colormarchaparo
+      thresholds: *colorMarcha
+    linkRef: "enlacePal"
+  # enlaceEnv:
+  #   linkTarget: _self
+  #   link: /d/2d12d99d-c621-46fc-8492-1957dc4e8749/ejemplo-envasado?orgId=1&from=now-30m&to=now&timezone=browser&var-query0=&var-Etapa=&var-etapa=Env&editPanel=2
+  # enlaceEti:
+  #   linkTarget: _self
+  #   link: /d/2d12d99d-c621-46fc-8492-1957dc4e8749/ejemplo-envasado?orgId=1&from=now-30m&to=now&timezone=browser&var-query0=&var-Etapa=&var-etapa=Eti&editPanel=2 
+  # enlacePal:
+  #   linkTarget: _self
+  #   link: /d/2d12d99d-c621-46fc-8492-1957dc4e8749/ejemplo-envasado?orgId=1&from=now-30m&to=now&timezone=browser&var-query0=&var-Etapa=&var-etapa=Pal&editPanel=2
