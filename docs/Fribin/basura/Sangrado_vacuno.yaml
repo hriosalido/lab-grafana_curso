@@ -12,7 +12,7 @@ anchorLinks:
 
   - thresholds: &colorBinario
     - {color: red, level: 0}
-    - {color: green, level: 5}  
+    - {color: green, level: 50}  
   - valueMappings: &textoBinario
     - {valueMax: 5, text: OFF}
     - {valueMin: 5, text: ON}
@@ -37,6 +37,15 @@ cells:
     fillColor:
       thresholds: *colorMarcha
     linkRef: "enlacePal"
+  
+  B3:
+    dataRef: B3
+    label:
+      separator: "replace" #si no pones esto, concatena, esto reemplaza el valor
+      #unidades y numdecimales iráin aquí
+      #valueMappings: *textoBinario
+    fillColor:
+      thresholds: *colorBinario
   
   prueba:
     dataRef: prueba
