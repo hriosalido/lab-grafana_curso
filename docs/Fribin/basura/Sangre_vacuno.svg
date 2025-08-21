@@ -123,9 +123,9 @@
                 <g data-cell-id="M2">
                     <g id="cell-M2" content="&lt;object label=&quot;&quot;/&gt;" data-label="">
                         <g>
-                            <rect x="402" y="49.86" width="50" height="45" fill="none" stroke="none"
+                            <rect x="402" y="49.86" width="50" height="45" fill="fff2cc" stroke="none"
                                 transform="rotate(-90,427,72.36)" pointer-events="all" />
-                            <ellipse cx="427" cy="72.36" rx="25" ry="22.5" fill="#fff2cc" stroke="#d6b656"
+                            <ellipse cx="427" cy="72.36" rx="25" ry="22.5" fill="#d6ccff" stroke="#d6b656"
                                 transform="rotate(-90,427,72.36)" pointer-events="all"
                                 style="fill: light-dark(rgb(255, 242, 204), rgb(40, 29, 0)); stroke: light-dark(rgb(214, 182, 86), rgb(109, 81, 0));" />
                             <path d="M 402 72.36 L 427 49.86 L 452 72.36" fill="none" stroke="#d6b656"
