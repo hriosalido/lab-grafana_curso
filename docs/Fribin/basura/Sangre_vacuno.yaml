@@ -16,8 +16,8 @@ cells:
 
 ##################################SENSORES###############################################
 
-  prueba:
-    dataRef: prueba
+  Bomba_bandeja:
+    dataRef: Bomba_bandeja
     label:
       separator: "replace"
     fillColor:
