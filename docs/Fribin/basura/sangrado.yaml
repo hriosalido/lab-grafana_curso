@@ -1,0 +1,24 @@
+cellIdPreamble: cell-
+anchorLinks:
+ #definir los tipos de referencias en cada linea
+
+  -thresholds: &colormarchaparo
+    - {color: red, level: 0}
+    - {color: green, level: 30} 
+    - {color: blue, level: 100} 
+
+
+  - valueMappings: &textomarchaparo
+    - {valueMax: 1, text: OFF}
+    - {valueMin: 1, text: ON} 
+
+cells:
+
+##################################SENSORES###############################################
+
+  prueba:
+    dataRef: prueba
+    label:
+      separator: "replace"
+    fillColor:
+      thresholds: &colormarchaparo
