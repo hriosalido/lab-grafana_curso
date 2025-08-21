@@ -27,7 +27,7 @@ cells:
       #unidades y numdecimales iráin aquí
       valueMappings: *textoBinario
     fillColor:
-      thresholds: *colorBinario
+      thresholds: *colorMarcha
     linkRef: "enlacePal"
   # enlaceEnv:
   #   linkTarget: _self
