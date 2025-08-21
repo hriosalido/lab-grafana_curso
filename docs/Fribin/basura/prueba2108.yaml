@@ -6,8 +6,8 @@ anchorLinks:
     # - rango n
     - color: red
       level: 0
-    - {color: green, level: 10}
-    - {color: blue, level: 50}  
+    - {color: green, level: 30}
+    - {color: blue, level: 80}  
 
   - thresholds: &colorBinario
     - {color: red, level: 0}
