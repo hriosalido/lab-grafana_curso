@@ -28,6 +28,15 @@ cells:
     fillColor:
       thresholds: *colorMarcha
     linkRef: "enlacePal"
+  M2:
+    dataRef: M2
+    label:
+      separator: "replace" #si no pones esto, concatena, esto reemplaza el valor
+      #unidades y numdecimales iráin aquí
+      valueMappings: *textoBinario
+    fillColor:
+      thresholds: *colorMarcha
+    linkRef: "enlacePal"
   
   prueba:
     dataRef: prueba
