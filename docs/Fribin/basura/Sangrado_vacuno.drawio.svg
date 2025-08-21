@@ -32,7 +32,7 @@
                 <g data-cell-id="Bomba_bandeja">
                     <g id="cell-Bomba_bandeja" content="&lt;object label=&quot;&quot;/&gt;" data-label="">
                         <g>
-                            <rect x="50" y="190" width="60" height="60" fill="none" stroke="none"
+                            <rect x="50" y="190" width="60" height="60" fill="#b32020" stroke="none"
                                 pointer-events="all" />
                             <ellipse cx="80" cy="220" rx="30" ry="30" fill="#b32020" stroke="#000000"
                                 pointer-events="all"
