@@ -14,7 +14,7 @@
                 <g data-cell-id="prueba">
                     <g id="cell-prueba" content="&lt;object label=&quot;&quot;/&gt;" data-label="">
                         <g>
-                            <rect x="19.5" y="0" width="21" height="21" fill="#ffffff" stroke="#000000"
+                            <rect x="19.5" y="0" width="21" height="21" fill="#b14a4a" stroke="#000000"
                                 pointer-events="all"
                                 style="fill: light-dark(#ffffff, var(--ge-dark-color, #121212)); stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));" />
                             <path d="M 30 21 L 30 42" fill="none" stroke="#000000" stroke-linejoin="round"
