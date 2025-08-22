@@ -56,6 +56,16 @@ cells:
     fillColor:
       thresholds: *colorMarcha
     linkRef: "enlacePal"
+
+  EV1:
+    dataRef: EV1
+    label:
+      separator: "replace" #si no pones esto, concatena, esto reemplaza el valor
+      #unidades y numdecimales iráin aquí
+      valueMappings: *textoBinario
+    fillColor:
+      thresholds: *colorMarcha
+    linkRef: "enlacePal"  
   # enlaceEnv:
   #   linkTarget: _self
   #   link: /d/2d12d99d-c621-46fc-8492-1957dc4e8749/ejemplo-envasado?orgId=1&from=now-30m&to=now&timezone=browser&var-query0=&var-Etapa=&var-etapa=Env&editPanel=2
