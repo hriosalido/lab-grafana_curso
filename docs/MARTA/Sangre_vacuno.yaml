@@ -46,6 +46,14 @@ cells:
       #valueMappings: *textoBinario
     fillColor:
       thresholds: *colorBinario
+  M1:
+    dataRef: M1
+    label:
+      separator: "replace" #si no pones esto, concatena, esto reemplaza el valor
+      #unidades y numdecimales iráin aquí
+      #valueMappings: *textoBinario
+    fillColor:
+      thresholds: *colorBinario
   
   prueba:
     dataRef: prueba
