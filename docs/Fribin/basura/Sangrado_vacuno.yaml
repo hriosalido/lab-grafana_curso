@@ -12,7 +12,7 @@ anchorLinks:
 
   - thresholds: &colorBinario
     - {color: red, level: 0}
-    - {color: green, level: 15}  
+    - {color: green, level: 1}  
   - valueMappings: &textoBinario
     - {valueMax: 5, text: OFF}
     - {valueMin: 5, text: ON}
