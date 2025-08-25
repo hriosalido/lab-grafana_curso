@@ -1,0 +1,78 @@
+cellIdPreamble: cell-
+anchorLinks:
+ #definir los tipos de referencias en cada linea
+
+  -thresholds: &colormarchaparo
+    - {color: red, level: 0}
+    - {color: green, level: 1} 
+
+
+  - valueMappings: &textomarchaparo
+    - {valueMax: 1, text: OFF}
+    - {valueMin: 1, text: ON} 
+
+cells:
+
+##################################SENSORES###############################################
+
+
+S3: #Sensor nivel max bandeja
+  dataRef:S3
+  label:"replace"
+  labelColor:
+	thresholds: *colormarchaparo
+S4: #Sensor nivel min bandeja
+  dataRef:S4
+  label:"replace"
+  labelColor:
+	thresholds: *colormarchaparo
+S5: #Sensor nivel smax rotofiltro
+  dataRef:S5
+  label:"replace"
+  labelColor:
+	thresholds: *colormarchaparo
+S6: #Sensor nivel min rotofiltro
+  dataRef:S6
+  label:"replace"
+  labelColor:
+	thresholds: *colormarchaparo
+S7: #Final carrera sangrado
+  dataRef:S7
+  label:"replace"
+  labelColor:
+	thresholds: *colormarchaparo
+##################################PULSADORES###############################################
+
+P2: #Selector producción/ limpieza
+  dataRef:P2
+  label:"replace"
+  labelColor:
+	thresholds: *colormarchaparo
+
+P4: #Pulsador inicio proceso
+  dataRef:P4
+  label:"replace"
+  labelColor:
+	thresholds: *colormarchaparo
+P5: #Pulsador paro proceso
+  dataRef:P5
+  label:"replace"
+  labelColor:
+	thresholds: *colormarchaparo
+
+##################################BOMBAS_NEUMÁTICAS###############################################
+#####B:BOMBAS_NEUMATICAS
+#####M:BOMBAS_ELECTRICAS
+
+
+B2: #Bomba bandeja 
+  dataRef:B2
+  label:"replace"
+  labelColor:
+	thresholds: *colormarchaparo
+B3: #Bomba rotofiltro
+  dataRef:B3
+  label:"replace"
+  labelColor:
+	thresholds: *colormarchaparo
+
