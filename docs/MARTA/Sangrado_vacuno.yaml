@@ -19,8 +19,8 @@ anchorLinks:
 
 
 cells:
-  Bomba_prueba:
-    dataRef: Bomba_prueba
+  BOMBA_PRUEBA:
+    dataRef: BOMBA_PRUEBA
     label:
       separator: "replace" #si no pones esto, concatena, esto reemplaza el valor
       #unidades y numdecimales iráin aquí
