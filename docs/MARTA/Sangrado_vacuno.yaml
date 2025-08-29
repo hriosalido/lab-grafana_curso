@@ -19,7 +19,7 @@ anchorLinks:
 
 
 cells:
-  Bomba_prueba
+  Bomba_prueba:
     dataRef: Bomba_prueba
     label:
       separator: "replace" #si no pones esto, concatena, esto reemplaza el valor
