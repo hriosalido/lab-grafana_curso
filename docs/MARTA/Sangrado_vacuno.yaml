@@ -20,7 +20,7 @@ anchorLinks:
 
 cells:
   Bomba_bandeja:
-    dataRef: Bomba_bandeja
+    dataRef: Bomba_prueba
     label:
       separator: "replace" #si no pones esto, concatena, esto reemplaza el valor
       #unidades y numdecimales iráin aquí
