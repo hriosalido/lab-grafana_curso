@@ -99,6 +99,7 @@
                     </g>
                 </g>
                 <g data-cell-id="M2">
+                    <g id="cell-M2" content="&lt;object label=&quot;88888&quot;/&gt;" data-label="88888">
                     <g>
                         <rect x="402" y="49.86" width="50" height="45" fill="none" stroke="none"
                             transform="rotate(-90,427,72.36)" pointer-events="all" />
@@ -121,6 +122,7 @@
                     </g>
                 </g>
                 <g data-cell-id="B3">
+                    <g id="cell-B3" content="&lt;object label=&quot;88888&quot;/&gt;" data-label="88888">
                     <g>
                         <rect x="337" y="594.64" width="31" height="27" fill="none" stroke="none"
                             transform="rotate(90,352.5,608.14)" pointer-events="all" />
@@ -140,6 +142,7 @@
                     </g>
                 </g>
                 <g data-cell-id="Q2">
+                    <g id="cell-Q2" content="&lt;object label=&quot;88888&quot;/&gt;" data-label="88888">
                     <g>
                         <path
                             d="M 464.67 558.14 L 464.67 569.51 M 464.67 591.77 L 464.67 603.14 M 475.9 580.63 C 475.9 586.8 470.88 591.83 464.69 591.83 C 458.52 591.83 453.5 586.8 453.5 580.63 C 453.5 574.44 458.52 569.45 464.69 569.45 C 470.88 569.45 475.9 574.44 475.9 580.63 Z M 456.55 588.38 C 463 585.57 464.14 576.61 456.79 572.8 M 472.88 588.36 C 466.42 585.56 465.28 576.6 472.64 572.78"
@@ -354,6 +357,7 @@
                     </g>
                 </g>
                 <g data-cell-id="EV3">
+                    <g id="cell-EV3" content="&lt;object label=&quot;88888&quot;/&gt;" data-label="88888">
                     <g>
                         <rect x="227.47" y="118" width="15.05" height="14" fill="#fff2cc" stroke="#d6b656"
                             pointer-events="all"
@@ -381,6 +385,7 @@
                     </g>
                 </g>
                 <g data-cell-id="EV2">
+                    <g id="cell-EV2" content="&lt;object label=&quot;88888&quot;/&gt;" data-label="88888">
                     <g>
                         <rect x="161.97" y="118" width="15.05" height="14" fill="#fff2cc" stroke="#d6b656"
                             pointer-events="all"
@@ -417,6 +422,7 @@
                     </g>
                 </g>
                 <g data-cell-id="EV1">
+                    <g id="cell-EV1" content="&lt;object label=&quot;88888&quot;/&gt;" data-label="88888">
                     <g>
                         <rect x="195.72" y="28" width="11.55" height="10.5" fill="#d80073" stroke="#a50040"
                             pointer-events="all"
@@ -443,6 +449,7 @@
                     </g>
                 </g>
                 <g data-cell-id="EV10">
+                    <g id="cell-EV10" content="&lt;object label=&quot;88888&quot;/&gt;" data-label="88888">
                     <g>
                         <rect x="58.73" y="150.11" width="11.55" height="10.5" fill="#d5e8d4" stroke="#82b366"
                             stroke-width="2" pointer-events="all"
@@ -513,6 +520,7 @@
                     </g>
                 </g>
                 <g data-cell-id="S5">
+                    <g id="cell-S5" content="&lt;object label=&quot;88888&quot;/&gt;" data-label="88888">
                     <g>
                         <ellipse cx="142" cy="568.14" rx="15" ry="15" fill="#fa6800" stroke="#c73500" stroke-width="2"
                             pointer-events="all"
@@ -623,6 +631,7 @@
                     </g>
                 </g>
                 <g data-cell-id="EV8">
+                    <g id="cell-EV8" content="&lt;object label=&quot;88888&quot;/&gt;" data-label="88888">
                     <g>
                         <rect x="66.75" y="670.71" width="10.5" height="10.5" fill="#d80073" stroke="#a50040"
                             stroke-width="2" pointer-events="all"
@@ -640,6 +649,7 @@
                     </g>
                 </g>
                 <g data-cell-id="EV12">
+                    <g id="cell-EV12" content="&lt;object label=&quot;88888&quot;/&gt;" data-label="88888">
                     <g>
                         <rect x="136.75" y="685.71" width="10.5" height="10.5" fill="#dae8fc" stroke="#6c8ebf"
                             stroke-width="2" pointer-events="all"
@@ -657,6 +667,7 @@
                     </g>
                 </g>
                 <g data-cell-id="EV11">
+                    <g id="cell-EV11" content="&lt;object label=&quot;88888&quot;/&gt;" data-label="88888">
                     <g>
                         <rect x="196.75" y="684.8" width="10.5" height="10.82" fill="#dae8fc" stroke="#6c8ebf"
                             stroke-width="2" pointer-events="all"
@@ -768,6 +779,7 @@
                     </g>
                 </g>
                 <g data-cell-id="S2">
+                    <g id="cell-S2" content="&lt;object label=&quot;88888&quot;/&gt;" data-label="88888">
                     <g>
                         <ellipse cx="599" cy="611.64" rx="10" ry="10" fill="#fa6800" stroke="#c73500" stroke-width="2"
                             pointer-events="all"
@@ -836,6 +848,7 @@
                     </g>
                 </g>
                 <g data-cell-id="V3">
+                    <g id="cell-V3" content="&lt;object label=&quot;88888&quot;/&gt;" data-label="88888">
                     <g>
                         <path d="M 312.53 643.03 L 327.53 643.03 M 320.03 643.03 L 320.03 660.94" fill="none"
                             stroke="#82b366" stroke-width="2" stroke-linejoin="round" stroke-miterlimit="10"
@@ -848,6 +861,7 @@
                     </g>
                 </g>
                 <g data-cell-id="V4">
+                    <g id="cell-V4" content="&lt;object label=&quot;88888&quot;/&gt;" data-label="88888">
                     <g>
                         <path d="M 383.5 675.6 L 398.5 675.6 M 391 675.6 L 391 693.51" fill="none" stroke="#82b366"
                             stroke-width="2" stroke-linejoin="round" stroke-miterlimit="10" pointer-events="all"
@@ -879,6 +893,7 @@
                     </g>
                 </g>
                 <g data-cell-id="V5">
+                    <g id="cell-V5" content="&lt;object label=&quot;88888&quot;/&gt;" data-label="88888">
                     <g>
                         <path d="M 484.69 636.22 L 499.69 636.22 M 492.19 636.22 L 492.19 654.13" fill="none"
                             stroke="#a50040" stroke-width="2" stroke-linejoin="round" stroke-miterlimit="10"
@@ -911,6 +926,7 @@
                     </g>
                 </g>
                 <g data-cell-id="V6">
+                    <g id="cell-V6" content="&lt;object label=&quot;88888&quot;/&gt;" data-label="88888">
                     <g>
                         <path d="M 1015.71 506.6 L 1030.71 506.6 M 1023.21 506.6 L 1023.21 524.51" fill="none"
                             stroke="#b20000" stroke-linejoin="round" stroke-miterlimit="10"
@@ -953,6 +969,7 @@
                     </g>
                 </g>
                 <g data-cell-id="EV4">
+                    <g id="cell-EV4" content="&lt;object label=&quot;88888&quot;/&gt;" data-label="88888">
                     <g>
                         <path
                             d="M 1214.5 503.27 L 1211.13 503.32 L 1212.79 498.14 Z M 1246.42 514.36 L 1243.28 515.94 L 1247.23 519.82 Z"
@@ -996,6 +1013,7 @@
                     </g>
                 </g>
                 <g data-cell-id="EV9">
+                    <g id="cell-EV9" content="&lt;object label=&quot;88888&quot;/&gt;" data-label="88888">
                     <g>
                         <rect x="1237.75" y="567" width="10.5" height="10.82" fill="#d5e8d4" stroke="#82b366"
                             stroke-width="2" pointer-events="all"
@@ -1558,6 +1576,7 @@
                     </g>
                 </g>
                 <g data-cell-id="M3">
+                    <g id="cell-M3" content="&lt;object label=&quot;88888&quot;/&gt;" data-label="88888">
                     <g>
                         <rect x="685.61" y="298" width="31" height="27" fill="none" stroke="none"
                             transform="rotate(-180,701.11,311.5)" pointer-events="all" />
