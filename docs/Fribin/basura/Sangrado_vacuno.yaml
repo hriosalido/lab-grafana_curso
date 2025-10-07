@@ -64,6 +64,14 @@ cells:
       #valueMappings: *textoBinario
     fillColor:
       thresholds: *colorBinario
+  S5:
+    dataRef: S5
+    label:
+      separator: "replace" #si no pones esto, concatena, esto reemplaza el valor
+      #unidades y numdecimales iráin aquí
+      #valueMappings: *textoBinario
+    fillColor:
+      thresholds: *colorBinario
   
   prueba:
     dataRef: prueba
