@@ -12,7 +12,7 @@ anchorLinks:
 
   - thresholds: &colorBinario
     - {color: red, level: 0}
-    - {color: green, level: 5}  
+    - {color: green, level: 70}  
   - valueMappings: &textoBinario
     - {valueMax: 5, text: OFF}
     - {valueMin: 5, text: ON}
@@ -21,6 +21,16 @@ anchorLinks:
 cells:
   Bomba_bandeja:
     dataRef: Bomba_bandeja
+    label:
+      separator: "replace" #si no pones esto, concatena, esto reemplaza el valor
+      #unidades y numdecimales iráin aquí
+      valueMappings: *textoBinario
+    fillColor:
+      thresholds: *colorMarcha
+    linkRef: "enlacePal"
+  
+  M2:
+    dataRef: M2
     label:
       separator: "replace" #si no pones esto, concatena, esto reemplaza el valor
       #unidades y numdecimales iráin aquí
