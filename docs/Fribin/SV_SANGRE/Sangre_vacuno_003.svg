@@ -529,37 +529,34 @@
                     </g>
                 </g>
                 <g data-cell-id="Bomba_bandeja">
-                    <g id="cell-Bomba_bandeja" content="&lt;object label=&quot;88888&quot;/&gt;" data-label="88888">
-                        <g>
-                            <rect x="39.5" y="313" width="50" height="45" fill="none" stroke="none"
-                                transform="rotate(-181,64.5,335.5)" pointer-events="all" />
-                            <ellipse cx="64.5" cy="335.5" rx="25" ry="22.5" fill="#ffffff" stroke="#000000"
-                                transform="rotate(-181,64.5,335.5)" pointer-events="all"
-                                style="fill: light-dark(#ffffff, var(--ge-dark-color, #121212)); stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));" />
-                            <path d="M 39.5 335.5 L 64.5 313 L 89.5 335.5" fill="none" stroke="#000000"
-                                stroke-miterlimit="10" transform="rotate(-181,64.5,335.5)" pointer-events="all"
-                                style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));" />
-                        </g>
-                        <g>
-                            <g transform="rotate(-181 63.98515401010013 306.0044929928865)">
-                                <switch>
-                                    <foreignObject style="overflow: visible; text-align: left;" pointer-events="none"
-                                        width="100%" height="100%"
-                                        requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
-                                        <div xmlns="http://www.w3.org/1999/xhtml"
-                                            style="display: flex; align-items: unsafe flex-start; justify-content: unsafe center; width: 1px; height: 1px; padding-top: 306px; margin-left: 64px;">
+                    <g>
+                        <rect x="39.5" y="313" width="50" height="45" fill="none" stroke="none"
+                            transform="rotate(-181,64.5,335.5)" pointer-events="all" />
+                        <ellipse cx="64.5" cy="335.5" rx="25" ry="22.5" fill="#ffffff" stroke="#000000"
+                            transform="rotate(-181,64.5,335.5)" pointer-events="all"
+                            style="fill: light-dark(#ffffff, var(--ge-dark-color, #121212)); stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));" />
+                        <path d="M 39.5 335.5 L 64.5 313 L 89.5 335.5" fill="none" stroke="#000000"
+                            stroke-miterlimit="10" transform="rotate(-181,64.5,335.5)" pointer-events="all"
+                            style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));" />
+                    </g>
+                    <g>
+                        <g transform="rotate(-181 63.98515401010013 306.0044929928865)">
+                            <switch>
+                                <foreignObject style="overflow: visible; text-align: left;" pointer-events="none"
+                                    width="100%" height="100%"
+                                    requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+                                    <div xmlns="http://www.w3.org/1999/xhtml"
+                                        style="display: flex; align-items: unsafe flex-start; justify-content: unsafe center; width: 1px; height: 1px; padding-top: 306px; margin-left: 64px;">
+                                        <div
+                                            style="box-sizing: border-box; font-size: 0; text-align: center; color: #000000; ">
                                             <div
-                                                style="box-sizing: border-box; font-size: 0; text-align: center; color: #000000; ">
-                                                <div
-                                                    style="display: inline-block; font-size: 12px; font-family: Helvetica; color: light-dark(#000000, #ffffff); line-height: 1.2; pointer-events: all; white-space: nowrap; ">
-                                                    88888</div>
-                                            </div>
+                                                style="display: inline-block; font-size: 12px; font-family: Helvetica; color: light-dark(#000000, #ffffff); line-height: 1.2; pointer-events: all; white-space: nowrap; ">
+                                                88888</div>
                                         </div>
-                                    </foreignObject>
-                                    <image x="47.5" y="306.5" width="33" height="17"
-                                        xlink:href="data:image/png;base64,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" />
-                                </switch>
-                            </g>
+                                    </div>
+                                </foreignObject><text x="64" y="318" fill="light-dark(#000000, #ffffff)"
+                                    font-family="Helvetica" font-size="12px" text-anchor="middle">88888</text>
+                            </switch>
                         </g>
                     </g>
                 </g>
