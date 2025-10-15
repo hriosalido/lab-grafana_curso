@@ -536,7 +536,7 @@
                 <g data-cell-id="Bomba_bandeja">
                     <g id="cell-Bomba_bandeja" content="&lt;object label=&quot;88888&quot;/&gt;" data-label="88888">
                         <g>
-                            <rect x="39.5" y="313" width="50" height="45" fill="#9a2b2b" stroke="none"
+                            <rect x="39.5" y="313" width="50" height="45" fill="#9a2b2b" stroke="#9a2b2b"
                                 transform="rotate(-181,64.5,335.5)" pointer-events="all" />
                             <ellipse cx="64.5" cy="335.5" rx="25" ry="22.5" fill="#ffffff" stroke="#9a2b2b"
                                 transform="rotate(-181,64.5,335.5)" pointer-events="all"
