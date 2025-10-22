@@ -460,7 +460,7 @@
                     </g>
                 </g>
                 <g data-cell-id="Bomba_bandeja">
-                    <g id="cell-EstadoPal" content="&lt;object label=&quot;j&quot;/&gt;" data-label="j">
+                    <g id="cell-Bomba_bandeja" content="&lt;object label=&quot;j&quot;/&gt;" data-label="j">
                         <g>
                             <rect x="39.5" y="312" width="50" height="45" fill="#477c60" stroke="none"
                                 transform="rotate(-181,64.5,334.5)" pointer-events="all" />
