@@ -28,3 +28,23 @@ cells:
     fillColor:
       thresholds: *colorMarcha
     linkRef: "enlacePal"
+
+  prueba2:
+    dataRef: prueba2
+    label:
+      separator: "replace" #si no pones esto, concatena, esto reemplaza el valor
+      #unidades y numdecimales iráin aquí
+      valueMappings: *textoBinario
+    fillColor:
+      thresholds: *colorMarcha
+    linkRef: "enlacePal"
+
+  prueba3:
+    dataRef: prueba3
+    label:
+      separator: "replace" #si no pones esto, concatena, esto reemplaza el valor
+      #unidades y numdecimales iráin aquí
+      valueMappings: *textoBinario
+    fillColor:
+      thresholds: *colorMarcha
+    linkRef: "enlacePal"
