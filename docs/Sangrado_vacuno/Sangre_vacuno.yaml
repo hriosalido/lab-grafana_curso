@@ -38,6 +38,16 @@ cells:
     fillColor:
       thresholds: *colorBinario
     linkRef: "enlacePal"
+
+    B3:
+    dataRef: B3
+    label:
+      separator: "replace" #si no pones esto, concatena, esto reemplaza el valor
+      #unidades y numdecimales iráin aquí
+      valueMappings: *textoBinario
+    fillColor:
+      thresholds: *colorBinario
+    linkRef: "enlacePal"
   
   prueba:
     dataRef: prueba

@@ -123,15 +123,17 @@
                     </g>
                 </g>
                 <g data-cell-id="B3">
-                    <g>
-                        <rect x="337" y="593.64" width="31" height="27" fill="none" stroke="none"
-                            transform="rotate(90,352.5,607.14)" pointer-events="all" />
-                        <ellipse cx="352.5" cy="607.14" rx="15.499999999999998" ry="13.499999999999998" fill="#ffffff"
-                            stroke="#000000" transform="rotate(90,352.5,607.14)" pointer-events="all"
-                            style="fill: light-dark(#ffffff, var(--ge-dark-color, #121212)); stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));" />
-                        <path d="M 337 607.14 L 352.5 593.64 L 368 607.14" fill="none" stroke="#000000"
-                            stroke-miterlimit="10" transform="rotate(90,352.5,607.14)" pointer-events="all"
-                            style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));" />
+                    <g id="cell-B3" content="&lt;object label=&quot;j&quot;/&gt;" data-label="j">
+                        <g>
+                            <rect x="337" y="593.64" width="31" height="27" fill="none" stroke="none"
+                                transform="rotate(90,352.5,607.14)" pointer-events="all" />
+                            <ellipse cx="352.5" cy="607.14" rx="15.499999999999998" ry="13.499999999999998" fill="#ffffff"
+                                stroke="#000000" transform="rotate(90,352.5,607.14)" pointer-events="all"
+                                style="fill: light-dark(#ffffff, var(--ge-dark-color, #121212)); stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));" />
+                            <path d="M 337 607.14 L 352.5 593.64 L 368 607.14" fill="none" stroke="#000000"
+                                stroke-miterlimit="10" transform="rotate(90,352.5,607.14)" pointer-events="all"
+                                style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));" />
+                        </g>
                     </g>
                 </g>
                 <g data-cell-id="ioiFAsBh1hg9Ndt4YnYH-35">
