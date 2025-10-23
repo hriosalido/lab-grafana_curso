@@ -39,7 +39,7 @@ cells:
       thresholds: *colorBinario
     linkRef: "enlacePal"
 
-    B3:
+  B3:
     dataRef: B3
     label:
       separator: "replace" #si no pones esto, concatena, esto reemplaza el valor
@@ -49,7 +49,7 @@ cells:
       thresholds: *colorBinario
     linkRef: "enlacePal"
 
-    EV4:
+  EV4:
     dataRef: EV4
     label:
       separator: "replace" #si no pones esto, concatena, esto reemplaza el valor
