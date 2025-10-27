@@ -59,6 +59,26 @@ cells:
       thresholds: *colorBinario
     linkRef: "enlacePal"
   
+  M3:
+    dataRef: M3
+    label:
+      separator: "replace" #si no pones esto, concatena, esto reemplaza el valor
+      #unidades y numdecimales iráin aquí
+      valueMappings: *textoBinario
+    fillColor:
+      thresholds: *colorBinario
+    linkRef: "enlacePal"
+
+  EV2:
+    dataRef: EV2
+    label:
+      separator: "replace" #si no pones esto, concatena, esto reemplaza el valor
+      #unidades y numdecimales iráin aquí
+      valueMappings: *textoBinario
+    fillColor:
+      thresholds: *colorBinario
+    linkRef: "enlacePal"
+  
   prueba:
     dataRef: prueba
     label:
