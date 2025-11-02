@@ -198,6 +198,26 @@ cells:
     fillColor:
       thresholds: *colorBinario
     linkRef: "enlacePal"
+
+  luz_on:
+    dataRef: luz_on
+    label:
+      separator: "replace" #si no pones esto, concatena, esto reemplaza el valor
+      #unidades y numdecimales iráin aquí
+      valueMappings: *textoBinario
+    fillColor:
+      thresholds: *colorBinario
+    linkRef: "enlacePal"
+
+  luz_off:
+    dataRef: luz_off
+    label:
+      separator: "replace" #si no pones esto, concatena, esto reemplaza el valor
+      #unidades y numdecimales iráin aquí
+      valueMappings: *textoBinario
+    fillColor:
+      thresholds: *colorBinario
+    linkRef: "enlacePal"
   
 
 
