@@ -12,7 +12,17 @@ anchorLinks:
 
   - thresholds: &colorBinario
     - {color: red, level: 0}
-    - {color: green, level: 1}  
+    - {color: green, level: 1}
+
+  - thresholds: &colorBinario_on
+    - {color: black, level: 0}
+    - {color: green, level: 1}
+
+  - thresholds: &colorBinario_off
+    - {color: red, level: 0}
+    - {color: black, level: 1}
+
+
   - valueMappings: &textoBinario
     - {valueMax: 5, text: OFF}
     - {valueMin: 5, text: ON}
@@ -206,7 +216,7 @@ cells:
       #unidades y numdecimales iráin aquí
       valueMappings: *textoBinario
     fillColor:
-      thresholds: *colorBinario
+      thresholds: *colorBinario_on
     linkRef: "enlacePal"
 
   luz_off:
@@ -216,7 +226,7 @@ cells:
       #unidades y numdecimales iráin aquí
       valueMappings: *textoBinario
     fillColor:
-      thresholds: *colorBinario
+      thresholds: *colorBinario_off
     linkRef: "enlacePal"
   
 
