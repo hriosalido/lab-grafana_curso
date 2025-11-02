@@ -16,10 +16,10 @@ anchorLinks:
 
   - thresholds: &colorBinario_off
     - {color: black, level: 0}
-    - {color: green, level: 1}
+    - {color: red, level: 1}
 
   - thresholds: &colorBinario_on
-    - {color: red, level: 0}
+    - {color: green, level: 0}
     - {color: black, level: 1}
 
 
