@@ -168,6 +168,16 @@ cells:
     fillColor:
       thresholds: *colorBinario
     linkRef: "enlacePal"
+
+  S5:
+    dataRef: S5
+    label:
+      separator: "replace" #si no pones esto, concatena, esto reemplaza el valor
+      #unidades y numdecimales iráin aquí
+      valueMappings: *textoBinario
+    fillColor:
+      thresholds: *colorBinario
+    linkRef: "enlacePal"
   
 
 

@@ -526,10 +526,12 @@
                     </g>
                 </g>
                 <g data-cell-id="S5">
-                    <g>
-                        <ellipse cx="142" cy="567.14" rx="14.999999999999998" ry="14.999999999999998" fill="#fcfcfc"
-                            stroke="#c73500" stroke-width="2" pointer-events="all"
-                            style="fill: light-dark(rgb(252, 252, 252), rgb(233, 107, 18)); stroke: light-dark(rgb(199, 53, 0), rgb(255, 145, 100));" />
+                    <g id="cell-S5" content="&lt;object label=&quot;j&quot;/&gt;" data-label="j">
+                        <g>
+                            <ellipse cx="142" cy="567.14" rx="14.999999999999998" ry="14.999999999999998" fill="#fcfcfc"
+                                stroke="#c73500" stroke-width="2" pointer-events="all"
+                                style="fill: light-dark(rgb(252, 252, 252), rgb(233, 107, 18)); stroke: light-dark(rgb(199, 53, 0), rgb(255, 145, 100));" />
+                        </g>
                     </g>
                 </g>
                 <g data-cell-id="S6">
