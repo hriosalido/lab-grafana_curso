@@ -178,6 +178,16 @@ cells:
     fillColor:
       thresholds: *colorBinario
     linkRef: "enlacePal"
+
+  S6:
+    dataRef: S6
+    label:
+      separator: "replace" #si no pones esto, concatena, esto reemplaza el valor
+      #unidades y numdecimales iráin aquí
+      valueMappings: *textoBinario
+    fillColor:
+      thresholds: *colorBinario
+    linkRef: "enlacePal"
   
 
 
