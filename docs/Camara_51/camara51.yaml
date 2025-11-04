@@ -1,0 +1,33 @@
+cellIdPreamble: cell-
+anchorLinks:
+  - thresholds: &colorMarcha #definir los tipos de referencias en cada linea
+
+    # - rango1
+    # - rango n
+    - color: red
+      level: 0
+    - {color: orange, level: 30}
+    - {color: green, level: 50}
+    - {color: blue, level: 80}  
+
+  - thresholds: &colorBinario
+    - {color: red, level: 0}
+    - {color: green, level: 1} 
+
+   
+  - valueMappings: &textoBinario
+    - {valueMax: 5, text: OFF}
+    - {valueMin: 5, text: ON}
+
+
+cells:
+  Bomba_bandeja:
+    dataRef: PANEL2
+    label:
+      separator: "replace" #si no pones esto, concatena, esto reemplaza el valor
+      #unidades y numdecimales iráin aquí
+      valueMappings: *textoBinario
+    fillColor:
+      thresholds: *none
+    linkRef: "enlacePal"
+
