@@ -52,7 +52,7 @@
                     </g>
                 </g>
                 <g data-cell-id="REC1">
-                    <g transform="translate(0.5,0.5)">
+                    <g id="cell-REC1" content="&lt;object label=&quot;REC&quot;/&gt;" data-label="REC">
                         <rect x="250" y="25" width="60" height="30" fill="none" stroke="none" pointer-events="all" />
                     </g>
                     <g>
