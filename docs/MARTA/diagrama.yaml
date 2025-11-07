@@ -28,14 +28,15 @@ cells:
       #unidades y numdecimales iráin aquí
       valueMappings: *textoBinario
     fillColor:
-      thresholds: *colorBinario
+      thresholds: *colorMarcha
   REC1:
     dataRef: REC1
     label:
       separator: "replace" #si no pones esto, concatena, esto reemplaza el valor
       #unidades y numdecimales irÃ¡in aquÃ­
-    labelColor: 
-      thresholds: *colorMarcha 
+      valueMappings: *textoBinario
+    fillColor:
+      thresholds: *colorBinario
 
 
-      
+
