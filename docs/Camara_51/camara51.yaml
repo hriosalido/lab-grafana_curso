@@ -21,8 +21,8 @@ anchorLinks:
 
 
 cells:
-  Bomba_bandeja:
-    dataRef: PANEL2
+  P36:
+    dataRef: P36
     label:
       separator: "replace" #si no pones esto, concatena, esto reemplaza el valor
       #unidades y numdecimales iráin aquí
