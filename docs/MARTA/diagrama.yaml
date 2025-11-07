@@ -37,6 +37,13 @@ cells:
       valueMappings: *textoBinario
     fillColor:
       thresholds: *colorBinario
+    CIRCULO1:
+    dataRef: CIRCULO1
+    label:
+      separator: "replace" #si no pones esto, concatena, esto reemplaza el valor
+      #unidades y numdecimales irÃ¡in aquÃ­
+    labelColor: 
+      thresholds: *colorMarcha
 
 
 
