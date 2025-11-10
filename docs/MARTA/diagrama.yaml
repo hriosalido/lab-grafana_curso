@@ -37,7 +37,7 @@ cells:
       valueMappings: *textoBinario
     fillColor:
       thresholds: *colorBinario
-CIRCULO1:
+  CIRCULO1:
     dataRef: CIRCULO1 #no tienen porque llamarse igual, es el nombre de la serie
     label:
       separator: "replace" #si no pones esto, concatena, esto reemplaza el valor
