@@ -38,7 +38,6 @@ cells:
     fillColor:
       thresholds: *colorBinario
 CIRCULO1:
-  CIRCULO1: #son los ids creados en drawio dd
     dataRef: CIRCULO1 #no tienen porque llamarse igual, es el nombre de la serie
     label:
       separator: "replace" #si no pones esto, concatena, esto reemplaza el valor
