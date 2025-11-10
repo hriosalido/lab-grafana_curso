@@ -31,7 +31,7 @@ cells:
       thresholds: *colorMarcha
   REC1:
     dataRef: REC1
-   label:
+    label:
       separator: "replace" #si no pones esto, concatena, esto reemplaza el valor
       #unidades y numdecimales irÃ¡in aquÃ­
       valueMappings: *textoBinario
