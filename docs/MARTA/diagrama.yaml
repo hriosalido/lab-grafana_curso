@@ -29,14 +29,14 @@ cells:
       valueMappings: *textoBinario
     fillColor:
       thresholds: *colorMarcha
-  #REC1:
-  #  dataRef: REC1
-  # label:
-  #    separator: "replace" #si no pones esto, concatena, esto reemplaza el valor
-  #    #unidades y numdecimales irÃ¡in aquÃ­
-  #    valueMappings: *textoBinario
-  #  fillColor:
-  #    thresholds: *colorBinario
+  REC1:
+    dataRef: REC1
+   label:
+      separator: "replace" #si no pones esto, concatena, esto reemplaza el valor
+      #unidades y numdecimales irÃ¡in aquÃ­
+      valueMappings: *textoBinario
+    fillColor:
+      thresholds: *colorBinario
 
 
 
