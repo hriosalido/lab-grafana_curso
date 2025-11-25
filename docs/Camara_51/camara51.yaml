@@ -29,5 +29,3 @@ cells:
       valueMappings: *textoBinario
     fillColor:
       thresholds: *none
-    linkRef: "enlacePal"
-
